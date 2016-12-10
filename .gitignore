@@ -96,4 +96,5 @@ ENV/
 
 #migrations
 *migrations/
-
+#node modules
+node_modules/

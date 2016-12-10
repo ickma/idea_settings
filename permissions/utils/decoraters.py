@@ -16,7 +16,7 @@ def auth_public(func):
     :return:
     """
 
-    def wrapper(func, *args, **kwargs):
+    def wrapper(func, request,public_id,*args, **kwargs):
         """
 
         :param func:
