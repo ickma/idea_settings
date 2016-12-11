@@ -98,3 +98,5 @@ ENV/
 *migrations/
 #node modules
 node_modules/
+#home settings
+django_wx_joyme/home_settings

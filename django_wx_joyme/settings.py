@@ -130,3 +130,26 @@ STATICFILES_DIRS = [
 
 ]
 
+"""caches settings"""
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://172.16.78.73:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+"""home develop settings"""
+import os
+
+if os.path.isdir(os.path.join(BASE_DIR, 'django_wx_joyme', 'home_settings')):
+    try:
+        import home_settings.database
+
+        DATABASES = home_settings.database.DATABASES
+        CACHES = home_settings.database.CACHES
+
+    except (ImportError, NameError):
+        pass

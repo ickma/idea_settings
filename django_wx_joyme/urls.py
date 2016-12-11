@@ -23,6 +23,6 @@ xadmin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', admin.site.urls),
+    url(r'^', admin.site.urls),
     url(r'^wechat', include(wechat_manage_urls))
 ]

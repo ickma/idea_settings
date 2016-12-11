@@ -42,7 +42,8 @@ class PublicAccount(models.Model):
         return self.public_name
 
     class Meta:
-        verbose_name = u'公众号配置'
+        verbose_name=verbose_name_plural = u'公众号配置'
+        ordering = ["-id"]
 
 
 class PublicMenuConfig(models.Model):
