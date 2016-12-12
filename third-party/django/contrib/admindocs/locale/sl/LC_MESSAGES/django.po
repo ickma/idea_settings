@@ -55,7 +55,7 @@ msgstr "Skok na stran z dokumentacijo za pogled, ki gustvarja trenutno stran."
 msgid "Tags"
 msgstr "Oznake"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr "Izpiši vse značke za predloge in njihov opis."
 
 msgid "Filters"
@@ -187,18 +187,18 @@ msgstr ""
 "Če želite uporabiti te filtre, dodajte <code>%(code)s</code> v vašo predlogo "
 "preden uporabite filter."
 
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr "Značke v predlogah"
 
 msgid "Template tag documentation"
 msgstr "Dokumentacija značk v predlogah"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr "Vgrajene značke"
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Če želite uporabiti te značke, dodajte <code>%(code)s</code> v vašo predlogo "

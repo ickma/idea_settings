@@ -159,9 +159,9 @@ class Truncator(SimpleLazyObject):
 
     def _truncate_html(self, length, truncate, text, truncate_len, words):
         """
-        Truncates HTML to a certain number of chars (not counting tags and
+        Truncates HTML to a certain number of chars (not counting templatetags and
         comments), or, if words is True, then to a certain number of words.
-        Closes opened tags if they were correctly closed in the given HTML.
+        Closes opened templatetags if they were correctly closed in the given HTML.
 
         Newlines in the HTML are preserved.
         """
@@ -173,7 +173,7 @@ class Truncator(SimpleLazyObject):
             'param', 'area', 'hr', 'input'
         )
 
-        # Count non-HTML chars/words and keep note of open tags
+        # Count non-HTML chars/words and keep note of open templatetags
         pos = 0
         end_text_pos = 0
         current_len = 0
@@ -196,7 +196,7 @@ class Truncator(SimpleLazyObject):
             # Check for tag
             tag = re_tag.match(m.group(0))
             if not tag or current_len >= truncate_len:
-                # Don't worry about non tags or tags after our truncate point
+                # Don't worry about non templatetags or templatetags after our truncate point
                 continue
             closing_tag, tagname, self_closing = tag.groups()
             # Element names are always case-insensitive
@@ -204,17 +204,17 @@ class Truncator(SimpleLazyObject):
             if self_closing or tagname in html4_singlets:
                 pass
             elif closing_tag:
-                # Check for match in open tags list
+                # Check for match in open templatetags list
                 try:
                     i = open_tags.index(tagname)
                 except ValueError:
                     pass
                 else:
                     # SGML: An end tag closes, back to the matching start tag,
-                    # all unclosed intervening start tags with omitted end tags
+                    # all unclosed intervening start templatetags with omitted end templatetags
                     open_tags = open_tags[i + 1:]
             else:
-                # Add it to the start of the open tags list
+                # Add it to the start of the open templatetags list
                 open_tags.insert(0, tagname)
 
         if current_len <= length:
@@ -223,7 +223,7 @@ class Truncator(SimpleLazyObject):
         truncate_text = self.add_truncation_text('', truncate)
         if truncate_text:
             out += truncate_text
-        # Close any tags still open
+        # Close any templatetags still open
         for tag in open_tags:
             out += '</%s>' % tag
         # Return string

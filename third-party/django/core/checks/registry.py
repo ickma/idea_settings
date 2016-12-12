@@ -8,7 +8,7 @@ from django.utils.itercompat import is_iterable
 
 class Tags(object):
     """
-    Built-in tags for internal checks.
+    Built-in templatetags for internal checks.
     """
     admin = 'admin'
     caches = 'caches'
@@ -30,7 +30,7 @@ class CheckRegistry(object):
     def register(self, check=None, *tags, **kwargs):
         """
         Can be used as a function or a decorator. Register given function
-        `f` labeled with given `tags`. The function should receive **kwargs
+        `f` labeled with given `templatetags`. The function should receive **kwargs
         and return list of Errors and Warnings.
 
         Example::
@@ -70,12 +70,12 @@ class CheckRegistry(object):
 
         if tags is not None:
             checks = [check for check in checks
-                      if hasattr(check, 'tags') and set(check.tags) & set(tags)]
+                      if hasattr(check, 'templatetags') and set(check.tags) & set(tags)]
         else:
             # By default, 'database'-tagged checks are not run as they do more
             # than mere static code analysis.
             checks = [check for check in checks
-                      if not hasattr(check, 'tags') or Tags.database not in check.tags]
+                      if not hasattr(check, 'templatetags') or Tags.database not in check.tags]
 
         for check in checks:
             new_errors = check(app_configs=app_configs)
@@ -89,7 +89,7 @@ class CheckRegistry(object):
         return tag in self.tags_available(include_deployment_checks)
 
     def tags_available(self, deployment_checks=False):
-        return set(chain(*[check.tags for check in self.get_checks(deployment_checks) if hasattr(check, 'tags')]))
+        return set(chain(*[check.tags for check in self.get_checks(deployment_checks) if hasattr(check, 'templatetags')]))
 
     def get_checks(self, include_deployment_checks=False):
         checks = list(self.registered_checks)

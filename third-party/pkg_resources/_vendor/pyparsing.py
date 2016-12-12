@@ -4863,11 +4863,11 @@ def _makeTags(tagStr, xml):
 def makeHTMLTags(tagStr):
     """
     Helper to construct opening and closing tag expressions for HTML, given a tag name. Matches
-    tags in either upper or lower case, attributes with namespaces and with quoted or unquoted values.
+    templatetags in either upper or lower case, attributes with namespaces and with quoted or unquoted values.
 
     Example::
         text = '<td>More info at the <a href="http://pyparsing.wikispaces.com">pyparsing</a> wiki page</td>'
-        # makeHTMLTags returns pyparsing expressions for the opening and closing tags as a 2-tuple
+        # makeHTMLTags returns pyparsing expressions for the opening and closing templatetags as a 2-tuple
         a,a_end = makeHTMLTags("A")
         link_expr = a + SkipTo(a_end)("link_text") + a_end
         
@@ -4882,7 +4882,7 @@ def makeHTMLTags(tagStr):
 def makeXMLTags(tagStr):
     """
     Helper to construct opening and closing tag expressions for XML, given a tag name. Matches
-    tags only in the given upper/lower case.
+    templatetags only in the given upper/lower case.
 
     Example: similar to L{makeHTMLTags}
     """
@@ -4890,9 +4890,9 @@ def makeXMLTags(tagStr):
 
 def withAttribute(*args,**attrDict):
     """
-    Helper to create a validating parse action to be used with start tags created
+    Helper to create a validating parse action to be used with start templatetags created
     with C{L{makeXMLTags}} or C{L{makeHTMLTags}}. Use C{withAttribute} to qualify a starting tag
-    with a required attribute value, to avoid false matches on common tags such as
+    with a required attribute value, to avoid false matches on common templatetags such as
     C{<TD>} or C{<DIV>}.
 
     Call C{withAttribute} with a series of attribute names and values. Specify the list
@@ -5600,7 +5600,7 @@ class pyparsing_common:
     @staticmethod
     def stripHTMLTags(s, l, tokens):
         """
-        Parse action to remove HTML tags from web page HTML source
+        Parse action to remove HTML templatetags from web page HTML source
 
         Example::
             # strip HTML links from normal text 

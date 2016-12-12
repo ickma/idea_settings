@@ -83,7 +83,7 @@ def do_timezone(value, arg):
     return result
 
 
-# Template tags
+# Template templatetags
 
 class LocalTimeNode(Node):
     """

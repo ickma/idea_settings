@@ -71,7 +71,7 @@ def copy_context(context):
 class BasicNode(template.Node):
     """
     Basic Node object that we can rely on for Node objects in normal
-    template tags. I created this because most of the tags we'll be using
+    template templatetags. I created this because most of the templatetags we'll be using
     will need both the form object and the helper string. This handles
     both the form object and parses out the helper string into attributes
     that templates can easily handle.

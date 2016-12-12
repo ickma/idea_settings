@@ -4,7 +4,7 @@ from django.contrib.messages import constants
 
 def get_level_tags():
     """
-    Returns the message level tags.
+    Returns the message level templatetags.
     """
     level_tags = constants.DEFAULT_TAGS.copy()
     level_tags.update(getattr(settings, 'MESSAGE_TAGS', {}))

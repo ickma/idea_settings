@@ -58,7 +58,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Taguri"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr "Lista tuturor tagurilor din șabloane și funcțiile lor."
 
 msgid "Filters"
@@ -189,18 +189,18 @@ msgstr ""
 "Pentru a utiliza aceste filtre, puneți <code>%(code)s</code> în șablon "
 "înainte de utilizarea acestui filtru."
 
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr "Taguri pentru șabloane"
 
 msgid "Template tag documentation"
 msgstr "Documentația tagurilor pentru șabloane"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr "Taguri implicite"
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Pentru a utiliza aceste taguri, puneți <code>%(code)s</code> în șablon "

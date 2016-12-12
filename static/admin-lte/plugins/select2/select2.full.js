@@ -4526,7 +4526,7 @@ S2.define('select2/defaults',[
   './data/select',
   './data/array',
   './data/ajax',
-  './data/tags',
+  './data/templatetags',
   './data/tokenizer',
   './data/minimumInputLength',
   './data/maximumInputLength',
@@ -4963,8 +4963,8 @@ S2.define('select2/options',[
     if ($e.data('select2Tags')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
-          'Select2: The `data-select2-tags` attribute has been changed to ' +
-          'use the `data-data` and `data-tags="true"` attributes and will be ' +
+          'Select2: The `data-select2-templatetags` attribute has been changed to ' +
+          'use the `data-data` and `data-templatetags="true"` attributes and will be ' +
           'removed in future versions of Select2.'
         );
       }

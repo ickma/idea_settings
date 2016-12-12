@@ -52,7 +52,7 @@ msgstr ""
 msgid "Tags"
 msgstr "ტეგები"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr "ყველა შაბლონის ტეგის სია და მათი ფუნქციები."
 
 msgid "Filters"
@@ -171,18 +171,18 @@ msgid ""
 "using the filter."
 msgstr ""
 
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr "შაბლონის ტეგები"
 
 msgid "Template tag documentation"
 msgstr "შაბლონის ტეგების დოკუმენტაცია"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr ""
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 

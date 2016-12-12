@@ -183,7 +183,7 @@
 					this.createOptionValue(element);
 				}
 				else {
-					// Ignore illegal tags.
+					// Ignore illegal templatetags.
 				}
 			}, this));
 			

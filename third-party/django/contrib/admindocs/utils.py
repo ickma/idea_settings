@@ -97,7 +97,7 @@ ROLES = {
     'view': '%s/views/%s/',
     'template': '%s/templates/%s/',
     'filter': '%s/filters/#%s',
-    'tag': '%s/tags/#%s',
+    'tag': '%s/templatetags/#%s',
 }
 
 

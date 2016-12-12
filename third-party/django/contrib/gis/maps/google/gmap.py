@@ -137,12 +137,12 @@ class GoogleMap(object):
 
     @property
     def js(self):
-        "Returns only the generated Google Maps JavaScript (no <script> tags)."
+        "Returns only the generated Google Maps JavaScript (no <script> templatetags)."
         return self.render()
 
     @property
     def scripts(self):
-        "Returns all <script></script> tags required with Google Maps JavaScript."
+        "Returns all <script></script> templatetags required with Google Maps JavaScript."
         return format_html('{}\n  <script type="text/javascript">\n//<![CDATA[\n{}//]]>\n  </script>',
                            self.api_script, mark_safe(self.js))
 

@@ -30,7 +30,7 @@ class SpecialSpacelessNode(template.Node):
 @register.tag
 def specialspaceless(parser, token):
     """
-    Removes whitespace between HTML tags, and introduces a whitespace
+    Removes whitespace between HTML templatetags, and introduces a whitespace
     after buttons an inputs, necessary for Bootstrap to place them
     correctly in the layout.
     """

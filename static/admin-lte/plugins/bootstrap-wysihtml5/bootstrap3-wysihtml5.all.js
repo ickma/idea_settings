@@ -4335,7 +4335,7 @@ wysihtml5.browser = (function() {
     },
 
     /**
-     * Everything below IE9 doesn't know how to treat HTML5 tags
+     * Everything below IE9 doesn't know how to treat HTML5 templatetags
      *
      * @param {Object} context The document object on which to check HTML5 support
      *
@@ -4364,7 +4364,7 @@ wysihtml5.browser = (function() {
     supportsCommand: (function() {
       // Following commands are supported but contain bugs in some browsers
       var buggyCommands = {
-        // formatBlock fails with some tags (eg. <blockquote>)
+        // formatBlock fails with some templatetags (eg. <blockquote>)
         "formatBlock":          isIE(10, "<="),
          // When inserting unordered or ordered lists in Firefox, Chrome or Safari, the current selection or line gets
          // converted into a list (<ul><li>...</li></ul>, <ol><li>...</li></ol>)
@@ -4450,7 +4450,7 @@ wysihtml5.browser = (function() {
     },
 
     /**
-     * Check whether the browser automatically closes tags that don't need to be opened
+     * Check whether the browser automatically closes templatetags that don't need to be opened
      */
     autoClosesUnclosedTags: function() {
       var clonedTestElement = testElement.cloneNode(false),
@@ -5400,7 +5400,7 @@ wysihtml5.dom.getAsDom = (function() {
   };
 
   /**
-   * Make sure IE supports HTML5 tags, which is accomplished by simply creating one instance of each element
+   * Make sure IE supports HTML5 templatetags, which is accomplished by simply creating one instance of each element
    */
   var _ensureHTML5Compatibility = function(context) {
     if (context._wysihtml5_supportsHTML5Tags) {
@@ -5414,7 +5414,7 @@ wysihtml5.dom.getAsDom = (function() {
 
 
   /**
-   * List of html5 tags
+   * List of html5 templatetags
    * taken from http://simon.html5.org/html5-elements
    */
   var HTML5_ELEMENTS = [
@@ -5822,9 +5822,9 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  * @example
  *    var userHTML = '<div id="foo" onclick="alert(1);"><p><font color="red">foo</font><script>alert(1);</script></p></div>';
  *    wysihtml5.dom.parse(userHTML, {
- *      tags {
- *        p:      "div",      // Rename p tags to div tags
- *        font:   "span"      // Rename font tags to span tags
+ *      templatetags {
+ *        p:      "div",      // Rename p templatetags to div templatetags
+ *        font:   "span"      // Rename font templatetags to span templatetags
  *        div:    true,       // Keep them, also possible (same result when passing: "div" or true)
  *        script: undefined   // Remove script elements
  *      }
@@ -5837,7 +5837,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  *
  *    var userHTML = '<div>foobar<br>foobar</div>';
  *    wysihtml5.dom.parse(userHTML, {
- *      tags: {
+ *      templatetags: {
  *        div: undefined,
  *        br:  true
  *      }
@@ -5850,7 +5850,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  *        red:    1,
  *        green:  1
  *      },
- *      tags: {
+ *      templatetags: {
  *        div: {
  *          rename_tag:     "p"
  *        }
@@ -5875,7 +5875,7 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
         "3": _handleText,
         "8": _handleComment
       },
-      // Rename unknown tags to this
+      // Rename unknown templatetags to this
       DEFAULT_NODE_NAME   = "span",
       WHITE_SPACE_REG_EXP = /\s+/,
       defaultRules        = { tags: {}, classes: {} },
@@ -6088,7 +6088,7 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
     }
     /**
      * Repair node
-     * IE is a bit bitchy when it comes to invalid nested markup which includes unclosed tags
+     * IE is a bit bitchy when it comes to invalid nested markup which includes unclosed templatetags
      * A <p> doesn't need to be closed according HTML4-5 spec, we simply replace it with a <div> to preserve its content and layout
      */
     if ("outerHTML" in oldNode) {
@@ -9549,7 +9549,7 @@ wysihtml5.quirks.ensureProperClearing = (function() {
  * http://code.google.com/p/rangy/
  *
  * changed in order to be able ...
- *    - to use custom tags
+ *    - to use custom templatetags
  *    - to detect and replace similar css classes via reg exp
  */
 (function(wysihtml5, rangy) {
@@ -10449,7 +10449,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);
 ;/**
- * document.execCommand("fontSize") will create either inline styles (firefox, chrome) or use font tags
+ * document.execCommand("fontSize") will create either inline styles (firefox, chrome) or use font templatetags
  * which we don't want
  * Instead we set a css class
  */
@@ -10501,7 +10501,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);
 ;/**
- * document.execCommand("foreColor") will create either inline styles (firefox, chrome) or use font tags
+ * document.execCommand("foreColor") will create either inline styles (firefox, chrome) or use font templatetags
  * which we don't want
  * Instead we set a css class
  */
@@ -10519,7 +10519,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);
 ;/**
- * document.execCommand("foreColor") will create either inline styles (firefox, chrome) or use font tags
+ * document.execCommand("foreColor") will create either inline styles (firefox, chrome) or use font templatetags
  * which we don't want
  * Instead we set a css class
  */
@@ -12424,7 +12424,7 @@ wysihtml5.views.View = Base.extend(
         });
       }
 
-      // Under certain circumstances Chrome + Safari create nested <p> or <hX> tags after paste
+      // Under certain circumstances Chrome + Safari create nested <p> or <hX> templatetags after paste
       // Inserting an invisible white space in front of it fixes the issue
       // This is too hacky and causes selection not to replace content on paste in chrome
      /* if (browser.createsNestedInvalidMarkupAfterPaste()) {

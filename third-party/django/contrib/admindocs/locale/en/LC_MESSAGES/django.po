@@ -78,7 +78,7 @@ msgid "Tags"
 msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/index.html:18
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/index.html:20
@@ -236,7 +236,7 @@ msgid ""
 msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/template_tag_index.html:12
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/template_tag_index.html:16
@@ -245,13 +245,13 @@ msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/template_tag_index.html:22
 #: contrib/admindocs/templates/admin_doc/template_tag_index.html:43
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr ""
 
 #: contrib/admindocs/templates/admin_doc/template_tag_index.html:23
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 

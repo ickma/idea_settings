@@ -50,7 +50,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Etiketak"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr "Template tag guztien eta beraien funtzioen zerrnda."
 
 msgid "Filters"
@@ -181,18 +181,18 @@ msgstr ""
 "Iragazki hauek erabiltzeko jarri <code>%(code)s</code> iragazkia erabili "
 "aurretik zure txantiloian"
 
-msgid "Template tags"
-msgstr "Template tags"
+msgid "Template templatetags"
+msgstr "Template templatetags"
 
 msgid "Template tag documentation"
 msgstr "Template tag documentazioa"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr ""
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Tag hauek erabiltzeko, jarri <code>%(code)s</code> txantiloian taga erabili "

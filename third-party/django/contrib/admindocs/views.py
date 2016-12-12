@@ -86,7 +86,7 @@ class TemplateTagIndexView(BaseAdminDocsView):
                         'meta': metadata,
                         'library': tag_library,
                     })
-        kwargs.update({'tags': tags})
+        kwargs.update({'templatetags': tags})
         return super(TemplateTagIndexView, self).get_context_data(**kwargs)
 
 

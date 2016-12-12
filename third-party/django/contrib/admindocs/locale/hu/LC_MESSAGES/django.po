@@ -56,9 +56,9 @@ msgstr ""
 msgid "Tags"
 msgstr "Címkék"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr ""
-"Az összes sablon címke (template tags) és a hozzá tartozó függvények listája"
+"Az összes sablon címke (template templatetags) és a hozzá tartozó függvények listája"
 
 msgid "Filters"
 msgstr "Szűrők"
@@ -188,18 +188,18 @@ msgstr ""
 "Ezen szűrők használatához a <code>%(code)s</code> kódrészletnek kell "
 "szerepelnie használat előtt a sablonban."
 
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr "Sablon címkék"
 
 msgid "Template tag documentation"
 msgstr "Sablon címke dokumentáció"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr "Beépített címkék"
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Ezen címkék használatához a <code>%(code)s</code> kódrészletnek kell "

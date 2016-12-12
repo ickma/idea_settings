@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from wechat_manage.urls import urlpatterns as wechat_manage_urls
+from app.views import index
 
 import xadmin
 
@@ -23,6 +24,6 @@ xadmin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', admin.site.urls),
+    url(r'^', index.index),
     url(r'^wechat', include(wechat_manage_urls))
 ]

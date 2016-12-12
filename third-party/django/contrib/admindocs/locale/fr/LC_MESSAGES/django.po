@@ -54,7 +54,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Étiquettes"
 
-msgid "List of all the template tags and their functions."
+msgid "List of all the template templatetags and their functions."
 msgstr "Liste de toutes les balises de gabarit et leur fonction."
 
 msgid "Filters"
@@ -187,18 +187,18 @@ msgstr ""
 "Pour utiliser ces filtres, placez <code>%(code)s</code> dans votre gabarit "
 "avant d'utiliser un des filtres."
 
-msgid "Template tags"
+msgid "Template templatetags"
 msgstr "Balises de gabarit"
 
 msgid "Template tag documentation"
 msgstr "Documentation des balises de gabarit"
 
-msgid "Built-in tags"
+msgid "Built-in templatetags"
 msgstr "Balises intégrées"
 
 #, python-format
 msgid ""
-"To use these tags, put <code>%(code)s</code> in your template before using "
+"To use these templatetags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Pour utiliser ces balises, placez <code>%(code)s</code> dans le gabarit "

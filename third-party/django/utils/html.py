@@ -175,14 +175,14 @@ def _strip_once(value):
 
 @keep_lazy_text
 def strip_tags(value):
-    """Returns the given HTML with all tags stripped."""
+    """Returns the given HTML with all templatetags stripped."""
     # Note: in typical case this loop executes _strip_once once. Loop condition
     # is redundant, but helps to reduce number of executions of _strip_once.
     value = force_text(value)
     while '<' in value and '>' in value:
         new_value = _strip_once(value)
         if len(new_value) >= len(value):
-            # _strip_once was not able to detect more tags or length increased
+            # _strip_once was not able to detect more templatetags or length increased
             # due to http://bugs.python.org/issue20288
             # (affects Python 2 < 2.7.7 and Python 3 < 3.3.5)
             break
@@ -192,7 +192,7 @@ def strip_tags(value):
 
 @keep_lazy_text
 def strip_spaces_between_tags(value):
-    """Returns the given HTML with spaces between tags removed."""
+    """Returns the given HTML with spaces between templatetags removed."""
     return re.sub(r'>\s+<', '><', force_text(value))
 
 

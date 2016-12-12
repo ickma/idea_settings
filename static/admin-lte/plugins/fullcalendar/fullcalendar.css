@@ -101,7 +101,7 @@ body .fc { /* extra precedence to overcome jqui */
 }
 
 
-/* Buttons (styled <button> tags, normalized to work cross-browser)
+/* Buttons (styled <button> templatetags, normalized to work cross-browser)
 --------------------------------------------------------------------------------------------------*/
 
 .fc button {
@@ -456,7 +456,7 @@ temporary rendered events).
 	font-weight: normal; /* undo jqui's ui-widget-header bold */
 }
 
-/* overpower some of bootstrap's and jqui's styles on <a> tags */
+/* overpower some of bootstrap's and jqui's styles on <a> templatetags */
 .fc-event,
 .fc-event:hover,
 .ui-widget .fc-event {

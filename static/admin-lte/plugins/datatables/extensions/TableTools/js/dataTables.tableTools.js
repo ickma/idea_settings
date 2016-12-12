@@ -2241,7 +2241,7 @@ TableTools.prototype = {
 					}
 					else if ( typeof mTypeData == "string" )
 					{
-						/* Strip newlines, replace img tags with alt attr. and finally strip html... */
+						/* Strip newlines, replace img templatetags with alt attr. and finally strip html... */
 						sLoopData = mTypeData.replace(/\n/g," ");
 						sLoopData =
 						    sLoopData.replace(/<img.*?\s+alt\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+)).*?>/gi,

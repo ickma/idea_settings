@@ -206,7 +206,7 @@ class egg_info(Command):
         self.distribution.metadata.version = self.egg_version
 
         # If we bootstrapped around the lack of a PKG-INFO, as might be the
-        # case in a fresh checkout, make sure that any special tags get added
+        # case in a fresh checkout, make sure that any special templatetags get added
         # to the version info
         #
         pd = self.distribution._patched_dist
@@ -258,7 +258,7 @@ class egg_info(Command):
     def tagged_version(self):
         version = self.distribution.get_version()
         # egg_info may be called more than once for a distribution,
-        # in which case the version string already contains all tags.
+        # in which case the version string already contains all templatetags.
         if self.vtags and version.endswith(self.vtags):
             return safe_version(version)
         return safe_version(version + self.vtags)

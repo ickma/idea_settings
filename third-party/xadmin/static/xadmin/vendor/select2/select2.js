@@ -792,7 +792,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             if ($.isArray(opts.element.data("select2Tags"))) {
                 if ("tags" in opts) {
-                    throw "tags specified as both an attribute 'data-select2-tags' and in options of Select2 " + opts.element.attr("id");
+                    throw "templatetags specified as both an attribute 'data-select2-templatetags' and in options of Select2 " + opts.element.attr("id");
                 }
                 opts.tags=opts.element.data("select2Tags");
             }

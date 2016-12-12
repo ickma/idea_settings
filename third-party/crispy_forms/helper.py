@@ -135,8 +135,8 @@ class FormHelper(DynamicLayoutHandler):
             to form class attribute. The form will always have by default
             'uniForm' class.
 
-        **form_tag**: It specifies if <form></form> tags should be rendered when using a Layout.
-            If set to False it renders the form without the <form></form> tags. Defaults to True.
+        **form_tag**: It specifies if <form></form> templatetags should be rendered when using a Layout.
+            If set to False it renders the form without the <form></form> templatetags. Defaults to True.
 
         **form_error_title**: If a form has `non_field_errors` to display, they
             are rendered in a div. You can set title's div with this attribute.

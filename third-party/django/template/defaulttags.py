@@ -903,7 +903,7 @@ def do_if(parser, token):
     clauses, as well as an ``{% else %}`` clause that will be displayed if all
     previous conditions fail. These clauses are optional.
 
-    ``if`` tags may use ``or``, ``and`` or ``not`` to test a number of
+    ``if`` templatetags may use ``or``, ``and`` or ``not`` to test a number of
     variables or to negate a given variable::
 
         {% if not athlete_list %}
@@ -1021,7 +1021,7 @@ def find_library(parser, name):
 
 def load_from_library(library, label, names):
     """
-    Return a subset of tags and filters from a library.
+    Return a subset of templatetags and filters from a library.
     """
     subset = Library()
     for name in names:
@@ -1046,7 +1046,7 @@ def load(parser, token):
     """
     Loads a custom template tag library into the parser.
 
-    For example, to load the template tags in
+    For example, to load the template templatetags in
     ``django/templatetags/news/photos.py``::
 
         {% load news.photos %}
@@ -1059,7 +1059,7 @@ def load(parser, token):
     # token.split_contents() isn't useful here because this tag doesn't accept variable as arguments
     bits = token.contents.split()
     if len(bits) >= 4 and bits[-2] == "from":
-        # from syntax is used; load individual tags from the library
+        # from syntax is used; load individual templatetags from the library
         name = bits[-1]
         lib = find_library(parser, name)
         subset = load_from_library(lib, name, bits[1:-2])
@@ -1094,7 +1094,7 @@ def lorem(parser, token):
 
     * ``{% lorem %}`` will output the common "lorem ipsum" paragraph
     * ``{% lorem 3 p %}`` will output the common "lorem ipsum" paragraph
-      and two random paragraphs each wrapped in HTML ``<p>`` tags
+      and two random paragraphs each wrapped in HTML ``<p>`` templatetags
     * ``{% lorem 2 w random %}`` will output two random latin words
     """
     bits = list(token.split_contents())
@@ -1213,7 +1213,7 @@ def regroup(parser, token):
 @register.tag
 def spaceless(parser, token):
     """
-    Removes whitespace between HTML tags, including tab and newline characters.
+    Removes whitespace between HTML templatetags, including tab and newline characters.
 
     Example usage::
 
@@ -1227,7 +1227,7 @@ def spaceless(parser, token):
 
         <p><a href="foo/">Foo</a></p>
 
-    Only space between *tags* is normalized -- not space between tags and text.
+    Only space between *templatetags* is normalized -- not space between templatetags and text.
     In this example, the space around ``Hello`` won't be stripped::
 
         {% spaceless %}
@@ -1244,10 +1244,10 @@ def spaceless(parser, token):
 @register.tag
 def templatetag(parser, token):
     """
-    Outputs one of the bits used to compose template tags.
+    Outputs one of the bits used to compose template templatetags.
 
     Since the template system has no concept of "escaping", to display one of
-    the bits used in template tags, you must use the ``{% templatetag %}`` tag.
+    the bits used in template templatetags, you must use the ``{% templatetag %}`` tag.
 
     The argument tells which template bit to output:
 
