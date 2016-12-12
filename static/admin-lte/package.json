@@ -1,21 +1,14 @@
 {
   "_args": [
     [
-      {
-        "raw": "admin-lte",
-        "scope": null,
-        "escapedName": "admin-lte",
-        "name": "admin-lte",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "/Volumes/Ithink/wechatProjects/django_wx_joyme"
+      "admin-lte",
+      "/home/nick/projects/pythonProjects/django_wx"
     ]
   ],
   "_from": "admin-lte@latest",
   "_id": "admin-lte@2.3.8",
   "_inCache": true,
+  "_installable": true,
   "_location": "/admin-lte",
   "_nodeVersion": "4.5.0",
   "_npmOperationalInternal": {
@@ -23,29 +16,27 @@
     "tmp": "tmp/admin-lte-2.3.8.tgz_1478270733992_0.2781016898807138"
   },
   "_npmUser": {
-    "name": "almasaeed2010",
-    "email": "abdullah@almsaeedstudio.com"
+    "email": "abdullah@almsaeedstudio.com",
+    "name": "almasaeed2010"
   },
   "_npmVersion": "3.10.8",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "admin-lte",
-    "scope": null,
-    "escapedName": "admin-lte",
     "name": "admin-lte",
+    "raw": "admin-lte",
     "rawSpec": "",
+    "scope": null,
     "spec": "latest",
     "type": "tag"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#USER"
   ],
   "_resolved": "https://registry.npmjs.org/admin-lte/-/admin-lte-2.3.8.tgz",
   "_shasum": "2f2cad7aa2ef869e03143d3c23fdffdee795bb94",
   "_shrinkwrap": null,
   "_spec": "admin-lte",
-  "_where": "/Volumes/Ithink/wechatProjects/django_wx_joyme",
+  "_where": "/home/nick/projects/pythonProjects/django_wx",
   "bugs": {
     "url": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
