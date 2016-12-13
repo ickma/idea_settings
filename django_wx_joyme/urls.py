@@ -24,6 +24,6 @@ xadmin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', index.index),
-    url(r'^wechat', include(wechat_manage_urls))
+    url(r'^$', index.index),
+    url(r'^wechat/(?P<publicid>\d+)', include(wechat_manage_urls))
 ]

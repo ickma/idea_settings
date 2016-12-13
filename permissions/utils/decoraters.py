@@ -7,6 +7,7 @@ from   django.contrib.auth.models import User
 from django_wx_joyme.utils.main import get_params
 from wechat_manage.models.public_model import PublicAccount
 from wechat_sdk import WechatBasic
+from django.conf import settings
 
 
 def auth_public(func):
@@ -16,18 +17,25 @@ def auth_public(func):
     :return:
     """
 
-    def wrapper(func, request,public_id,*args, **kwargs):
+    def wrapper(request, publicid, *args, **kwargs):
         """
 
+        :param publicid:
         :param func:
+        :type request:HttpRequest
         :param args:
         :param kwargs:
         :return:
         """
-        request = args[0]  # type:HttpRequest
         user = request.user  # type:User
-        public_id = get_params(request, name='publicid')
-        public_instance = PublicAccount.objects.get(id=public_id)
+        try:
+            # public_id = get_params(request, name='publicid')
+            public_instance = PublicAccount.objects.get(id=int(publicid))
+        except (AttributeError, TypeError):
+            raise Exception(u'未选择公众号')
+        except PublicAccount.DoesNotExist:
+            raise Exception(u'选择的公众号不存在')
+
         # 实例化wechat_sdk实例
         wechat_instance = WechatBasic(appid=public_instance.app_id, appsecret=public_instance \
                                       .app_secret, token=public_instance.token

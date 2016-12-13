@@ -161,19 +161,10 @@ desired effect
             <ul class="sidebar-menu">
                 <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
-                    </ul>
-                </li>
+                {% autoescape off %}
+                {% side_bar %}
+                {% endautoescape %}
+
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -196,8 +187,9 @@ desired effect
 
         <!-- Main content -->
         <section class="content">
-
+            {%  block content %}
             <!-- Your Page Content Here -->
+            {% endblock %}
 
         </section>
         <!-- /.content -->
@@ -302,7 +294,11 @@ desired effect
 <!-- Bootstrap 3.3.6 -->
 <script src="{% static "admin-lte/bootstrap/js/bootstrap.min.js" %}"></script>
 <!-- AdminLTE App -->
-<script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
+<script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>l
+
+{# custom js#}
+{% block js %}
+{% endblock %}
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

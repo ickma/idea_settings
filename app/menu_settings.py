@@ -7,15 +7,15 @@ BASIC_CONFIG = \
      'children': [
          {
              'name': u'菜单配置',
-             'path': ''
+             'path': '/wechat/{0}/menu/create'
          },
          {
              'name': u'欢迎语配置',
-             'path': ''
+             'path': '{0}'
          },
          {
              'name': u'关键词回复',
-             'path': ''
+             'path': '{0}'
          },
 
      ]
@@ -27,15 +27,15 @@ USER_MANAGE_CONFIG = {
     'children': [
         {
             'name': u'聊天记录',
-            'path': ''
+            'path': '{0}'
         },
         {
             'name': u'所有用户',
-            'path': ''
+            'path': '{0}'
         },
         {
             'name': u'用户分组',
-            'path': ''
+            'path': '{0}'
         },
 
     ]
@@ -46,7 +46,7 @@ MATERIAL_MANAGE_CONFIG = {
     'children': [
         {
             'name': u'获取素材',
-            'path': ''
+            'path': '{0}'
         },
 
     ]
