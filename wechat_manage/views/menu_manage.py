@@ -15,7 +15,7 @@ from wechat_manage.forms.menu_form import MenuCreate
 
 
 @login_required
-# @catch_error
+@catch_error
 @auth_public
 def create(request, public):
     """

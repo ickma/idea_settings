@@ -25,6 +25,10 @@ BASIC_CONFIG = \
 USER_MANAGE_CONFIG = {
     'name': u'用户管理',
     'children': [
+{
+            'name': u'同步用户',
+            'path': '/wechat/{0}/followers/sync'
+        },
         {
             'name': u'聊天记录',
             'path': '{0}'

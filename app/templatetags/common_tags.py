@@ -32,9 +32,13 @@ def get_side_bar(context):
     :return: 
     """
     request = context['request']  # type:HttpRequest
-    public = context['public']
-    if isinstance(public, WechatBasic):
+
+    public = context.get('public')
+    if public and isinstance(public, WechatBasic):
         public = PublicAccount.objects.get(app_id=public.conf.appid)
+    elif not public:
+        public=WechatBasic()
+        public.id=0
     current_path = request.path
     html = ''
     for m in MENU_CONFIG:

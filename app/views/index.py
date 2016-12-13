@@ -3,8 +3,11 @@
 # @company:joyme
 from django.shortcuts import render
 from wechat_manage.models.public_model import PublicAccount
+from . import login_required, catch_error, auth_public
 
 
+@login_required
+@catch_error
 def index(request):
     """
 

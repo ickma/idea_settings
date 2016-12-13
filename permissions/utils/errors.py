@@ -11,9 +11,9 @@ def catch_error(func):
     :return:
     """
 
-    def wrapper(request, public, *args, **kwargs):
+    def wrapper(request, *args, **kwargs):
         try:
-            return func(request, public, *args, **kwargs)
+            return func(request, *args, **kwargs)
         except Exception as e:
             error_msg = u'出错原因:%s' % e
             page_title = u'出错提示'
