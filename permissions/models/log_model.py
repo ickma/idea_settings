@@ -28,7 +28,7 @@ class WebRequest(models.Model):
 
 class LogModel(models.Model):
     # 日志表
-    user = models.ForeignKey(User, verbose_name=u'用户')
+    user = models.ForeignKey(User, verbose_name=u'用户',null=True)
     path = models.CharField(max_length=255, verbose_name=u'路径')
     request = models.ForeignKey(WebRequest, verbose_name=u'请求')
     request_time = models.DateTimeField(auto_now_add=True)

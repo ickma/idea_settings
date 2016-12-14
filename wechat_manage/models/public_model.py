@@ -65,3 +65,4 @@ class PublicMenuConfig(models.Model):
     created_time = models.DateTimeField(auto_created=True, verbose_name=u'创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name=u'更新时间')
     info = models.TextField(verbose_name=u'信息内容')
+    menu_level=models.IntegerField(choices=((1,u'一级菜单'),(2,u'二级菜单')))

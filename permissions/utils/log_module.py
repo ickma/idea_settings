@@ -4,6 +4,7 @@
 from django.http import HttpRequest
 from permissions.models.log_model import LogModel
 # from django.core import serializers
+from django.contrib.auth.models import User,AnonymousUser
 
 import json
 from permissions.models.log_model import WebRequest
@@ -20,7 +21,8 @@ def log_each_visit(request, response):
     """
     if type(response) == HttpResponse:
         log_instance = LogModel()
-        log_instance.user = request.user
+        if not isinstance(request.user,AnonymousUser):
+            log_instance.user = request.user
         log_instance.path = request.path
         log_instance.request = request_to_model(request=request, response=response)
 
@@ -63,6 +65,6 @@ def request_to_model(request, response):
     request_instance.is_secure = request.is_secure()
     request_instance.status_code=response.status_code
     request_instance.is_ajax = request.is_ajax()
-    request_instance.user = request.user
+    request_instance.user = request.user  if not isinstance(request.user,AnonymousUser) else None
     request_instance.save()
     return request_instance

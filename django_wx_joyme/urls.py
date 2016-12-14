@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import login, logout_then_login
+
 from wechat_manage.urls import urlpatterns as wechat_manage_urls
 from app.views import index
 
@@ -25,5 +27,9 @@ import xadmin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index.index),
+    # set login url
+    url(r'accounts/login/', login, {'template_name','log/login.html'},name='login'),
+    #     set logout url
+    url(r'^signout', logout_then_login, name='signout'),
     url(r'^wechat/(?P<publicid>\d+)', include(wechat_manage_urls))
 ]

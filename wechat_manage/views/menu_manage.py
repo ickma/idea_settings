@@ -11,6 +11,7 @@ from django_wx_joyme.utils.main import get_params
 from permissions.utils.decoraters import auth_public
 from django.contrib.auth.decorators import login_required
 from wechat_sdk import WechatBasic
+from wechat_manage.models.public_model import PublicMenuConfig
 from wechat_manage.forms.menu_form import MenuCreate
 
 
@@ -28,7 +29,17 @@ def create(request, public):
     :return:
     """
     page_title = u'菜单设置'
-    menu_settings = public.get_menu()
+    menu_settings = public.get_menu()['menu']['button']
+    menus=[]
+    # 获取菜单配置
+    for n,m in enumerate(menu_settings):
+        if m['sub_button']:
+            menus+=[x.update({'parent_index':n,'menu_level':2}) for x in m['sub_button']]
+        else:
+            menus+=m.update({'index':n,'menu_level':1})
+
+
+
 
     # form = MenuCreate(initial=request.GET)
 
