@@ -49,7 +49,7 @@ the RSA key:
 .. __: http://www.rsa.com/rsalabs/node.asp?id=2125.
 """
 
-
+from __future__ import nested_scopes
 
 __revision__ = "$Id$"
 __all__ = [ 'new', 'PKCS1OAEP_Cipher' ]

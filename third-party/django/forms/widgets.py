@@ -248,7 +248,7 @@ class Widget(six.with_metaclass(RenameWidgetMethods)):
         This hook is necessary because some widgets have multiple HTML
         elements and, thus, multiple IDs. In that case, this method should
         return an ID value that corresponds to the first ID in the widget's
-        templatetags.
+        tags.
         """
         return id_
 

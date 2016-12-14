@@ -132,7 +132,7 @@ class PKCS115_Cipher:
             def __call__(self, c):
                 while bord(c)==0x00: c=self.rf(1)[0]
                 return c
-        ps = tobytes(list(map(nonZeroRandByte(randFunc), randFunc(k-mLen-3))))
+        ps = tobytes(map(nonZeroRandByte(randFunc), randFunc(k-mLen-3)))
         # Step 2b
         em = b('\x00\x02') + ps + bchr(0x00) + message
         # Step 3a (OS2IP), step 3b (RSAEP), part of step 3c (I2OSP)

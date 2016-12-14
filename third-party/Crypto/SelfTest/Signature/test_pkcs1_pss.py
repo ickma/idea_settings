@@ -20,7 +20,7 @@
 # SOFTWARE.
 # ===================================================================
 
-
+from __future__ import nested_scopes
 
 __revision__ = "$Id$"
 
@@ -346,7 +346,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
         def testSign1(self):
                 for i in range(len(self._testData)):
                         # Build the key
-                        comps = [ int(rws(self._testData[i][0][x]),16) for x in ('n','e','d') ]
+                        comps = [ long(rws(self._testData[i][0][x]),16) for x in ('n','e','d') ]
                         key = MyKey(RSA.construct(comps))
                         # Hash function
                         h = self._testData[i][4].new()
@@ -357,14 +357,14 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                         key._randfunc = lambda N: test_salt
                         # The real test
                         signer = PKCS.new(key)
-                        self.assertTrue(signer.can_sign())
+                        self.failUnless(signer.can_sign())
                         s = signer.sign(h)
                         self.assertEqual(s, t2b(self._testData[i][2]))
 
         def testVerify1(self):
                for i in range(len(self._testData)):
                         # Build the key
-                        comps = [ int(rws(self._testData[i][0][x]),16) for x in ('n','e') ]
+                        comps = [ long(rws(self._testData[i][0][x]),16) for x in ('n','e') ]
                         key = MyKey(RSA.construct(comps))
                         # Hash function
                         h = self._testData[i][4].new()
@@ -375,9 +375,9 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                         # The real test
                         key._randfunc = lambda N: test_salt
                         verifier = PKCS.new(key)
-                        self.assertFalse(verifier.can_sign())
+                        self.failIf(verifier.can_sign())
                         result = verifier.verify(h, t2b(self._testData[i][2]))
-                        self.assertTrue(result)
+                        self.failUnless(result)
 
         def testSignVerify(self):
                         h = SHA.new()
@@ -403,7 +403,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                             key.asked = 0
                             signer = PKCS.new(key)
                             s = signer.sign(h)
-                            self.assertTrue(signer.verify(h, s))
+                            self.failUnless(signer.verify(h, s))
                             self.assertEqual(key.asked, h.digest_size)
 
                         h = SHA.new()
@@ -415,14 +415,14 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                             signer = PKCS.new(key, saltLen=sLen)
                             s = signer.sign(h)
                             self.assertEqual(key.asked, sLen)
-                            self.assertTrue(signer.verify(h, s))
+                            self.failUnless(signer.verify(h, s))
 
                         # Verify that sign() uses the custom MGF
                         mgfcalls = 0
                         signer = PKCS.new(key, newMGF)
                         s = signer.sign(h)
                         self.assertEqual(mgfcalls, 1)
-                        self.assertTrue(signer.verify(h, s))
+                        self.failUnless(signer.verify(h, s))
 
                         # Verify that sign() does not call the RNG
                         # when salt length is 0, even when a new MGF is provided
@@ -432,7 +432,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                         s = signer.sign(h)
                         self.assertEqual(key.asked,0)
                         self.assertEqual(mgfcalls, 1)
-                        self.assertTrue(signer.verify(h, s))
+                        self.failUnless(signer.verify(h, s))
 
 def get_tests(config={}):
     tests = []

@@ -51,8 +51,8 @@ msgstr "מקפיץ אותך מכל עמוד לתיעוד התצוגה שייצר
 msgid "Tags"
 msgstr "תגים"
 
-msgid "List of all the template templatetags and their functions."
-msgstr "רשימת כל ה-template templatetags והפונקציות שלהן."
+msgid "List of all the template tags and their functions."
+msgstr "רשימת כל ה-template tags והפונקציות שלהן."
 
 msgid "Filters"
 msgstr "Filters"
@@ -176,18 +176,18 @@ msgstr ""
 "כדי להשתמש בפילטרים האלו יש להוסיף <code>%(code)s</code> בתבנית שלך לפני "
 "השימוש בפילטר."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "תגים לתבניות"
 
 msgid "Template tag documentation"
 msgstr "תיעוד תגים לתבניות"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "תגים מובנים"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "כדי להשתמש בתגים האלו יש להוסיף <code>%(code)s</code> בתבנית שלך לפני השימוש "

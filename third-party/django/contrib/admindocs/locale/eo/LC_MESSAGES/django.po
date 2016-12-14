@@ -53,7 +53,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Etikedoj"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Listigi ĉiujn ŝablonmarkojn kaj iliajn funkciojn."
 
 msgid "Filters"
@@ -184,18 +184,18 @@ msgstr ""
 "Por uzi tiujn filtrilojn, metu <code>%(code)s</code> en via ŝablono antaŭ "
 "uzi la filtrilo."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Ŝablonaj etikedoj"
 
 msgid "Template tag documentation"
 msgstr "Ŝablona etikeda dokumentado"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Integritaj etikedoj"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Por uzi tiujn etikedojn, metu <code>%(code)s</code> en via ŝablono antaŭ uzi "

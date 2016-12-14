@@ -54,7 +54,7 @@ msgstr "各ページから、ページを生成したビューのドキュメン
 msgid "Tags"
 msgstr "タグ"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "すべてのテンプレートタグとその機能の一覧です。"
 
 msgid "Filters"
@@ -185,18 +185,18 @@ msgstr ""
 "これらのフィルタを使用するには、テンプレート内でのフィルタの使用箇所より前に "
 "<code>%(code)s</code> を記述してください。"
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "テンプレートタグ"
 
 msgid "Template tag documentation"
 msgstr "テンプレートタグドキュメント"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "組み込みタグ"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "これらのタグを使用するためには、タグの使用箇所より前に <code>%(code)s</code> "

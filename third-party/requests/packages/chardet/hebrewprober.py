@@ -100,7 +100,7 @@ from .compat import wrap_ord
 # with the scores of the two SBCharSetProbers to produce a final answer.
 #
 # The SBCSGroupProber is responsible for stripping the original text of HTML
-# templatetags, English characters, numbers, low-ASCII punctuation characters, spaces
+# tags, English characters, numbers, low-ASCII punctuation characters, spaces
 # and new lines. It reduces any sequence of such characters to a single space.
 # The buffer fed to each prober in the SBCS group prober is pure text in
 # high-ASCII.

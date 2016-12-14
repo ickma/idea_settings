@@ -18,10 +18,10 @@ class InvalidTemplateLibrary(Exception):
 
 class Library(object):
     """
-    A class for registering template templatetags and filters. Compiled filter and
-    template tag functions are stored in the filters and templatetags attributes.
+    A class for registering template tags and filters. Compiled filter and
+    template tag functions are stored in the filters and tags attributes.
     The filter, simple_tag, and inclusion_tag methods provide a convenient
-    way to register callables as templatetags.
+    way to register callables as tags.
     """
     def __init__(self):
         self.filters = {}
@@ -236,7 +236,7 @@ class InclusionNode(TagHelperNode):
                 t = context.template.engine.get_template(self.filename)
             context.render_context[self] = t
         new_context = context.new(_dict)
-        # Copy across the CSRF token, if present, because inclusion templatetags are
+        # Copy across the CSRF token, if present, because inclusion tags are
         # often used for forms, and we need instructions for using CSRF
         # protection to be as simple as possible.
         csrf_token = context.get('csrf_token')

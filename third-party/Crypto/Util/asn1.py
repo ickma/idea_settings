@@ -187,7 +187,7 @@ class DerSequence(DerObject):
 
         def hasInts(self):
                 """Return the number of items in this sequence that are numbers."""
-                return len(list(filter(isInt, self._seq)))
+                return len(filter(isInt, self._seq))
 
         def hasOnlyInts(self):
                 """Return True if all items in this sequence are numbers."""

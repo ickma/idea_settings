@@ -177,7 +177,7 @@ def EMSA_PKCS1_V1_5_ENCODE(hash, emLen):
 
     :attention: the early standard (RFC2313) stated that ``DigestInfo``
         had to be BER-encoded. This means that old signatures
-        might have length templatetags in indefinite form, which
+        might have length tags in indefinite form, which
         is not supported in DER. Such encoding cannot be
         reproduced by this function.
 

@@ -29,7 +29,7 @@ import errno
 import os
 import stat
 
-from .rng_base import BaseRNG
+from rng_base import BaseRNG
 from Crypto.Util.py3compat import b
 
 class DevURandomRNG(BaseRNG):
@@ -63,7 +63,7 @@ class DevURandomRNG(BaseRNG):
         while len(data) < N:
             try:
                 d = self.__file.read(N - len(data))
-            except IOError as e:
+            except IOError, e:
                 # read(2) has been interrupted by a signal; redo the read
                 if e.errno == errno.EINTR:
                     continue

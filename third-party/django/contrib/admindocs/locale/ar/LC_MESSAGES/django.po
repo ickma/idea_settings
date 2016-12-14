@@ -55,7 +55,7 @@ msgstr "ينتقل بك من أي صفحة إلى وثائق العرض الذي
 msgid "Tags"
 msgstr "الوسوم"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "قائمة بجميع وسوم القوالب ووظائفهم."
 
 msgid "Filters"
@@ -179,18 +179,18 @@ msgstr ""
 "لإستخدام هذه المرشحات, الرجاء وضع <code>%(code)s</code> في القالب الخاص بك "
 "قبل إستخدام المرشّح."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "وسوم القالب"
 
 msgid "Template tag documentation"
 msgstr "وثائق وسم القالب"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "المسوم المدمجة"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "لإستخدام هذه الوسوم, الرجاء وضع <code>%(code)s</code> في القالب الخاص بك قبل "

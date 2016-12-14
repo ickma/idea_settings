@@ -57,7 +57,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Tag"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Daftar seluruh tag templat dan fungsinya."
 
 msgid "Filters"
@@ -189,18 +189,18 @@ msgstr ""
 "Untuk menggunakan filter ini, sertakan <code>%(code)s</code> pada templat "
 "Anda sebelum menggunakan filternya."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Tag templat"
 
 msgid "Template tag documentation"
 msgstr "Dokumentasi tag templat"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Tag bawaan"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Untuk menggunakan tag ini, sertakan <code>%(code)s</code> pada templat Anda "

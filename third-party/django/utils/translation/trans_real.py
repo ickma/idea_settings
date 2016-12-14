@@ -571,7 +571,7 @@ constant_re = re.compile(r"""_\(((?:".*?")|(?:'.*?'))\)""")
 def templatize(src, origin=None):
     """
     Turns a Django template into something that is understood by xgettext. It
-    does so by translating the Django translation templatetags into standard gettext
+    does so by translating the Django translation tags into standard gettext
     function invocations.
     """
     from django.template.base import (
@@ -666,7 +666,7 @@ def templatize(src, origin=None):
                     if origin:
                         filemsg = 'file %s, ' % origin
                     raise SyntaxError(
-                        "Translation blocks must not include other block templatetags: "
+                        "Translation blocks must not include other block tags: "
                         "%s (%sline %d)" % (t.contents, filemsg, t.lineno)
                     )
             elif t.token_type == TOKEN_VAR:

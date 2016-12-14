@@ -57,7 +57,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Tagaichean"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr ""
 "Liosta dhe thagaichean nan ùrlaran uile ’s dhe na foincseanan a th’ aca."
 
@@ -191,18 +191,18 @@ msgstr ""
 "Gus na criathragan seo a chleachdadh, cuir <code>%(code)s</code> san "
 "teamplaid agad mus cleachd thu a’ chriathrag."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Tagaichean teamplaid"
 
 msgid "Template tag documentation"
 msgstr "Docamaideadh air tagaichean teamplaid"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Tagaichean ’na bhroinn"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Gus na tagaichean seo a chleachdadh, cuir <code>%(code)s</code> san "

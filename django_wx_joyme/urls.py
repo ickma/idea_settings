@@ -20,7 +20,7 @@ from app.views import index
 
 import xadmin
 
-xadmin.autodiscover()
+# xadmin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

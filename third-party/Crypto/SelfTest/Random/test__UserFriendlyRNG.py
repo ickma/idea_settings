@@ -23,7 +23,7 @@
 
 """Self-test suite for generic Crypto.Random stuff """
 
-
+from __future__ import nested_scopes
 
 __revision__ = "$Id$"
 
@@ -106,7 +106,7 @@ class RNGForkTest(unittest.TestCase):
             results_dict[data] = 1
             f.close()
 
-        if len(results) != len(list(results_dict.keys())):
+        if len(results) != len(results_dict.keys()):
             raise AssertionError("RNG output duplicated across fork():\n%s" %
                                  (pprint.pformat(results)))
 

@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'xadmin',
-    'crispy_forms',
+    # 'xadmin',
+    # 'crispy_forms',
     'app',  # app
     'wechat_manage',
     'permissions'
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.log_middle_ware.log_middleware' #log_middle_ware
+    'app.middleware.log_middle_ware.log_middleware'  # log_middle_ware
 ]
 
 ROOT_URLCONF = 'django_wx_joyme.urls'
@@ -142,6 +142,11 @@ CACHES = {
         }
     }
 }
+
+"""import python modules"""
+import sys
+
+sys.path.insert(0, os.path.join(BASE_DIR, 'third-party'))
 
 """home develop settings"""
 import os

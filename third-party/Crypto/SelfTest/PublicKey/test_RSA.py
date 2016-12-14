@@ -78,7 +78,7 @@ class RSATest(unittest.TestCase):
         e2 53 72 98 ca 2a 8f 59 46 f8 e5 fd 09 1d bd cb
     """
 
-    e = 0x11    # public exponent
+    e = 0x11L    # public exponent
 
     prime_factor = """
         c9 7f b1 f0 27 f4 53 f6 34 12 33 ea aa d1 d9 35
@@ -172,9 +172,9 @@ class RSATest(unittest.TestCase):
 
     def test_factoring(self):
         rsaObj = self.rsa.construct([self.n, self.e, self.d])
-        self.assertTrue(rsaObj.p==self.p or rsaObj.p==self.q)
-        self.assertTrue(rsaObj.q==self.p or rsaObj.q==self.q)
-        self.assertTrue(rsaObj.q*rsaObj.p == self.n)
+        self.failUnless(rsaObj.p==self.p or rsaObj.p==self.q)
+        self.failUnless(rsaObj.q==self.p or rsaObj.q==self.q)
+        self.failUnless(rsaObj.q*rsaObj.p == self.n)
 
         self.assertRaises(ValueError, self.rsa.construct, [self.n, self.e, self.n-1])
 

@@ -507,7 +507,7 @@ def safeseq(value):
 @register.filter(is_safe=True)
 @stringfilter
 def striptags(value):
-    """Strips all [X]HTML templatetags."""
+    """Strips all [X]HTML tags."""
     return strip_tags(value)
 
 
@@ -648,7 +648,7 @@ def slice_filter(value, arg):
 def unordered_list(value, autoescape=True):
     """
     Recursively takes a self-nested list and returns an HTML unordered list --
-    WITHOUT opening and closing <ul> templatetags.
+    WITHOUT opening and closing <ul> tags.
 
     The list is assumed to be in the proper format. For example, if ``var``
     contains: ``['States', ['Kansas', ['Lawrence', 'Topeka'], 'Illinois']]``,

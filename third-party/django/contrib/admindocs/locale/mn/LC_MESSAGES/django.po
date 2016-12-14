@@ -59,7 +59,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Таг-ууд"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Бүх загваруудын шошго мөн тэдний функц"
 
 msgid "Filters"
@@ -188,18 +188,18 @@ msgstr ""
 "Энэ шошгыг ашиглахын тулд үүнийг <code>%(code)s</code> шошгоны өмнө загвар "
 "дотроо бич"
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Загвар шошго"
 
 msgid "Template tag documentation"
 msgstr "Template tag баримтжуулалт"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Өгөгдмөл шошгууд"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Энэ шошгыг ашиглахын тулд үүнийг <code>%(code)s</code> шошгоны өмнө загвар "

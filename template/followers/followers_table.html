@@ -1,0 +1,38 @@
+{% extends "base/simple_table.html" %}
+{% load time_date_tags %}
+{% block  table_head %}
+    <tr>
+        <th>id</th>
+        <th>用户昵称</th>
+        <th>用户头像</th>
+        <th>当前是否关注</th>
+        <th>关注时间</th>
+        <th>国家</th>
+        <th>省份</th>
+        <th>城市</th>
+        <th>性别</th>
+        <th>备注</th>
+    </tr>
+
+{% endblock %}
+{% block table_datas %}
+
+    {% for foo in datas %}
+        <tr>
+            <td>{{ foo.id }}</td>
+            <td>{{ foo.nickname }}</td>
+            <td><img src="{{ foo.headimgurl }}" alt="" style="height: 30px;width: auto"></td>
+            <td>{{ foo.get_subscribe_display }}</td>
+            <td>{{ foo.subscribe_time|ts_to_str }}</td>
+            <td>{{ foo.country }}</td>
+            <td>{{ foo.province }}</td>
+            <td>{{ foo.city }}</td>
+            <td>{{ foo.get_sex_display }}</td>
+            <td>{{ foo.remark }}</td>
+        </tr>
+
+
+    {% endfor %}
+
+
+{% endblock %}

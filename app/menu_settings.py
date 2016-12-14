@@ -35,7 +35,7 @@ USER_MANAGE_CONFIG = {
         },
         {
             'name': u'所有用户',
-            'path': '{0}'
+            'path': '/wechat/{0}/followers/query'
         },
         {
             'name': u'用户分组',

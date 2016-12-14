@@ -24,7 +24,7 @@ def get_params(request=None, name='', method='get', default=None, formatter=None
     :param get_list: 是否获取list，默认获取单个值
     :type get_list:bool
     :return:
-    :rtype:object
+    :rtype:int|str
     :raises :KeyError
     """
     if request is None or name == '':
@@ -40,9 +40,9 @@ def get_params(request=None, name='', method='get', default=None, formatter=None
     # 清除两端空格
     if need_strip:
         if isinstance(value, list):
-            value = [v.strip for v in value]
+            value = [v.strip() if isinstance(v, str) else v for v in value]
         else:
-            value = value.strip()
+            value = value.strip() if isinstance(value, str) else value
     # 格式化当前参数
     if value is not None and formatter:
         try:
@@ -55,3 +55,4 @@ def get_params(request=None, name='', method='get', default=None, formatter=None
     # 判断当前参数是否为空值
     if required and not value:
         raise KeyError(u'未获取到正确的参数值')
+    return value

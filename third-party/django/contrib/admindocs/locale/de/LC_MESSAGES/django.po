@@ -56,7 +56,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Tags"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Alle Template-Tags und deren Funktionen auflisten."
 
 msgid "Filters"
@@ -189,18 +189,18 @@ msgstr ""
 "Um diese Filter zu nutzen, muss sich <code>%(code)s</code> vor Aufruf des "
 "Filters im Template befinden."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Template-Tags"
 
 msgid "Template tag documentation"
 msgstr "Template-Tag-Dokumentation"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Mitgelieferte Tags"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Um diese Tags zu nutzen, muss sich <code>%(code)s</code> vor Aufruf des Tags "

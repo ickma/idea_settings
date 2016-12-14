@@ -20,7 +20,7 @@
 # SOFTWARE.
 # ===================================================================
 
-
+from __future__ import nested_scopes
 
 __revision__ = "$Id$"
 
@@ -42,7 +42,7 @@ def der2pem(der, text='PUBLIC'):
 
 class ImportKeyTests(unittest.TestCase):
     # 512-bit RSA key generated with openssl
-    rsaKeyPEM = '''-----BEGIN RSA PRIVATE KEY-----
+    rsaKeyPEM = u'''-----BEGIN RSA PRIVATE KEY-----
 MIIBOwIBAAJBAL8eJ5AKoIsjURpcEoGubZMxLD7+kT+TLr7UkvEtFrRhDDKMtuII
 q19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQJACUSDEp8RTe32ftq8IwG8
 Wojl5mAd1wFiIOrZ/Uv8b963WJOJiuQcVN29vxU5+My9GPZ7RA3hrDBEAoHUDPrI
@@ -53,7 +53,7 @@ n0CnZCJ6IZYqSt0H5N7+Q+2Ro64nuwV/OSQfM6sBwQ==
 -----END RSA PRIVATE KEY-----'''
 
     # As above, but this is actually an unencrypted PKCS#8 key
-    rsaKeyPEM8 = '''-----BEGIN PRIVATE KEY-----
+    rsaKeyPEM8 = u'''-----BEGIN PRIVATE KEY-----
 MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAvx4nkAqgiyNRGlwS
 ga5tkzEsPv6RP5MuvtSS8S0WtGEMMoy24girX0WsvilQgzKY8xIsGfeEkt7fQPDj
 wZAzhQIDAQABAkAJRIMSnxFN7fZ+2rwjAbxaiOXmYB3XAWIg6tn9S/xv3rdYk4mK
@@ -68,7 +68,7 @@ BX85JB8zqwHB
     rsaKeyEncryptedPEM=(
             
         # With DES and passphrase 'test'
-        ('test', '''-----BEGIN RSA PRIVATE KEY-----
+        ('test', u'''-----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: DES-CBC,AF8F9A40BD2FA2FC
 
@@ -83,7 +83,7 @@ dysKznQ6P+IoqML1WxAID4aGRMWka+uArOJ148Rbj9s=
         "\xAF\x8F\x9A\x40\xBD\x2F\xA2\xFC"),
 
         # With Triple-DES and passphrase 'rocking'
-        ('rocking', '''-----BEGIN RSA PRIVATE KEY-----
+        ('rocking', u'''-----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: DES-EDE3-CBC,C05D6C07F7FC02F6
 
@@ -98,7 +98,7 @@ YSxC7qDQIT/RECvV3+oQKEcmpEujn45wAnkTi12BH30=
         "\xC0\x5D\x6C\x07\xF7\xFC\x02\xF6"),
     )
 
-    rsaPublicKeyPEM = '''-----BEGIN PUBLIC KEY-----
+    rsaPublicKeyPEM = u'''-----BEGIN PUBLIC KEY-----
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL8eJ5AKoIsjURpcEoGubZMxLD7+kT+T
 Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
 -----END PUBLIC KEY-----'''
@@ -144,21 +144,21 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
     03010001
     '''.replace(" ",""))
 
-    n = int('BF 1E 27 90 0A A0 8B 23 51 1A 5C 12 81 AE 6D 93 31 2C 3E FE 91 3F 93 2E BE D4 92 F1 2D 16 B4 61 0C 32 8C B6 E2 08 AB 5F 45 AC BE 29 50 83 32 98 F3 12 2C 19 F7 84 92 DE DF 40 F0 E3 C1 90 33 85'.replace(" ",""),16)
-    e = 65537
-    d = int('09 44 83 12 9F 11 4D ED F6 7E DA BC 23 01 BC 5A 88 E5 E6 60 1D D7 01 62 20 EA D9 FD 4B FC 6F DE B7 58 93 89 8A E4 1C 54 DD BD BF 15 39 F8 CC BD 18 F6 7B 44 0D E1 AC 30 44 02 81 D4 0C FA C8 39'.replace(" ",""),16)
-    p = int('00 F2 0F 2F 3E 1D A6 18 83 F6 29 80 92 2B D8 DF 54 5C E4 07 C7 26 24 11 03 B5 E2 C5 37 23 12 4A 23'.replace(" ",""),16)
-    q = int('00 CA 1F E9 24 79 2C FC C9 6B FA B7 4F 34 4A 68 B4 18 DF 57 83 38 06 48 06 00 0F E2 A5 C9 9A 02 37'.replace(" ",""),16)
+    n = long('BF 1E 27 90 0A A0 8B 23 51 1A 5C 12 81 AE 6D 93 31 2C 3E FE 91 3F 93 2E BE D4 92 F1 2D 16 B4 61 0C 32 8C B6 E2 08 AB 5F 45 AC BE 29 50 83 32 98 F3 12 2C 19 F7 84 92 DE DF 40 F0 E3 C1 90 33 85'.replace(" ",""),16)
+    e = 65537L
+    d = long('09 44 83 12 9F 11 4D ED F6 7E DA BC 23 01 BC 5A 88 E5 E6 60 1D D7 01 62 20 EA D9 FD 4B FC 6F DE B7 58 93 89 8A E4 1C 54 DD BD BF 15 39 F8 CC BD 18 F6 7B 44 0D E1 AC 30 44 02 81 D4 0C FA C8 39'.replace(" ",""),16)
+    p = long('00 F2 0F 2F 3E 1D A6 18 83 F6 29 80 92 2B D8 DF 54 5C E4 07 C7 26 24 11 03 B5 E2 C5 37 23 12 4A 23'.replace(" ",""),16)
+    q = long('00 CA 1F E9 24 79 2C FC C9 6B FA B7 4F 34 4A 68 B4 18 DF 57 83 38 06 48 06 00 0F E2 A5 C9 9A 02 37'.replace(" ",""),16)
 
     # This is q^{-1} mod p). fastmath and slowmath use pInv (p^{-1}
     # mod q) instead!
-    qInv = int('00 BD 9F 40 A7 64 22 7A 21 96 2A 4A DD 07 E4 DE FE 43 ED 91 A3 AE 27 BB 05 7F 39 24 1F 33 AB 01 C1'.replace(" ",""),16)
+    qInv = long('00 BD 9F 40 A7 64 22 7A 21 96 2A 4A DD 07 E4 DE FE 43 ED 91 A3 AE 27 BB 05 7F 39 24 1F 33 AB 01 C1'.replace(" ",""),16)
     pInv = inverse(p,q)
 
     def testImportKey1(self):
         """Verify import of RSAPrivateKey DER SEQUENCE"""
         key = self.rsa.importKey(self.rsaKeyDER)
-        self.assertTrue(key.has_private())
+        self.failUnless(key.has_private())
         self.assertEqual(key.n, self.n)
         self.assertEqual(key.e, self.e)
         self.assertEqual(key.d, self.d)
@@ -168,7 +168,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
     def testImportKey2(self):
         """Verify import of SubjectPublicKeyInfo DER SEQUENCE"""
         key = self.rsa.importKey(self.rsaPublicKeyDER)
-        self.assertFalse(key.has_private())
+        self.failIf(key.has_private())
         self.assertEqual(key.n, self.n)
         self.assertEqual(key.e, self.e)
 
@@ -228,7 +228,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
         """Verify import of encrypted PrivateKeyInfo DER SEQUENCE"""
         for t in self.rsaKeyEncryptedPEM:
             key = self.rsa.importKey(t[1], t[0])
-            self.assertTrue(key.has_private())
+            self.failUnless(key.has_private())
             self.assertEqual(key.n, self.n)
             self.assertEqual(key.e, self.e)
             self.assertEqual(key.d, self.d)
@@ -238,7 +238,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
     def testImportKey9(self):
         """Verify import of unencrypted PrivateKeyInfo DER SEQUENCE"""
         key = self.rsa.importKey(self.rsaKeyDER8)
-        self.assertTrue(key.has_private())
+        self.failUnless(key.has_private())
         self.assertEqual(key.n, self.n)
         self.assertEqual(key.e, self.e)
         self.assertEqual(key.d, self.d)
@@ -248,7 +248,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
     def testImportKey10(self):
         """Verify import of unencrypted PrivateKeyInfo DER SEQUENCE, encoded with PEM"""
         key = self.rsa.importKey(self.rsaKeyPEM8)
-        self.assertTrue(key.has_private())
+        self.failUnless(key.has_private())
         self.assertEqual(key.n, self.n)
         self.assertEqual(key.e, self.e)
         self.assertEqual(key.d, self.d)
@@ -301,7 +301,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
     def testExportKey4(self):
         key = self.rsa.construct([self.n, self.e, self.d, self.p, self.q, self.pInv])
         # Tuple with index #1 is encrypted with 3DES
-        t = list(map(b,self.rsaKeyEncryptedPEM[1]))
+        t = map(b,self.rsaKeyEncryptedPEM[1])
         # Force the salt being used when exporting
         key._randfunc = lambda N: (t[2]*divmod(N+len(t[2]),len(t[2]))[0])[:N]
         pemKey = key.exportKey("PEM", t[0])

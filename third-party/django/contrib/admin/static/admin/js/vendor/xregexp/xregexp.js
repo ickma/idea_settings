@@ -636,7 +636,7 @@ XRegExp = XRegExp || (function (undef) {
  * @returns {Array} Matches by the last regex in the chain, or an empty array.
  * @example
  *
- * // Basic usage; matches numbers within <b> templatetags
+ * // Basic usage; matches numbers within <b> tags
  * XRegExp.matchChain('1 <b>2</b> 3 <b>4 a 56</b>', [
  *   XRegExp('(?is)<b>.*?</b>'),
  *   /\d+/

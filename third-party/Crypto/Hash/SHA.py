@@ -48,7 +48,7 @@ try:
     hashFactory = hashlib.sha1
 
 except ImportError:
-    from . import sha
+    import sha
     hashFactory = sha
 
 class SHA1Hash(HashAlgo):

@@ -706,9 +706,9 @@ class isolate_apps(TestContextDecorator):
 
 def tag(*tags):
     """
-    Decorator to add templatetags to a test class or method.
+    Decorator to add tags to a test class or method.
     """
     def decorator(obj):
-        setattr(obj, 'templatetags', set(tags))
+        setattr(obj, 'tags', set(tags))
         return obj
     return decorator

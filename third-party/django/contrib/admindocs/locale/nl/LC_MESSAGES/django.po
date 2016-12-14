@@ -56,7 +56,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Tags"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Overzicht van alle templatetags en hun functie."
 
 msgid "Filters"
@@ -185,21 +185,21 @@ msgstr ""
 "Om deze filters te gebruiken zet je <code>%(code)s</code> bovenaan je "
 "template."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Templatetags"
 
 msgid "Template tag documentation"
 msgstr "Overzicht van templatetags"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Standaardtags"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
-"Om deze templatetags te gebruiken zet je <code>%(code)s</code> bovenaan je template."
+"Om deze tags te gebruiken zet je <code>%(code)s</code> bovenaan je template."
 
 #, python-format
 msgid "View: %(name)s"

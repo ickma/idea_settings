@@ -53,11 +53,11 @@ class HashDigestSizeSelfTest(unittest.TestCase):
         return self.description
 
     def runTest(self):
-        self.assertTrue(hasattr(self.hashmod, "digest_size"))
-        self.assertEqual(self.hashmod.digest_size, self.expected)
+        self.failUnless(hasattr(self.hashmod, "digest_size"))
+        self.assertEquals(self.hashmod.digest_size, self.expected)
         h = self.hashmod.new()
-        self.assertTrue(hasattr(h, "digest_size"))
-        self.assertEqual(h.digest_size, self.expected)
+        self.failUnless(hasattr(h, "digest_size"))
+        self.assertEquals(h.digest_size, self.expected)
 
 
 class HashSelfTest(unittest.TestCase):
@@ -133,7 +133,7 @@ class MACSelfTest(unittest.TestCase):
         return self.description
 
     def runTest(self):
-        for hashname in list(self.expected_dict.keys()):
+        for hashname in self.expected_dict.keys():
             hashmod = self.hashmods[hashname]
             key = binascii.a2b_hex(b(self.key))
             data = binascii.a2b_hex(b(self.input))
@@ -171,7 +171,7 @@ def make_hash_tests(module, module_name, test_data, digest_size, oid=None):
     tests = []
     for i in range(len(test_data)):
         row = test_data[i]
-        (expected, input) = list(map(b,row[0:2]))
+        (expected, input) = map(b,row[0:2])
         if len(row) < 3:
             description = repr(input)
         else:

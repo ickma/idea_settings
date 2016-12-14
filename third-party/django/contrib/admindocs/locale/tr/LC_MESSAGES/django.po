@@ -58,7 +58,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Etiketler"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Tüm şablon etiketlerinin ve işlevlerinin listesi."
 
 msgid "Filters"
@@ -190,18 +190,18 @@ msgstr ""
 "Bu süzgeçleri kullanmak için, süzgeci kullanmadan önce şablonunuzun içine "
 "<code>%(code)s</code> yerleştirin."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Şablon etiketleri"
 
 msgid "Template tag documentation"
 msgstr "Şablon etiketi belgeleri"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Yerleşik etiketler"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Bu etiketleri kullanmak için, etiketi kullanmadan önce şablonunuzun içine "

@@ -402,7 +402,7 @@ class DiscoverRunner(object):
             help='Run tests using up to N parallel processes.',
         )
         parser.add_argument(
-            '--tag', action='append', dest='templatetags',
+            '--tag', action='append', dest='tags',
             help='Run only tests with the specified tag. Can be used multiple times.',
         )
         parser.add_argument(
@@ -774,10 +774,10 @@ def filter_tests_by_tags(suite, tags, exclude_tags):
         if isinstance(test, suite_class):
             filtered_suite.addTests(filter_tests_by_tags(test, tags, exclude_tags))
         else:
-            test_tags = set(getattr(test, 'templatetags', set()))
+            test_tags = set(getattr(test, 'tags', set()))
             test_fn_name = getattr(test, '_testMethodName', str(test))
             test_fn = getattr(test, test_fn_name, test)
-            test_fn_tags = set(getattr(test_fn, 'templatetags', set()))
+            test_fn_tags = set(getattr(test_fn, 'tags', set()))
             all_tags = test_tags.union(test_fn_tags)
             matched_tags = all_tags.intersection(tags)
             if (matched_tags or not tags) and not all_tags.intersection(exclude_tags):

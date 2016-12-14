@@ -34,9 +34,9 @@ import time
 import warnings
 
 from Crypto.pct_warnings import ClockRewindWarning
-from . import SHAd256
+import SHAd256
 
-from . import FortunaGenerator
+import FortunaGenerator
 
 class FortunaPool(object):
     """Fortuna pool type
@@ -89,7 +89,7 @@ def which_pools(r):
             retval.append(i)
         else:
             break   # optimization.  once this fails, it always fails
-        mask = (mask << 1) | 1
+        mask = (mask << 1) | 1L
     return retval
 
 class FortunaAccumulator(object):

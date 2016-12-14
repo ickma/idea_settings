@@ -36,7 +36,7 @@ class Element(object):
         elif self.children:
             # removing last children if it is only whitespace
             # this can result in incorrect dom representations since
-            # whitespace between inline templatetags like <span> is significant
+            # whitespace between inline tags like <span> is significant
             if isinstance(self.children[-1], six.string_types):
                 if self.children[-1].isspace():
                     self.children.pop()

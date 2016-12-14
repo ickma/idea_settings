@@ -56,7 +56,7 @@ msgstr ""
 msgid "Tags"
 msgstr "Etiquetas"
 
-msgid "List of all the template templatetags and their functions."
+msgid "List of all the template tags and their functions."
 msgstr "Lista de todas las etiquetas de plantilla y sus funciones."
 
 msgid "Filters"
@@ -189,18 +189,18 @@ msgstr ""
 "Para usar estos filtros, escriba <code>%(code)s</code> en su plantilla antes "
 "de usar el filtro."
 
-msgid "Template templatetags"
+msgid "Template tags"
 msgstr "Etiquetas de plantilla"
 
 msgid "Template tag documentation"
 msgstr "Documentación de etiquetas de plantilla"
 
-msgid "Built-in templatetags"
+msgid "Built-in tags"
 msgstr "Etiquetas Django 'de fábrica'"
 
 #, python-format
 msgid ""
-"To use these templatetags, put <code>%(code)s</code> in your template before using "
+"To use these tags, put <code>%(code)s</code> in your template before using "
 "the tag."
 msgstr ""
 "Para usar estas etiquetas, escriba <code>%(code)s</code> en su plantilla "

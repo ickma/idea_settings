@@ -115,7 +115,7 @@ def new(nbits, prefix=b(""), suffix=b(""), initial_value=1, overflow=0, little_e
 
 def _encode(n, nbytes, little_endian=False):
     retval = []
-    n = int(n)
+    n = long(n)
     for i in range(nbytes):
         if little_endian:
             retval.append(bchr(n & 0xff))
