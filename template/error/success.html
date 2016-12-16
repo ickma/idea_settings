@@ -19,7 +19,7 @@
                 <h3><i class="fa fa-check text-red"></i>您的请求已成功处理</h3>
 
                 <p>
-                    {{ success_msg }}
+                    {{ success_msg |default:''}}
                 </p>
                 <p>
                     {#                    返回前一页#}

@@ -102,3 +102,6 @@ node_modules/
 django_wx_joyme/home_settings
 #test account
 django_wx_joyme/test_account
+
+#upload
+upload/

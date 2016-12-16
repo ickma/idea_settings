@@ -14,7 +14,7 @@ from wechat_manage.utils.followers_utils import get_all_openids
 @login_required
 @catch_error
 @auth_public
-def user_index(request, public):
+def user_index(request, public,*args):
     """
     :type request: HttpRequest
     :type public:WechatBasic
@@ -31,7 +31,7 @@ def user_index(request, public):
 @catch_error
 @login_required
 @auth_public
-def sync_followers(request, public):
+def sync_followers(request, public,*args,**kwargs):
     """
     同步粉丝信息
     :param request:

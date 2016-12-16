@@ -1,0 +1,35 @@
+{% extends "base/simple_table.html" %}
+{% load  wechat_menu_tags %}
+{% block table_head %}
+    <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>事件</th>
+        <th>上级菜单</th>
+        <th>同步时间</th>
+        <th>编辑</th>
+        <th>增加</th>
+
+    </tr>
+{% endblock %}
+{% block table_datas %}
+    {% for foo in menus %}
+        <tr>
+            <td>{{ foo.menu_name }}</td>
+            <td>{{ foo.get_menu_type_display }}</td>
+            <td>{{ foo.info |format_menu_info }}</td>
+            <td>{{ foo.id | get_menu_parent }}</td>
+            <td>{{ foo.created_time }}</td>
+            <td><a href="/wechat/{{ public_instance.id }}/menu/edit?menuid={{ foo.id }}">编辑</a></td>
+            <td>
+                {% ifequal   foo.menu_level 1 %}
+                    <td><a href="/wechat/{{ public_instance.id }}/menu/add?level=2&parentid={{ foo.id }}">增加</a></td>
+
+                {% endifequal %}
+
+
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

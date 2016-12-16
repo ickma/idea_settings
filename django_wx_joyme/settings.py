@@ -142,6 +142,10 @@ CACHES = {
         }
     }
 }
+"""setting media"""
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
+MEDIA_PATH = '/upload'
+MEDIA_URL = '/upload/'
 
 """import python modules"""
 import sys
@@ -160,3 +164,6 @@ if os.path.isdir(os.path.join(BASE_DIR, 'django_wx_joyme', 'home_settings')):
 
     except (ImportError, NameError):
         pass
+APP_NAME = 'django_wx_joyme'
+
+import custome_settings

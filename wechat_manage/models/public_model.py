@@ -23,6 +23,7 @@ class PublicAccount(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name=u'公众号更新时间', editable=False)
     public_type = models.CharField(max_length=25,
                                    choices=[('test', u'测试号'), ('subscribe', u'订阅号'), ('service', u'服务号')])
+    public_token = models.CharField(max_length=255, verbose_name=u'公众号token码(唯一识别码)')
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """
@@ -42,7 +43,7 @@ class PublicAccount(models.Model):
         return self.public_name
 
     class Meta:
-        verbose_name=verbose_name_plural = u'公众号配置'
+        verbose_name = verbose_name_plural = u'公众号配置'
         ordering = ["-id"]
 
 
@@ -62,7 +63,35 @@ class PublicMenuConfig(models.Model):
     public = models.ForeignKey(PublicAccount, verbose_name=u'公众号')
     menu_type = models.CharField(max_length=255, choices=menu_cats, verbose_name=u'菜单类型')
     menu_name = models.CharField(max_length=255, verbose_name=u'菜单名称')
-    created_time = models.DateTimeField(auto_created=True, verbose_name=u'创建时间')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name=u'创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name=u'更新时间')
     info = models.TextField(verbose_name=u'信息内容')
-    menu_level=models.IntegerField(choices=((1,u'一级菜单'),(2,u'二级菜单')))
+    menu_level = models.IntegerField(choices=((1, u'一级菜单'), (2, u'二级菜单')))
+    parent_index = models.IntegerField(verbose_name=u'父级菜单序列号')
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        """
+        判断当前菜单是否超出允许的最大值：1级菜单3个，2级菜单5个
+        :param force_insert:
+        :param force_update:
+        :param using:
+        :param update_fields:
+        :return:
+        """
+        self.check_limit()
+        super(PublicMenuConfig, self).save(force_insert, force_update, using, update_fields)
+
+    def check_limit(self):
+        """
+        检查是否查出限制
+        :return:
+        """
+        if self.menu_level == 1:
+            if PublicMenuConfig.objects.filter(public=self.public, menu_level=1).count() >= 3:
+                raise Exception(u'创建的一级菜单已经达到3个，请先进行删除操作')
+        else:
+
+            if PublicMenuConfig.objects.filter(public=self.public, parent_index=self.parent_index,
+                                               menu_level=2).count() >= 5:
+                raise Exception(u'当前一级菜单下创建的菜单已经达到5个，请先进行删除操作')
+        return True

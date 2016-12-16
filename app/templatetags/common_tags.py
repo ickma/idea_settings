@@ -37,8 +37,8 @@ def get_side_bar(context):
     if public and isinstance(public, WechatBasic):
         public = PublicAccount.objects.get(app_id=public.conf.appid)
     elif not public:
-        public=WechatBasic()
-        public.id=0
+        public = WechatBasic()
+        public.id = 0
     current_path = request.path
     html = ''
     for m in MENU_CONFIG:
@@ -46,23 +46,40 @@ def get_side_bar(context):
         li_html = ''
         for c in m['children']:
             c['path'] = c['path'].format(public.id)
-            _class_name = 'class="active"' if c['path'] == current_path else ''
+            _class_name = u'class="active"' if c['path'] == current_path else u''
             if _class_name:
                 is_open = True
-            li_html += '<li {class_name}><a href="{href}" >{c_name}</a></li>'.format(class_name=_class_name,
-                                                                                             href=c['path'],
-                                                                                             c_name=c['name'])
-        html += """
+            li_html += u'<li {class_name}><a href="{href}" >{c_name}</a></li>'.format(class_name=_class_name,
+                                                                                      href=c['path'],
+                                                                                      c_name=c['name'])
+        html += u"""
         <li class="treeview">
-        <a href="#">
+        <a href=" #">
         <i class="fa fa-link"></i>
         <span>{0}</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
+            </a>
             <ul class="treeview-menu" style="display: {2};">
                      {1}
                     </ul>
         </li>
-        """.format(m['name'], li_html, 'block' if is_open else 'none')
+        """.format(m['name'], li_html, u'block' if is_open else u'none')
     return html
+
+
+@register.simple_tag(name='get_page_name', takes_context=True)
+def get_page_name(context):
+    """
+    自动获取自动以的页面名称或当前url的名称
+    :param context:
+    :return:
+    """
+    page_title = context.get('page_title', None)
+    if not page_title:
+        request = context['request']
+        from django.core.urlresolvers import resolve
+        page_title = resolve(request.path).url_name
+    context['page_title'] = page_title
+    return page_title

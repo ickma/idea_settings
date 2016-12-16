@@ -2,29 +2,32 @@
 {% block content %}
     {#    Form Body#}
     <form class="form-horizontal" action="{{ form_action|default:request.path }}"
-          method="{{ form_method |default:"get" }}">
+          method="{{ form_method |default:"get" }}"  enctype="multipart/form-data" >
+    {% csrf_token %}
         <div class="box-body">
 
             {% for field in form %}
                 <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
 
-                <div class="col-sm-10">
-                    {{ field }}
-                    {% if field.help_text %}
-                        <p class="help">{{ field.help_text |safe }}</p>
-                    {% endif %}
-                </div>
+                    <div class="col-sm-10">
+                        {{ field }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text |safe }}</p>
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
 
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer ">
+            <div class="col-lg-4 col-lg-offset-4">
+                <button type="reset" class="btn btn-default">重置</button>
+                <button type="submit" class="btn btn-info " style="margin-left: 35px">确定</button>
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button type="" class="btn btn-default">取消</button>
-                <button type="submit" class="btn btn-info pull-right">确定</button>
-            </div>
-            <!-- /.box-footer -->
+        </div>
+        <!-- /.box-footer -->
 
     </form>
 {% endblock %}

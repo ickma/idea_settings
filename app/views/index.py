@@ -25,7 +25,7 @@ def index(request):
     table_datas = []
     for public in publics:
         # todo 将默认管理起始页改为用户管理l
-        public.public_manage = '<a href="/wechat/%s/menu/create">进入管理</a>' % public.id
+        public.public_manage = '<a href="/wechat/%s/followers/query">进入管理</a>' % public.id
         line = [getattr(public, key[0]) for key in public_index]
         table_datas += [line]
     return render(request, 'base/simple_table.html', locals())

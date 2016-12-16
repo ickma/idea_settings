@@ -58,7 +58,7 @@ def request_to_model(request, response):
     request_instance.meta = None if not meta else dumps(meta)
     request_instance.cookies = None if not request.COOKIES else dumps(request.COOKIES)
     request_instance.get = None if not request.GET else dumps(request.GET)
-    request_instance.post = None if (not request.POST or getattr(request, 'hide_post') == True) else dumps(
+    request_instance.post = None if (not request.POST or getattr(request, 'hide_post',None) == True) else dumps(
         request.POST)
     # request_instance.raw_post = None if getattr(request, 'hide_post') else request.raw_post_data,
     request_instance.raw_post = None

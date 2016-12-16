@@ -1,0 +1,22 @@
+{% extends "base/form.html" %}
+{% block js %}
+
+    <!--suppress ALL -->
+    <script>
+    var info_lable=$('[name=menu_info]').parent().parent().children('label');
+    $('[name=menu_cates]').change(function () {
+        var current_menu_type=$(this).val()
+        switch (current_menu_type){
+            case 'click':
+                info_lable.text('选择事件');
+                break;
+            case "view":
+                info_lable.text('填写网址');
+                break;
+
+
+
+        }
+    })
+    </script>
+{% endblock %}

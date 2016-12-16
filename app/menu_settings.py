@@ -1,4 +1,4 @@
-# coding:utf8
+# coding=utf-8
 # @author:nick
 # @company:joyme
 
@@ -6,26 +6,45 @@ BASIC_CONFIG = \
     {'name': u'基础配置',
      'children': [
          {
-             'name': u'菜单配置',
-             'path': '/wechat/{0}/menu/create'
-         },
-         {
              'name': u'欢迎语配置',
-             'path': '{0}'
+             'path': '/wechat/{0}/reply/welcome'
          },
          {
              'name': u'关键词回复',
-             'path': '{0}'
+             'path': '/wechat/{0}/reply/keyword'
+         },
+         {
+             'name': u'默认回复',
+             'path': '/wechat/{0}/reply/default'
          },
 
      ]
 
      }
 
+MENU_MANEGE_CONFIG = {
+    'name': u'菜单配置',
+    'children': [
+        {
+            'name': u'同步菜单',
+            'path': '/wechat/{0}/menu/display'
+        },
+        {
+            'name': u'菜单编辑',
+            'path': '/wechat/{0}/menu/edit'
+        },
+        {
+            'name': u'菜单增加',
+            'path': '/wechat/{0}/menu/add'
+        },
+
+    ]
+}
+
 USER_MANAGE_CONFIG = {
     'name': u'用户管理',
     'children': [
-{
+        {
             'name': u'同步用户',
             'path': '/wechat/{0}/followers/sync'
         },
@@ -56,4 +75,4 @@ MATERIAL_MANAGE_CONFIG = {
     ]
 }
 
-MENU_CONFIG = [BASIC_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG]
+MENU_CONFIG = [BASIC_CONFIG, MENU_MANEGE_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG]
