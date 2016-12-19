@@ -1,0 +1,170 @@
+{% extends "base/index.html" %}
+{% load static %}
+{% load time_date_tags %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "admin-lte/plugins/iCheck/flat/blue.css" %}">
+
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{ table_title |default:page_title }}</h3>
+                    <label>
+                        <select
+                                name="pc" aria-controls="example1" class="form-control input-large">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </label>
+
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mailbox-controls">
+                        <!-- Check all button -->
+                        <a href="?action=add">
+                        <button type="button" class="btn btn-default btn-sm " data-toggle="tooltip" data-placement="top"
+                                title="新增"><i
+                                class="fa fa-plus"></i>
+                        </button>
+                        </a>
+                        <button type="button" class="btn btn-default btn-sm checkbox-toggle" id="check-all"
+                                data-toggle="tooltip" data-placement="top" title="全选/反选"><i
+                                class="fa fa-square-o"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"
+                                title="删除选中项"><i class="fa fa-trash-o"></i></button>
+                        <!-- /.btn-group -->
+
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                           data-placement="top" title="刷新当前页"><i class="fa fa-refresh"></i></button>
+
+                        <!-- /.pull-right -->
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-striped">
+                        {#              table head#}
+                        {% block table_head %}
+
+                            <tr>
+                                <th>选择</th>
+                                {% for field in table_heads %}
+                                    <th>{{ field }}</th>
+                                {% endfor %}
+                            </tr>
+                        {% endblock %}
+                        {% block table_datas %}
+
+                            {% for line in table_datas %}
+                                <tr>
+                                    <td>
+                                        <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false"
+                                             style="position: relative;"><label>
+                                            <input type="checkbox"
+                                                   style="position: absolute; opacity: 0;">
+                                        </label>
+                                            <ins class="iCheck-helper"
+                                                 style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; margin: 0; padding: 0; background: rgb(255, 255, 255); border: 0; opacity: 0;"></ins>
+                                        </div>
+                                    </td>
+                                    {% autoescape off %}
+                                        {% for foo in line %}
+                                            <td class="center"> {{ foo }}</td>
+                                        {% endfor %}
+
+                                    {% endautoescape %}
+                                </tr>
+
+                            {% endfor %}
+                        {% endblock %}
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "admin-lte/plugins/iCheck/icheck.min.js" %}"></script>
+    <script>
+        $(function () {
+            //Enable iCheck plugin for checkboxes
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"]').iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat-blue'
+            });
+
+            //Enable check and uncheck all functionality
+            $(".checkbox-toggle").click(function () {
+                var clicks = $(this).data('clicks');
+                if (clicks) {
+                    //Uncheck all checkboxes
+                    $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+                    $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+                } else {
+                    //Check all checkboxes
+                    $(".mailbox-messages input[type='checkbox']").iCheck("check");
+                    $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+                }
+                $(this).data("clicks", !clicks);
+            });
+
+            //Handle starring for glyphicon and font awesome
+            $(".mailbox-star").click(function (e) {
+                e.preventDefault();
+                //detect type
+                var $this = $(this).find("a > i");
+                var glyph = $this.hasClass("glyphicon");
+                var fa = $this.hasClass("fa");
+
+                //Switch states
+                if (glyph) {
+                    $this.toggleClass("glyphicon-star");
+                    $this.toggleClass("glyphicon-star-empty");
+                }
+
+                if (fa) {
+                    $this.toggleClass("fa-star");
+                    $this.toggleClass("fa-star-o");
+                }
+            });
+        });
+
+        {#         全选和反选#}
+        var check_all_btn = $('#check-all')
+        if (check_all_btn) {
+            check_all_btn.click(function () {
+                if ($(this).find('i').eq(0).hasClass('fa-check-square-o')) {
+
+                    $('table').find('.icheckbox_flat-blue').removeClass('checked')
+                }
+                else {
+                    $('table').find('.icheckbox_flat-blue').addClass('checked')
+                }
+            })
+        }
+    </script>
+    {% block custom_js %}
+
+    {% endblock %}
+{% endblock %}

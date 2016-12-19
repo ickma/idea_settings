@@ -128,7 +128,8 @@ STATIC_ROOT = 'static'
 """multi static directory"""
 """copy app/static to root path"""
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'node_modules')
+    os.path.join(BASE_DIR, 'node_modules'),
+    os.path.join(BASE_DIR,'upload')
 
 ]
 

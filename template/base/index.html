@@ -32,6 +32,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    {% block css %}
+
+    {% endblock %}
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -87,7 +90,7 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{% static "admin-lte/dist/img/user2-160x160.jpg" %}" class="user-image"
+                            <img src="{% get_user_headimage %}" class="user-image"
                                  alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs"> {{ request.user }}</span>
@@ -95,11 +98,11 @@ desired effect
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{% static "admin-lte/dist/img/user2-160x160.jpg" %}" class="img-circle"
+                                <img src="{% get_user_headimage %}" class="img-circle"
                                      alt="User Image">
 
                                 <p>
-                                   {{ request.user }}
+                                    {{ request.user }}
                                     <small>{{ request.user.date_joined }}加入</small>
                                 </p>
                             </li>
@@ -136,7 +139,7 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{% static "admin-lte/dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
+                    <img src="{% get_user_headimage %}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ request.user }}</p>
@@ -162,7 +165,7 @@ desired effect
                 <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
                 {% autoescape off %}
-                {% side_bar %}
+                    {% side_bar %}
                 {% endautoescape %}
 
             </ul>
@@ -187,8 +190,8 @@ desired effect
 
         <!-- Main content -->
         <section class="content">
-            {%  block content %}
-            <!-- Your Page Content Here -->
+            {% block content %}
+                <!-- Your Page Content Here -->
             {% endblock %}
 
         </section>
@@ -295,6 +298,36 @@ desired effect
 <script src="{% static "admin-lte/bootstrap/js/bootstrap.min.js" %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
+<script>
+    $(document).ready(function () {
+        var page_count = $('select[name=pc]');
+        var parser = document.createElement('a')
+        page_count.change(function () {
+            parser.href = window.location.href
+            if (parser.search) {
+                if (parser.search.indexOf('pc=')) {
+                    parser.search = parser.search.replace(/pc=(\d+)/, 'pc=' + page_count.val())
+                }
+                else {
+                    parser.serach = parser.search + '&pc=' + page_count.val()
+                }
+            } else {
+                parser.search = '?pc=' + page_count.val()
+            }
+            window.location = parser.href
+        })
+
+        var pc;
+        if (window.location.href.indexOf('pc=') > 1) {
+            pc = window.location.href.match(/pc=(\d+)/)[1]
+            $('select[name=pc]').val(pc)
+
+
+        }
+
+    })
+</script>
+
 
 {# custom js#}
 {% block js %}

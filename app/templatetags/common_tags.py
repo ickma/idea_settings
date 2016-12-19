@@ -1,12 +1,14 @@
 # coding:utf8
 # @author:nick
 # @company:joyme
+
 from django import template
 from permissions.models.log_model import WebRequest
 from app.menu_settings import MENU_CONFIG
 from django.http import HttpRequest
 from wechat_sdk import WechatBasic
 from wechat_manage.models.public_model import PublicAccount
+from wechat_manage.models.followers_model import PublicFollowers
 
 # 网站统计tags
 register = template.Library()
@@ -83,3 +85,19 @@ def get_page_name(context):
         page_title = resolve(request.path).url_name
     context['page_title'] = page_title
     return page_title
+
+
+@register.simple_tag(name='get_user_headimage', takes_context=True)
+def get_user_headimage(context):
+    """
+    获取用户头像
+    :return:
+    """
+
+    try:
+        head_image = context['request'].user.headimgae
+
+    except (NameError, AttributeError):
+        return PublicFollowers.objects.get(id=1).headimgurl
+
+    return head_image

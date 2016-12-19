@@ -1,7 +1,7 @@
 {% extends "base/index.html" %}
 {% block content %}
     {#    Form Body#}
-    <form class="form-horizontal" action="{{ form_action|default:request.path }}"
+    <form class="form-horizontal" action="{{ form_action|default:request.get_full_path }}"
           method="{{ form_method |default:"get" }}"  enctype="multipart/form-data" >
     {% csrf_token %}
         <div class="box-body">

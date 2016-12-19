@@ -13,7 +13,7 @@ class ReplyConfigModel(models.Model):
     name = models.CharField(verbose_name=u'名称', max_length=255, null=True, blank=True)
     content_type = models.IntegerField(verbose_name=u'回复类型', choices=content_type_choices)
     reply_type = models.IntegerField(verbose_name=u'回复类型', choices=reply_type_choices)
-    content = models.TextField(verbose_name=u'回复内容', null=True, blank=True)
+    reply_content = models.TextField(verbose_name=u'回复内容', null=True, blank=True)
     file = models.FileField(verbose_name=u'回复文件', blank=True, null=True)
     keywords = models.TextField(verbose_name=u'关键字', blank=True, null=True)
 
@@ -24,6 +24,10 @@ class ReplyConfigModel(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if self.reply_type == 3 and not self.keywords:
             raise ValueError(u'关键字不能为空')
-        if bool(self.content) == bool(self.file):
+        if not self.content and not self.file:
             raise ValueError(u'回复内容未选择或正确')
+        if self.content_type == 1:
+            self.file = None
+        else:
+            self.content = None
         super(ReplyConfigModel, self).save(force_insert, force_update, using, update_fields)
