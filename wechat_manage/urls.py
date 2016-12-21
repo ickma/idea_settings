@@ -8,6 +8,7 @@ from wechat_manage.views.menu_manage import menu_add, menu_edit
 from wechat_manage.views.user_manage import sync_followers, user_index
 
 from wechat_manage.views.reply import welcome_reply, keywords_reply
+from wechat_manage.views.material_manage import material_manage
 
 urlpatterns = [
     url(r'menu/display$', menu_display, name=u'显示公众号菜单配置'),
@@ -17,5 +18,6 @@ urlpatterns = [
     url(r'reply/keyword', keywords_reply, name=u'编辑关键词回复'),
     url(r'followers/query$', user_index, name=u'全部粉丝'),
     url(r'followers/sync$', sync_followers, name=u'同步粉丝'),
+    url(r'material/manage', material_manage, name=u'多媒体素材管理')
 
 ]

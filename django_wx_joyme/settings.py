@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     # 'crispy_forms',
     'app',  # app
     'wechat_manage',
-    'permissions'
+    'permissions',
+    'django_static'
 ]
 
 MIDDLEWARE = [

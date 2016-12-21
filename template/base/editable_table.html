@@ -3,6 +3,7 @@
 {% load time_date_tags %}
 {% block css %}
     <link rel="stylesheet" href="{% static "admin-lte/plugins/iCheck/flat/blue.css" %}">
+    <link rel="stylesheet" href="{% static "custom-js/utils/pczoom/pczomm.css" %}">
 
 {% endblock %}
 {% block content %}
@@ -164,7 +165,7 @@
             })
         }
     </script>
+    <script src="{% static "custom-js/utils/pczoom/pczoom.js" %}"></script>
     {% block custom_js %}
-
     {% endblock %}
 {% endblock %}

@@ -71,8 +71,22 @@ MATERIAL_MANAGE_CONFIG = {
             'name': u'获取素材',
             'path': '{0}'
         },
+        {
+            'name': u'多媒体素材管理',
+            'path': '/wechat/{0}/material/manage'
+        }
 
     ]
 }
 
-MENU_CONFIG = [BASIC_CONFIG, MENU_MANEGE_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG]
+FEATHER_MANAGE_CONFIG = {
+    'name': u'功能管理',
+    'children': [
+        {
+            'name': u'礼包管理',
+            'path': '{0}'
+        }
+    ]
+}
+
+MENU_CONFIG = [BASIC_CONFIG, MENU_MANEGE_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG,FEATHER_MANAGE_CONFIG]

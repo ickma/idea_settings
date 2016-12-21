@@ -7,12 +7,12 @@
             function () {
 
                 var type_select = $('[name=content_type]');
-                var text_area = $('[name = content]').parent().parent(), file_upload = $('[name=file]').parent().parent();
+                var text_area = $('[name = reply_content]').parent().parent(), file_upload = $('[name=file]').parent().parent();
 
                 function handle_type_select() {
                     var value = parseInt($(this).val());
-                    text_area.find('[name=content]').val(null);
-                    file_upload.find('[name=file]').val(null);
+                    // text_area.find('[name=reply_content]').val(null);
+                    // file_upload.find('[name=file]').val(null);
                     text_area.hide();
                     file_upload.hide();
                     switch (value) {

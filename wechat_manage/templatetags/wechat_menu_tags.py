@@ -21,17 +21,22 @@ def get_menu_parent_name(menu_id):
 
 
 @register.filter(name='format_menu_info')
-def format_menu_info(info):
+def format_menu_info(menu):
     """
     对当前菜单的绑定时间进行格式化
-    :param info:
+    :type menu:PublicMenuConfig
+    :param menu:
     :return:
     """
-    info = json.loads(info)
+    level = menu.menu_level
+    info = json.loads(menu.info)
+    if level == 1 and info.get('sub_button',None):
+        return u'弹出子菜单'
     menu_type = info.get('type', None)
     if not menu_type:
         return ''
     if menu_type == 'click':
-        return info['key']
+        return u'触发事件:%s' % info['key']
     elif menu_type == 'view':
-        return info['url']
+        return u'跳转到:%s' % info['url']
+

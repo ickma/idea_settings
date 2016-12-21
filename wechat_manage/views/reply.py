@@ -8,6 +8,7 @@ from . import render, get_params
 from . import catch_error, login_required, auth_public
 from wechat_manage.models.reply_model import ReplyConfigModel
 from wechat_manage.forms.reply_form import BaseReplyForm, KeyWorldReplyForm
+from app.models.feather_models import FeatureModel
 
 
 @login_required
@@ -35,7 +36,7 @@ def welcome_reply(request, public, *args):
                     'content_type': welcome_reply_instance.content_type}
 
     if request.method == 'POST':
-        welcome_reply_instance.content_type = get_params(request, method='post', name='content_type',formatter=int)
+        welcome_reply_instance.content_type = get_params(request, method='post', name='content_type', formatter=int)
         welcome_reply_instance.content = get_params(request, method='post', name='content')
         if not welcome_reply_instance.file or request.FILES.get('file'):
             welcome_reply_instance.file = request.FILES.get('file')
@@ -48,7 +49,7 @@ def welcome_reply(request, public, *args):
 
 
 @login_required
-@catch_error
+# @catch_error
 @auth_public
 def keywords_reply(request, public, *args):
     """
@@ -65,11 +66,20 @@ def keywords_reply(request, public, *args):
     if reply_id:
         reply_instance = ReplyConfigModel.objects.get(id=reply_id)
     action = get_params(request, name='action', default='')
+    # 保存POST提交
     if request.method == 'POST':
         reply_instance.content = get_params(request, name='reply_content', method='post')
         reply_instance.content_type = get_params(request, name='content_type', method='post', formatter=int)
+        # 绑定feather到reply实例
+        feather_id = get_params(request, name='feather', method='post', formatter=int)
+        try:
+            reply_instance.feather = FeatureModel.objects.get(pk=feather_id)
+        except FeatureModel.DoesNotExist:
+            raise TypeError(u'功能未正确配置')
+        # 如果当前实例没有已绑定的文件或request中有文件，则更新实例中的文件
         if not reply_instance.file or request.FILES.get('file'):
             reply_instance.file = request.FILES.get('file')
+        # 设置实例的reply type
         reply_instance.reply_type = 3
         reply_instance.name = get_params(request, name='name', method='post')
         reply_instance.keywords = get_params(request, name='keywords', method='post')
@@ -78,8 +88,11 @@ def keywords_reply(request, public, *args):
         return render(request, 'error/success.html', locals())
     form_method = 'post'
     if action:
-        initial = {'name': reply_instance.name, 'reply_content': reply_instance.reply_content, 'file': reply_instance.file,
-                   'content_type': reply_instance.content_type, 'keywords': reply_instance.keywords}
+        # 为当前form 绑定初始化值
+        initial = {'name': reply_instance.name, 'reply_content': reply_instance.reply_content,
+                   'file': reply_instance.file,
+                   'content_type': reply_instance.content_type, 'keywords': reply_instance.keywords,
+                   'feather': reply_instance.get_feather_id()}
 
         form = KeyWorldReplyForm(initial=initial)
         return render(request, "wechat_manage/reply_base.html", locals())

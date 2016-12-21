@@ -1,11 +1,30 @@
-{% extends "base/simple_table.html" %}
+{% extends "base/editable_table.html" %}
+{% load form_table_tags %}
+{%  load wechat_menu_tags %}
 {% block table_head %}
 <tr>
-    <th>类型</th>
+    <th>选择</th>
+    <th>菜单类型</th>
+    <th>响应类型</th>
     <th>名称</th>
     <th>对应事件</th>
-    <th>key</th>
     <th>编辑</th>
-    <th>删除</th>
 </tr>
+{% endblock %}
+{% block table_datas %}
+    {% for foo in all_menus %}
+    <tr>
+       <td data-delete-id="{{ foo.id }}"><input type="checkbox" title=""></td>
+        <td>{{  foo.get_menu_level_display}}</td>
+        <td>{{  foo.get_menu_type_display}}</td>
+        <td>{{  foo.menu_name}}</td>
+        <td>{{  foo|format_menu_info}}</td>
+          {% autoescape off %}
+
+                <td>{{ foo|create_action }}</td>
+            {% endautoescape %}
+    </tr>
+
+    {% endfor %}
+
 {% endblock %}

@@ -20,7 +20,7 @@ from wechat_manage.utils.menu_utils import menu_info_format
 @login_required
 # @catch_error
 @auth_public
-def display(request, public,*args):
+def display(request, public, *args):
     """
     创建公众号菜单
     :param public: public 实例
@@ -64,7 +64,7 @@ def display(request, public,*args):
 @login_required
 # @catch_error
 @auth_public
-def menu_add(request, public):
+def menu_add(request, public, *args):
     """
     为公众号增加菜单
     :type request:HttpRequest
@@ -99,18 +99,26 @@ def menu_add(request, public):
 
 
 @login_required
-# @catch_error
+@catch_error
 @auth_public
-def menu_edit(request, public):
+def menu_edit(request, public, *args):
     """
 
     :param request:
     :param public:
     :return:
     """
+    public_instance = args[0]
     page_title = u'编辑公众号菜单'
-    menu_id = get_params(request, name='menuid', formatter=int)
-    menu_instance = PublicMenuConfig.objects.get(id=menu_id)
+    menu_id = get_params(request, name='id', formatter=int, default=0)
+    if menu_id:
+        try:
+            menu_instance = PublicMenuConfig.objects.get(id=menu_id)
+        except PublicMenuConfig.DoesNotExist:
+            error_msg = u"当前id不存在对应的菜单"
+            return render(request, 'error/error.html', locals())
+    else:
+        menu_instance = PublicMenuConfig()
     menu_init = {
         'menu_level': menu_instance.menu_level,
         'menu_type': menu_instance.menu_type,
@@ -122,3 +130,7 @@ def menu_edit(request, public):
     if menu_instance.menu_level == 1:
         _ = form.fields.pop('parent_menu')
     return render(request, 'wechat_menus/add_edit.html', locals())
+    if request.method == 'POST':
+        pass
+    all_menus = PublicMenuConfig.objects.filter(public=public_instance)
+    return render(request, 'wechat_manage/menu_display.html', locals())

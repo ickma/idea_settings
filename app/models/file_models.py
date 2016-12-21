@@ -14,5 +14,8 @@ class FileUpload(models.Model):
     file_hash = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['-id']
         verbose_name_plural = verbose_name = u'文件上传'
+
+
+

@@ -29,7 +29,7 @@ def create_action(line_data):
 @register.filter(name='create_show_index')
 def create_show_index(datas):
     """
-    生成用语显示的id
+    生成用于显示的id
     将数据库中的id进行重新排序
     :param datas:
     :type datas:list
@@ -40,3 +40,15 @@ def create_show_index(datas):
         line.show_index = data_length - k
 
     return datas
+
+
+@register.filter(name="create_choose_html")
+def create_choose_html(instance):
+    """
+
+    :param instance:
+    :return:
+    """
+    return """
+      <td data-delete-id="{0}"><input type="checkbox" title=""></td>
+    """.format(instance.id)
