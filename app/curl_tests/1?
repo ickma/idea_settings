@@ -1,0 +1,3910 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <title>IntegrityError at /public/1</title>
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; }
+    h2 { margin-bottom:.8em; }
+    h2 span { font-size:80%; color:#666; font-weight:normal; }
+    h3 { margin:1em 0 .5em 0; }
+    h4 { margin:0 0 .5em 0; font-weight: normal; }
+    code, pre { font-size: 100%; white-space: pre-wrap; }
+    table { border:1px solid #ccc; border-collapse: collapse; width:100%; background:white; }
+    tbody td, tbody th { vertical-align:top; padding:2px 3px; }
+    thead th {
+      padding:1px 6px 1px 3px; background:#fefefe; text-align:left;
+      font-weight:normal; font-size:11px; border:1px solid #ddd;
+    }
+    tbody th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    table.vars { margin:5px 0 2px 40px; }
+    table.vars td, table.req td { font-family:monospace; }
+    table td.code { width:100%; }
+    table td.code pre { overflow:hidden; }
+    table.source th { color:#666; }
+    table.source td { font-family:monospace; white-space:pre; border-bottom:1px solid #eee; }
+    ul.traceback { list-style-type:none; color: #222; }
+    ul.traceback li.frame { padding-bottom:1em; color:#666; }
+    ul.traceback li.user { background-color:#e0e0e0; color:#000 }
+    div.context { padding:10px 0; overflow:hidden; }
+    div.context ol { padding-left:30px; margin:0 10px; list-style-position: inside; }
+    div.context ol li { font-family:monospace; white-space:pre; color:#777; cursor:pointer; padding-left: 2px; }
+    div.context ol li pre { display:inline; }
+    div.context ol.context-line li { color:#505050; background-color:#dfdfdf; padding: 3px 2px; }
+    div.context ol.context-line li span { position:absolute; right:32px; }
+    .user div.context ol.context-line li { background-color:#bbb; color:#000; }
+    .user div.context ol li { color:#666; }
+    div.commands { margin-left: 40px; }
+    div.commands a { color:#555; text-decoration:none; }
+    .user div.commands a { color: black; }
+    #summary { background: #ffc; }
+    #summary h2 { font-weight: normal; color: #666; }
+    #explanation { background:#eee; }
+    #template, #template-not-exist { background:#f6f6f6; }
+    #template-not-exist ul { margin: 0 0 10px 20px; }
+    #template-not-exist .postmortem-section { margin-bottom: 3px; }
+    #unicode-hint { background:#eee; }
+    #traceback { background:#eee; }
+    #requestinfo { background:#f6f6f6; padding-left:120px; }
+    #summary table { border:none; background:transparent; }
+    #requestinfo h2, #requestinfo h3 { position:relative; margin-left:-100px; }
+    #requestinfo h3 { margin-bottom:-1em; }
+    .error { background: #ffc; }
+    .specific { color:#cc3300; font-weight:bold; }
+    h2 span.commands { font-size:.7em;}
+    span.commands a:link {color:#5E5694;}
+    pre.exception_value { font-family: sans-serif; color: #666; font-size: 1.5em; margin: 10px 0 10px 0; }
+    .append-bottom { margin-bottom: 10px; }
+  </style>
+  
+  <script type="text/javascript">
+  //<!--
+    function getElementsByClassName(oElm, strTagName, strClassName){
+        // Written by Jonathan Snook, http://www.snook.ca/jon; Add-ons by Robert Nyman, http://www.robertnyman.com
+        var arrElements = (strTagName == "*" && document.all)? document.all :
+        oElm.getElementsByTagName(strTagName);
+        var arrReturnElements = new Array();
+        strClassName = strClassName.replace(/\-/g, "\-");
+        var oRegExp = new RegExp("(^|\s)" + strClassName + "(\s|$)");
+        var oElement;
+        for(var i=0; i<arrElements.length; i++){
+            oElement = arrElements[i];
+            if(oRegExp.test(oElement.className)){
+                arrReturnElements.push(oElement);
+            }
+        }
+        return (arrReturnElements)
+    }
+    function hideAll(elems) {
+      for (var e = 0; e < elems.length; e++) {
+        elems[e].style.display = 'none';
+      }
+    }
+    window.onload = function() {
+      hideAll(getElementsByClassName(document, 'table', 'vars'));
+      hideAll(getElementsByClassName(document, 'ol', 'pre-context'));
+      hideAll(getElementsByClassName(document, 'ol', 'post-context'));
+      hideAll(getElementsByClassName(document, 'div', 'pastebin'));
+    }
+    function toggle() {
+      for (var i = 0; i < arguments.length; i++) {
+        var e = document.getElementById(arguments[i]);
+        if (e) {
+          e.style.display = e.style.display == 'none' ? 'block': 'none';
+        }
+      }
+      return false;
+    }
+    function varToggle(link, id) {
+      toggle('v' + id);
+      var s = link.getElementsByTagName('span')[0];
+      var uarr = String.fromCharCode(0x25b6);
+      var darr = String.fromCharCode(0x25bc);
+      s.textContent = s.textContent == uarr ? darr : uarr;
+      return false;
+    }
+    function switchPastebinFriendly(link) {
+      s1 = "Switch to copy-and-paste view";
+      s2 = "Switch back to interactive view";
+      link.textContent = link.textContent.trim() == s1 ? s2: s1;
+      toggle('browserTraceback', 'pastebinTraceback');
+      return false;
+    }
+    //-->
+  </script>
+  
+</head>
+<body>
+<div id="summary">
+  <h1>IntegrityError at /public/1</h1>
+  <pre class="exception_value">(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre>
+  <table class="meta">
+
+    <tr>
+      <th>Request Method:</th>
+      <td>POST</td>
+    </tr>
+    <tr>
+      <th>Request URL:</th>
+      <td>http://127.0.0.1:8001/public/1</td>
+    </tr>
+
+    <tr>
+      <th>Django Version:</th>
+      <td>1.10.3</td>
+    </tr>
+
+    <tr>
+      <th>Exception Type:</th>
+      <td>IntegrityError</td>
+    </tr>
+
+
+    <tr>
+      <th>Exception Value:</th>
+      <td><pre>(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+    </tr>
+
+
+    <tr>
+      <th>Exception Location:</th>
+      <td>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/MySQLdb/connections.py in defaulterrorhandler, line 36</td>
+    </tr>
+
+    <tr>
+      <th>Python Executable:</th>
+      <td>/Users/machao/.pyenv/versions/2.7.12/bin/python</td>
+    </tr>
+    <tr>
+      <th>Python Version:</th>
+      <td>2.7.12</td>
+    </tr>
+    <tr>
+      <th>Python Path:</th>
+      <td><pre>[&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/third-party&#39;,
+ &#39;/Volumes/Ithink/wechatProjects/django_wx_joyme&#39;,
+ &#39;/Applications/PyCharm.app/Contents/helpers/pydev&#39;,
+ &#39;/Volumes/Ithink/wechatProjects/django_wx_joyme&#39;,
+ &#39;/Applications/PyCharm.app/Contents/helpers/pydev&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python27.zip&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-darwin&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-mac&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-mac/lib-scriptpackages&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/lib-tk&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/lib-old&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/lib-dynload&#39;,
+ &#39;/Users/machao/.local/lib/python2.7/site-packages&#39;,
+ &#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages&#39;]</pre></td>
+    </tr>
+    <tr>
+      <th>Server time:</th>
+      <td>星期四, 22 十二月 2016 22:10:05 +0800</td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+<div id="traceback">
+  <h2>Traceback <span class="commands"><a href="#" onclick="return switchPastebinFriendly(this);">
+    Switch to copy-and-paste view</a></span>
+  </h2>
+  
+  <div id="browserTraceback">
+    <ul class="traceback">
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/exception.py</code> in <code>inner</code>
+
+          
+            <div class="context" id="c4355805480">
+              
+                <ol start="32" class="pre-context" id="pre4355805480">
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    This decorator is automatically applied to all middleware to ensure that</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    no middleware leaks an exception and that the next middleware in the stack</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    can rely on getting a response instead of an exception.</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    @wraps(get_response, assigned=available_attrs(get_response))</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    def inner(request):</pre></li>
+                
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>        try:</pre></li>
+                
+                </ol>
+              
+              <ol start="39" class="context-line">
+                <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>
+            response = get_response(request)</pre> <span>...</span></li></ol>
+              
+                <ol start='40' class="post-context" id="post4355805480">
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>        except Exception as exc:</pre></li>
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>            response = response_for_exception(request, exc)</pre></li>
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>        return response</pre></li>
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre>    return inner</pre></li>
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4355805480', 'post4355805480')"><pre></pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4355805480')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4355805480">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>exc</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>get_response</td>
+                    <td class="code"><pre>&lt;bound method WSGIHandler._get_response of &lt;django.core.handlers.wsgi.WSGIHandler object at 0x10241ba50&gt;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>request</td>
+                    <td class="code"><pre>&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/base.py</code> in <code>_get_response</code>
+
+          
+            <div class="context" id="c4356033208">
+              
+                <ol start="180" class="pre-context" id="pre4356033208">
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>                break</pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>        if response is None:</pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>            wrapped_callback = self.make_view_atomic(callback)</pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>            try:</pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>                response = wrapped_callback(request, *callback_args, **callback_kwargs)</pre></li>
+                
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>            except Exception as e:</pre></li>
+                
+                </ol>
+              
+              <ol start="187" class="context-line">
+                <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>
+                response = self.process_exception_by_middleware(e, request)</pre> <span>...</span></li></ol>
+              
+                <ol start='188' class="post-context" id="post4356033208">
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>        # Complain if the view returned None (a common error).</pre></li>
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>        if response is None:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>            if isinstance(callback, types.FunctionType):    # FBV</pre></li>
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>                view_name = callback.__name__</pre></li>
+                  
+                  <li onclick="toggle('pre4356033208', 'post4356033208')"><pre>            else:                                           # CBV</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033208')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033208">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>callback</td>
+                    <td class="code"><pre>&lt;function wrapper at 0x1030245f0&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>callback_args</td>
+                    <td class="code"><pre>()</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>callback_kwargs</td>
+                    <td class="code"><pre>{&#39;publicid&#39;: u&#39;1&#39;}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>e</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>middleware_method</td>
+                    <td class="code"><pre>&lt;bound method CsrfViewMiddleware.process_view of &lt;django.middleware.csrf.CsrfViewMiddleware object at 0x1030c46d0&gt;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>request</td>
+                    <td class="code"><pre>&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>resolver</td>
+                    <td class="code"><pre>&lt;RegexURLResolver &#39;django_wx_joyme.urls&#39; (None:None) ^/&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>resolver_match</td>
+                    <td class="code"><pre>Error in formatting: UnicodeEncodeError: &#39;ascii&#39; codec can&#39;t encode characters in position 102-108: ordinal not in range(128)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>response</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.core.handlers.wsgi.WSGIHandler object at 0x10241ba50&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>wrapped_callback</td>
+                    <td class="code"><pre>&lt;function wrapper at 0x1030245f0&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/base.py</code> in <code>_get_response</code>
+
+          
+            <div class="context" id="c4356033928">
+              
+                <ol start="178" class="pre-context" id="pre4356033928">
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            response = middleware_method(request, callback, callback_args, callback_kwargs)</pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            if response:</pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>                break</pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>        if response is None:</pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            wrapped_callback = self.make_view_atomic(callback)</pre></li>
+                
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            try:</pre></li>
+                
+                </ol>
+              
+              <ol start="185" class="context-line">
+                <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>
+                response = wrapped_callback(request, *callback_args, **callback_kwargs)</pre> <span>...</span></li></ol>
+              
+                <ol start='186' class="post-context" id="post4356033928">
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            except Exception as e:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>                response = self.process_exception_by_middleware(e, request)</pre></li>
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>        # Complain if the view returned None (a common error).</pre></li>
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>        if response is None:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033928', 'post4356033928')"><pre>            if isinstance(callback, types.FunctionType):    # FBV</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033928')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033928">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>callback</td>
+                    <td class="code"><pre>&lt;function wrapper at 0x1030245f0&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>callback_args</td>
+                    <td class="code"><pre>()</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>callback_kwargs</td>
+                    <td class="code"><pre>{&#39;publicid&#39;: u&#39;1&#39;}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>e</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>middleware_method</td>
+                    <td class="code"><pre>&lt;bound method CsrfViewMiddleware.process_view of &lt;django.middleware.csrf.CsrfViewMiddleware object at 0x1030c46d0&gt;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>request</td>
+                    <td class="code"><pre>&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>resolver</td>
+                    <td class="code"><pre>&lt;RegexURLResolver &#39;django_wx_joyme.urls&#39; (None:None) ^/&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>resolver_match</td>
+                    <td class="code"><pre>Error in formatting: UnicodeEncodeError: &#39;ascii&#39; codec can&#39;t encode characters in position 102-108: ordinal not in range(128)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>response</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.core.handlers.wsgi.WSGIHandler object at 0x10241ba50&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>wrapped_callback</td>
+                    <td class="code"><pre>&lt;function wrapper at 0x1030245f0&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/views/decorators/csrf.py</code> in <code>wrapped_view</code>
+
+          
+            <div class="context" id="c4356033856">
+              
+                <ol start="51" class="pre-context" id="pre4356033856">
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    Marks a view function as being exempt from the CSRF view protection.</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    # We could just do view_func.csrf_exempt = True, but decorators</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    # are nicer if they don&#39;t have side-effects, so we return a new</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    # function.</pre></li>
+                
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    def wrapped_view(*args, **kwargs):</pre></li>
+                
+                </ol>
+              
+              <ol start="58" class="context-line">
+                <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>
+        return view_func(*args, **kwargs)</pre> <span>...</span></li></ol>
+              
+                <ol start='59' class="post-context" id="post4356033856">
+                  
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    wrapped_view.csrf_exempt = True</pre></li>
+                  
+                  <li onclick="toggle('pre4356033856', 'post4356033856')"><pre>    return wraps(view_func, assigned=available_attrs(view_func))(wrapped_view)</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033856')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033856">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>(&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;,)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>kwargs</td>
+                    <td class="code"><pre>{&#39;publicid&#39;: u&#39;1&#39;}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>view_func</td>
+                    <td class="code"><pre>&lt;function wrapper at 0x103024578&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame user">
+          <code>/Volumes/Ithink/wechatProjects/django_wx_joyme/permissions/utils/decoraters.py</code> in <code>wrapper</code>
+
+          
+            <div class="context" id="c4356033640">
+              
+                <ol start="64" class="pre-context" id="pre4356033640">
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>            cache.set(cache_js_ticket_name, jsapi_ticket, 7200 - 100)</pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>        # 鉴定当前用户是否对该公众号有管理权限</pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>        if not user.is_superuser:</pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>            # todo 实现鉴别当前用户是否对当前公众号有管理权限</pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>            pass</pre></li>
+                
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>        args = [public_instance]</pre></li>
+                
+                </ol>
+              
+              <ol start="71" class="context-line">
+                <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>
+        return func(request, wechat_instance, *args)</pre> <span>...</span></li></ol>
+              
+                <ol start='72' class="post-context" id="post4356033640">
+                  
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033640', 'post4356033640')"><pre>    return wrapper</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033640')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033640">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>access_token</td>
+                    <td class="code"><pre>{u&#39;access_token&#39;: u&#39;OQv8_wTYamN0TgjBMbdgUPtqd_ToyCl-Y3c0S78MSvQiNRnRPTvuF_7LTv5bCsWGL1pOC2MFcYALEAWnlo8I4dTafnapqlZTyV-JOKaqX1QZJRhAEALVD&#39;,
+ u&#39;access_token_expires_at&#39;: 1482416271}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>access_token_expire_at</td>
+                    <td class="code"><pre>1482416271</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>[&lt;PublicAccount: 测试公众号&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>cache_access_token_name</td>
+                    <td class="code"><pre>u&#39;django_wx_joyme_public_test_access_token&#39;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>cache_js_ticket_name</td>
+                    <td class="code"><pre>u&#39;django_wx_joyme_public_test_js_ticket&#39;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>cached_access_token</td>
+                    <td class="code"><pre>{u&#39;access_token&#39;: u&#39;OQv8_wTYamN0TgjBMbdgUPtqd_ToyCl-Y3c0S78MSvQiNRnRPTvuF_7LTv5bCsWGL1pOC2MFcYALEAWnlo8I4dTafnapqlZTyV-JOKaqX1QZJRhAEALVD&#39;,
+ u&#39;access_token_expires_at&#39;: 1482416271}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>cached_ticket</td>
+                    <td class="code"><pre>{u&#39;jsapi_ticket&#39;: u&#39;kgt8ON7yVITDhtdwci0qef5ejuz_qBb83XzX7eEpNYd_PBCpIj17AvdXdkTIccofowY7gQOMXg-bF-PPlgLRmg&#39;,
+ u&#39;jsapi_ticket_expires_at&#39;: 1482416271}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>func</td>
+                    <td class="code"><pre>&lt;function reply at 0x103024488&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>jsapi_ticket</td>
+                    <td class="code"><pre>{u&#39;jsapi_ticket&#39;: u&#39;kgt8ON7yVITDhtdwci0qef5ejuz_qBb83XzX7eEpNYd_PBCpIj17AvdXdkTIccofowY7gQOMXg-bF-PPlgLRmg&#39;,
+ u&#39;jsapi_ticket_expires_at&#39;: 1482416271}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>jsapi_ticket_expires_at</td>
+                    <td class="code"><pre>1482416271</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>kwargs</td>
+                    <td class="code"><pre>{}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>public_instance</td>
+                    <td class="code"><pre>&lt;PublicAccount: 测试公众号&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>publicid</td>
+                    <td class="code"><pre>u&#39;1&#39;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>request</td>
+                    <td class="code"><pre>&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>user</td>
+                    <td class="code"><pre>&lt;SimpleLazyObject: &lt;django.contrib.auth.models.AnonymousUser object at 0x103a42ed0&gt;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>wechat_instance</td>
+                    <td class="code"><pre>&lt;wechat_sdk.basic.WechatBasic object at 0x103a42f90&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame user">
+          <code>/Volumes/Ithink/wechatProjects/django_wx_joyme/app/views/index.py</code> in <code>reply</code>
+
+          
+            <div class="context" id="c4356399472">
+              
+                <ol start="72" class="pre-context" id="pre4356399472">
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>    user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>    message_instance = Message(form_user=user_instance, public=public_instance, type=msg.type, create_time=msg.time,</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>                               msgid=msg.id)</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>    try:</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>        message_instance.mediaid = msg.media_id</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>    except AttributeError:</pre></li>
+                
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>        pass</pre></li>
+                
+                </ol>
+              
+              <ol start="79" class="context-line">
+                <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>
+    message_instance.save()</pre> <span>...</span></li></ol>
+              
+                <ol start='80' class="post-context" id="post4356399472">
+                  
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356399472', 'post4356399472')"><pre>    pass</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356399472')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356399472">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>(&lt;PublicAccount: 测试公众号&gt;,)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>message_instance</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>msg</td>
+                    <td class="code"><pre>&lt;wechat_sdk.messages.ImageMessage object at 0x103a42dd0&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>public</td>
+                    <td class="code"><pre>&lt;wechat_sdk.basic.WechatBasic object at 0x103a42f90&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>public_instance</td>
+                    <td class="code"><pre>&lt;PublicAccount: 测试公众号&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>request</td>
+                    <td class="code"><pre>&lt;WSGIRequest: POST &#39;/public/1&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>signature</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>user_instance</td>
+                    <td class="code"><pre>&lt;PublicFollowers: PublicFollowers object&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame user">
+          <code>/Volumes/Ithink/wechatProjects/django_wx_joyme/app/models/message.py</code> in <code>save</code>
+
+          
+            <div class="context" id="c4354954952">
+              
+                <ol start="41" class="pre-context" id="pre4354954952">
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>    description = models.TextField(verbose_name=u&#39;简介&#39;, null=True)</pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>    title = models.TextField(verbose_name=u&#39;标题&#39;, null=True)</pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>    response = models.OneToOneField(MsgResponse, verbose_name=u&#39;回复内容&#39;,null=True)</pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):</pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>        # todo 实现消息处理和save逻辑</pre></li>
+                
+                  <li onclick="toggle('pre4354954952', 'post4354954952')"><pre></pre></li>
+                
+                </ol>
+              
+              <ol start="48" class="context-line">
+                <li onclick="toggle('pre4354954952', 'post4354954952')"><pre>
+        super(Message, self).save(force_insert, force_update, using, update_fields)</pre> <span>...</span></li></ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4354954952')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4354954952">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>force_insert</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_update</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_fields</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py</code> in <code>save</code>
+
+          
+            <div class="context" id="c4356034432">
+              
+                <ol start="789" class="pre-context" id="pre4356034432">
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>                if not field.primary_key and not hasattr(field, &#39;through&#39;):</pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>                    field_names.add(field.attname)</pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>            loaded_fields = field_names.difference(deferred_fields)</pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>            if loaded_fields:</pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>                update_fields = frozenset(loaded_fields)</pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>        self.save_base(using=using, force_insert=force_insert,</pre></li>
+                
+                </ol>
+              
+              <ol start="796" class="context-line">
+                <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>
+                       force_update=force_update, update_fields=update_fields)</pre> <span>...</span></li></ol>
+              
+                <ol start='797' class="post-context" id="post4356034432">
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>    save.alters_data = True</pre></li>
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>    def save_base(self, raw=False, force_insert=False,</pre></li>
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>                  force_update=False, using=None, update_fields=None):</pre></li>
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>        &quot;&quot;&quot;</pre></li>
+                  
+                  <li onclick="toggle('pre4356034432', 'post4356034432')"><pre>        Handles the parts of saving which should be done only once per save,</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356034432')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356034432">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>deferred_fields</td>
+                    <td class="code"><pre>set([])</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>field</td>
+                    <td class="code"><pre>&lt;django.db.models.fields.related.OneToOneField: response&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_insert</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_update</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>obj</td>
+                    <td class="code"><pre>&lt;PublicAccount: 测试公众号&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_fields</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>&#39;default&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py</code> in <code>save_base</code>
+
+          
+            <div class="context" id="c4356034072">
+              
+                <ol start="817" class="pre-context" id="pre4356034072">
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        meta = cls._meta</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        if not meta.auto_created:</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>            signals.pre_save.send(sender=origin, instance=self, raw=raw, using=using,</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>                                  update_fields=update_fields)</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        with transaction.atomic(using=using, savepoint=False):</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>            if not raw:</pre></li>
+                
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>                self._save_parents(cls, using, update_fields)</pre></li>
+                
+                </ol>
+              
+              <ol start="824" class="context-line">
+                <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>
+            updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)</pre> <span>...</span></li></ol>
+              
+                <ol start='825' class="post-context" id="post4356034072">
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        # Store the database on which the object was saved</pre></li>
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        self._state.db = using</pre></li>
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        # Once saved, this is no longer a to-be-added instance.</pre></li>
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        self._state.adding = False</pre></li>
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356034072', 'post4356034072')"><pre>        # Signal that the save is complete</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356034072')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356034072">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>cls</td>
+                    <td class="code"><pre>&lt;class &#39;app.models.message.Message&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_insert</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_update</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>meta</td>
+                    <td class="code"><pre>&lt;Options for Message&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>origin</td>
+                    <td class="code"><pre>&lt;class &#39;app.models.message.Message&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>raw</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_fields</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>&#39;default&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py</code> in <code>_save_table</code>
+
+          
+            <div class="context" id="c4356033496">
+              
+                <ol start="901" class="pre-context" id="pre4356033496">
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>                self._order = order_value</pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>            fields = meta.local_concrete_fields</pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>            if not pk_set:</pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>                fields = [f for f in fields if not isinstance(f, AutoField)]</pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>            update_pk = bool(meta.has_auto_field and not pk_set)</pre></li>
+                
+                </ol>
+              
+              <ol start="908" class="context-line">
+                <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>
+            result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)</pre> <span>...</span></li></ol>
+              
+                <ol start='909' class="post-context" id="post4356033496">
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>            if update_pk:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>                setattr(self, meta.pk.attname, result)</pre></li>
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>        return updated</pre></li>
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>    def _do_update(self, base_qs, using, pk_val, values, update_fields, forced_update):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033496', 'post4356033496')"><pre>        &quot;&quot;&quot;</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033496')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033496">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>cls</td>
+                    <td class="code"><pre>&lt;class &#39;app.models.message.Message&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>f</td>
+                    <td class="code"><pre>&lt;django.db.models.fields.related.OneToOneField: response&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>fields</td>
+                    <td class="code"><pre>[&lt;django.db.models.fields.related.ForeignKey: form_user&gt;,
+ &lt;django.db.models.fields.related.ForeignKey: public&gt;,
+ &lt;django.db.models.fields.CharField: type&gt;,
+ &lt;django.db.models.fields.TextField: content&gt;,
+ &lt;django.db.models.fields.IntegerField: msgid&gt;,
+ &lt;django.db.models.fields.IntegerField: create_time&gt;,
+ &lt;django.db.models.fields.CharField: picurl&gt;,
+ &lt;django.db.models.fields.CharField: mediaid&gt;,
+ &lt;django.db.models.fields.CharField: format&gt;,
+ &lt;django.db.models.fields.CharField: thum_mediaid&gt;,
+ &lt;django.db.models.fields.FloatField: location_x&gt;,
+ &lt;django.db.models.fields.FloatField: location_y&gt;,
+ &lt;django.db.models.fields.IntegerField: scale&gt;,
+ &lt;django.db.models.fields.TextField: label&gt;,
+ &lt;django.db.models.fields.TextField: url&gt;,
+ &lt;django.db.models.fields.TextField: description&gt;,
+ &lt;django.db.models.fields.TextField: title&gt;,
+ &lt;django.db.models.fields.related.OneToOneField: response&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_insert</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>force_update</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>meta</td>
+                    <td class="code"><pre>&lt;Options for Message&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>non_pks</td>
+                    <td class="code"><pre>[&lt;django.db.models.fields.related.ForeignKey: form_user&gt;,
+ &lt;django.db.models.fields.related.ForeignKey: public&gt;,
+ &lt;django.db.models.fields.CharField: type&gt;,
+ &lt;django.db.models.fields.TextField: content&gt;,
+ &lt;django.db.models.fields.IntegerField: msgid&gt;,
+ &lt;django.db.models.fields.IntegerField: create_time&gt;,
+ &lt;django.db.models.fields.CharField: picurl&gt;,
+ &lt;django.db.models.fields.CharField: mediaid&gt;,
+ &lt;django.db.models.fields.CharField: format&gt;,
+ &lt;django.db.models.fields.CharField: thum_mediaid&gt;,
+ &lt;django.db.models.fields.FloatField: location_x&gt;,
+ &lt;django.db.models.fields.FloatField: location_y&gt;,
+ &lt;django.db.models.fields.IntegerField: scale&gt;,
+ &lt;django.db.models.fields.TextField: label&gt;,
+ &lt;django.db.models.fields.TextField: url&gt;,
+ &lt;django.db.models.fields.TextField: description&gt;,
+ &lt;django.db.models.fields.TextField: title&gt;,
+ &lt;django.db.models.fields.related.OneToOneField: response&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>pk_set</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>pk_val</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>raw</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_fields</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_pk</td>
+                    <td class="code"><pre>True</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>updated</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>&#39;default&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py</code> in <code>_do_insert</code>
+
+          
+            <div class="context" id="c4356034000">
+              
+                <ol start="940" class="pre-context" id="pre4356034000">
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>    def _do_insert(self, manager, using, fields, update_pk, raw):</pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        Do an INSERT. If update_pk is defined then this method should return</pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        the new pk for the model.</pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        return manager._insert([self], fields=fields, return_id=update_pk,</pre></li>
+                
+                </ol>
+              
+              <ol start="947" class="context-line">
+                <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>
+                               using=using, raw=raw)</pre> <span>...</span></li></ol>
+              
+                <ol start='948' class="post-context" id="post4356034000">
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>    def delete(self, using=None, keep_parents=False):</pre></li>
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        using = using or router.db_for_write(self.__class__, instance=self)</pre></li>
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>        assert self._get_pk_val() is not None, (</pre></li>
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>            &quot;%s object can&#39;t be deleted because its %s attribute is set to None.&quot; %</pre></li>
+                  
+                  <li onclick="toggle('pre4356034000', 'post4356034000')"><pre>            (self._meta.object_name, self._meta.pk.attname)</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356034000')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356034000">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>fields</td>
+                    <td class="code"><pre>[&lt;django.db.models.fields.related.ForeignKey: form_user&gt;,
+ &lt;django.db.models.fields.related.ForeignKey: public&gt;,
+ &lt;django.db.models.fields.CharField: type&gt;,
+ &lt;django.db.models.fields.TextField: content&gt;,
+ &lt;django.db.models.fields.IntegerField: msgid&gt;,
+ &lt;django.db.models.fields.IntegerField: create_time&gt;,
+ &lt;django.db.models.fields.CharField: picurl&gt;,
+ &lt;django.db.models.fields.CharField: mediaid&gt;,
+ &lt;django.db.models.fields.CharField: format&gt;,
+ &lt;django.db.models.fields.CharField: thum_mediaid&gt;,
+ &lt;django.db.models.fields.FloatField: location_x&gt;,
+ &lt;django.db.models.fields.FloatField: location_y&gt;,
+ &lt;django.db.models.fields.IntegerField: scale&gt;,
+ &lt;django.db.models.fields.TextField: label&gt;,
+ &lt;django.db.models.fields.TextField: url&gt;,
+ &lt;django.db.models.fields.TextField: description&gt;,
+ &lt;django.db.models.fields.TextField: title&gt;,
+ &lt;django.db.models.fields.related.OneToOneField: response&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>manager</td>
+                    <td class="code"><pre>&lt;django.db.models.manager.Manager object at 0x103964b90&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>raw</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;Message: Message object&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>update_pk</td>
+                    <td class="code"><pre>True</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>&#39;default&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/manager.py</code> in <code>manager_method</code>
+
+          
+            <div class="context" id="c4356034144">
+              
+                <ol start="78" class="pre-context" id="pre4356034144">
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>    def check(self, **kwargs):</pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>        return []</pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>    @classmethod</pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>    def _get_queryset_methods(cls, queryset_class):</pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>        def create_method(name, method):</pre></li>
+                
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>            def manager_method(self, *args, **kwargs):</pre></li>
+                
+                </ol>
+              
+              <ol start="85" class="context-line">
+                <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>
+                return getattr(self.get_queryset(), name)(*args, **kwargs)</pre> <span>...</span></li></ol>
+              
+                <ol start='86' class="post-context" id="post4356034144">
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>            manager_method.__name__ = method.__name__</pre></li>
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>            manager_method.__doc__ = method.__doc__</pre></li>
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>            return manager_method</pre></li>
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>        new_methods = {}</pre></li>
+                  
+                  <li onclick="toggle('pre4356034144', 'post4356034144')"><pre>        # Refs http://bugs.python.org/issue1785.</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356034144')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356034144">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>([&lt;Message: Message object&gt;],)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>kwargs</td>
+                    <td class="code"><pre>{&#39;fields&#39;: [&lt;django.db.models.fields.related.ForeignKey: form_user&gt;,
+            &lt;django.db.models.fields.related.ForeignKey: public&gt;,
+            &lt;django.db.models.fields.CharField: type&gt;,
+            &lt;django.db.models.fields.TextField: content&gt;,
+            &lt;django.db.models.fields.IntegerField: msgid&gt;,
+            &lt;django.db.models.fields.IntegerField: create_time&gt;,
+            &lt;django.db.models.fields.CharField: picurl&gt;,
+            &lt;django.db.models.fields.CharField: mediaid&gt;,
+            &lt;django.db.models.fields.CharField: format&gt;,
+            &lt;django.db.models.fields.CharField: thum_mediaid&gt;,
+            &lt;django.db.models.fields.FloatField: location_x&gt;,
+            &lt;django.db.models.fields.FloatField: location_y&gt;,
+            &lt;django.db.models.fields.IntegerField: scale&gt;,
+            &lt;django.db.models.fields.TextField: label&gt;,
+            &lt;django.db.models.fields.TextField: url&gt;,
+            &lt;django.db.models.fields.TextField: description&gt;,
+            &lt;django.db.models.fields.TextField: title&gt;,
+            &lt;django.db.models.fields.related.OneToOneField: response&gt;],
+ &#39;raw&#39;: False,
+ &#39;return_id&#39;: True,
+ &#39;using&#39;: &#39;default&#39;}</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>name</td>
+                    <td class="code"><pre>&#39;_insert&#39;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.models.manager.Manager object at 0x103964b90&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/query.py</code> in <code>_insert</code>
+
+          
+            <div class="context" id="c4356033352">
+              
+                <ol start="1038" class="pre-context" id="pre4356033352">
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        the InsertQuery class and is how Model.save() is implemented.</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        &quot;&quot;&quot;</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        self._for_write = True</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        if using is None:</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>            using = self.db</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        query = sql.InsertQuery(self.model)</pre></li>
+                
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        query.insert_values(fields, objs, raw=raw)</pre></li>
+                
+                </ol>
+              
+              <ol start="1045" class="context-line">
+                <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>
+        return query.get_compiler(using=using).execute_sql(return_id)</pre> <span>...</span></li></ol>
+              
+                <ol start='1046' class="post-context" id="post4356033352">
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>    _insert.alters_data = True</pre></li>
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>    _insert.queryset_only = False</pre></li>
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>    def _batched_insert(self, objs, fields, batch_size):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        &quot;&quot;&quot;</pre></li>
+                  
+                  <li onclick="toggle('pre4356033352', 'post4356033352')"><pre>        A little helper method for bulk_insert to insert the bulk one batch</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033352')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033352">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>fields</td>
+                    <td class="code"><pre>[&lt;django.db.models.fields.related.ForeignKey: form_user&gt;,
+ &lt;django.db.models.fields.related.ForeignKey: public&gt;,
+ &lt;django.db.models.fields.CharField: type&gt;,
+ &lt;django.db.models.fields.TextField: content&gt;,
+ &lt;django.db.models.fields.IntegerField: msgid&gt;,
+ &lt;django.db.models.fields.IntegerField: create_time&gt;,
+ &lt;django.db.models.fields.CharField: picurl&gt;,
+ &lt;django.db.models.fields.CharField: mediaid&gt;,
+ &lt;django.db.models.fields.CharField: format&gt;,
+ &lt;django.db.models.fields.CharField: thum_mediaid&gt;,
+ &lt;django.db.models.fields.FloatField: location_x&gt;,
+ &lt;django.db.models.fields.FloatField: location_y&gt;,
+ &lt;django.db.models.fields.IntegerField: scale&gt;,
+ &lt;django.db.models.fields.TextField: label&gt;,
+ &lt;django.db.models.fields.TextField: url&gt;,
+ &lt;django.db.models.fields.TextField: description&gt;,
+ &lt;django.db.models.fields.TextField: title&gt;,
+ &lt;django.db.models.fields.related.OneToOneField: response&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>objs</td>
+                    <td class="code"><pre>[&lt;Message: Message object&gt;]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>query</td>
+                    <td class="code"><pre>&lt;django.db.models.sql.subqueries.InsertQuery object at 0x103a4a190&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>raw</td>
+                    <td class="code"><pre>False</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>return_id</td>
+                    <td class="code"><pre>True</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;QuerySet [&lt;Message: Message object&gt;]&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>using</td>
+                    <td class="code"><pre>&#39;default&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/sql/compiler.py</code> in <code>execute_sql</code>
+
+          
+            <div class="context" id="c4356033064">
+              
+                <ol start="1047" class="pre-context" id="pre4356033064">
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>        assert not (</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            return_id and len(self.query.objs) != 1 and</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            not self.connection.features.can_return_ids_from_bulk_insert</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>        )</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>        self.return_id = return_id</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>        with self.connection.cursor() as cursor:</pre></li>
+                
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            for sql, params in self.as_sql():</pre></li>
+                
+                </ol>
+              
+              <ol start="1054" class="context-line">
+                <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>
+                cursor.execute(sql, params)</pre> <span>...</span></li></ol>
+              
+                <ol start='1055' class="post-context" id="post4356033064">
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            if not (return_id and cursor):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>                return</pre></li>
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            if self.connection.features.can_return_ids_from_bulk_insert and len(self.query.objs) &gt; 1:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>                return self.connection.ops.fetch_returned_insert_ids(cursor)</pre></li>
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>            if self.connection.features.can_return_id_from_insert:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033064', 'post4356033064')"><pre>                assert len(self.query.objs) == 1</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033064')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033064">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>cursor</td>
+                    <td class="code"><pre>&lt;django.db.backends.utils.CursorDebugWrapper object at 0x103a4a210&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>params</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>return_id</td>
+                    <td class="code"><pre>True</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.backends.mysql.compiler.SQLInsertCompiler object at 0x103a4a650&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>sql</td>
+                    <td class="code"><pre>u&#39;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py</code> in <code>execute</code>
+
+          
+            <div class="context" id="c4356033280">
+              
+                <ol start="72" class="pre-context" id="pre4356033280">
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>class CursorDebugWrapper(CursorWrapper):</pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>    # XXX callproc isn&#39;t instrumented at this time.</pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>    def execute(self, sql, params=None):</pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>        start = time()</pre></li>
+                
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>        try:</pre></li>
+                
+                </ol>
+              
+              <ol start="79" class="context-line">
+                <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>
+            return super(CursorDebugWrapper, self).execute(sql, params)</pre> <span>...</span></li></ol>
+              
+                <ol start='80' class="post-context" id="post4356033280">
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>        finally:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>            stop = time()</pre></li>
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>            duration = stop - start</pre></li>
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>            sql = self.db.ops.last_executed_query(self.cursor, sql, params)</pre></li>
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>            self.db.queries_log.append({</pre></li>
+                  
+                  <li onclick="toggle('pre4356033280', 'post4356033280')"><pre>                &#39;sql&#39;: sql,</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033280')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033280">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>duration</td>
+                    <td class="code"><pre>0.0028619766235351562</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>params</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.backends.utils.CursorDebugWrapper object at 0x103a4a210&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>sql</td>
+                    <td class="code"><pre>u&quot;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (1, 1, &#39;image&#39;, NULL, 14867801278306023067, 1482415802, NULL, &#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)&quot;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>start</td>
+                    <td class="code"><pre>1482415805.308218</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>stop</td>
+                    <td class="code"><pre>1482415805.31108</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py</code> in <code>execute</code>
+
+          
+            <div class="context" id="c4356033568">
+              
+                <ol start="57" class="pre-context" id="pre4356033568">
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>    def execute(self, sql, params=None):</pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>        self.db.validate_no_broken_transaction()</pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>        with self.db.wrap_database_errors:</pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>            if params is None:</pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>                return self.cursor.execute(sql)</pre></li>
+                
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>            else:</pre></li>
+                
+                </ol>
+              
+              <ol start="64" class="context-line">
+                <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>
+                return self.cursor.execute(sql, params)</pre> <span>...</span></li></ol>
+              
+                <ol start='65' class="post-context" id="post4356033568">
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>    def executemany(self, sql, param_list):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>        self.db.validate_no_broken_transaction()</pre></li>
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>        with self.db.wrap_database_errors:</pre></li>
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre>            return self.cursor.executemany(sql, param_list)</pre></li>
+                  
+                  <li onclick="toggle('pre4356033568', 'post4356033568')"><pre></pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033568')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033568">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>params</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.backends.utils.CursorDebugWrapper object at 0x103a4a210&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>sql</td>
+                    <td class="code"><pre>u&#39;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/utils.py</code> in <code>__exit__</code>
+
+          
+            <div class="context" id="c4356033712">
+              
+                <ol start="87" class="pre-context" id="pre4356033712">
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                dj_exc_value.__cause__ = exc_value</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                if not hasattr(exc_value, &#39;__traceback__&#39;):</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                    exc_value.__traceback__ = traceback</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                # Only set the &#39;errors_occurred&#39; flag for errors that may make</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                # the connection unusable.</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                if dj_exc_type not in (DataError, IntegrityError):</pre></li>
+                
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>                    self.wrapper.errors_occurred = True</pre></li>
+                
+                </ol>
+              
+              <ol start="94" class="context-line">
+                <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>
+                six.reraise(dj_exc_type, dj_exc_value, traceback)</pre> <span>...</span></li></ol>
+              
+                <ol start='95' class="post-context" id="post4356033712">
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>    def __call__(self, func):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>        # Note that we are intentionally not using @wraps here for performance</pre></li>
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>        # reasons. Refs #21109.</pre></li>
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>        def inner(*args, **kwargs):</pre></li>
+                  
+                  <li onclick="toggle('pre4356033712', 'post4356033712')"><pre>            with self:</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356033712')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356033712">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>db_exc_type</td>
+                    <td class="code"><pre>&lt;class &#39;_mysql_exceptions.IntegrityError&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>dj_exc_type</td>
+                    <td class="code"><pre>&lt;class &#39;django.db.utils.IntegrityError&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>dj_exc_value</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>exc_type</td>
+                    <td class="code"><pre>&lt;class &#39;_mysql_exceptions.IntegrityError&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>exc_value</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.utils.DatabaseErrorWrapper object at 0x103a4a150&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>traceback</td>
+                    <td class="code"><pre>&lt;traceback object at 0x103a3c518&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py</code> in <code>execute</code>
+
+          
+            <div class="context" id="c4356031768">
+              
+                <ol start="57" class="pre-context" id="pre4356031768">
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>    def execute(self, sql, params=None):</pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>        self.db.validate_no_broken_transaction()</pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>        with self.db.wrap_database_errors:</pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>            if params is None:</pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>                return self.cursor.execute(sql)</pre></li>
+                
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>            else:</pre></li>
+                
+                </ol>
+              
+              <ol start="64" class="context-line">
+                <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>
+                return self.cursor.execute(sql, params)</pre> <span>...</span></li></ol>
+              
+                <ol start='65' class="post-context" id="post4356031768">
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>    def executemany(self, sql, param_list):</pre></li>
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>        self.db.validate_no_broken_transaction()</pre></li>
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>        with self.db.wrap_database_errors:</pre></li>
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre>            return self.cursor.executemany(sql, param_list)</pre></li>
+                  
+                  <li onclick="toggle('pre4356031768', 'post4356031768')"><pre></pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356031768')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356031768">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>params</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.backends.utils.CursorDebugWrapper object at 0x103a4a210&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>sql</td>
+                    <td class="code"><pre>u&#39;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)&#39;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame django">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/mysql/base.py</code> in <code>execute</code>
+
+          
+            <div class="context" id="c4356032776">
+              
+                <ol start="103" class="pre-context" id="pre4356032776">
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>    def __init__(self, cursor):</pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>        self.cursor = cursor</pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre></pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>    def execute(self, query, args=None):</pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>        try:</pre></li>
+                
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>            # args is None means no string interpolation</pre></li>
+                
+                </ol>
+              
+              <ol start="110" class="context-line">
+                <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>
+            return self.cursor.execute(query, args)</pre> <span>...</span></li></ol>
+              
+                <ol start='111' class="post-context" id="post4356032776">
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>        except Database.OperationalError as e:</pre></li>
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>            # Map some error codes to IntegrityError, since they seem to be</pre></li>
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>            # misclassified and Django would prefer the more logical place.</pre></li>
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>            if e.args[0] in self.codes_for_integrityerror:</pre></li>
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>                six.reraise(utils.IntegrityError, utils.IntegrityError(*tuple(e.args)), sys.exc_info()[2])</pre></li>
+                  
+                  <li onclick="toggle('pre4356032776', 'post4356032776')"><pre>            raise</pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356032776')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356032776">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>query</td>
+                    <td class="code"><pre>u&#39;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)&#39;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;django.db.backends.mysql.base.CursorWrapper object at 0x103a4a0d0&gt;</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame user">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/MySQLdb/cursors.py</code> in <code>execute</code>
+
+          
+            <div class="context" id="c4356032560">
+              
+                <ol start="198" class="pre-context" id="pre4356032560">
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>                self.errorhandler(self, TypeError, m)</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>        except (SystemExit, KeyboardInterrupt):</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>            raise</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>        except:</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>            exc, value, tb = sys.exc_info()</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>            del tb</pre></li>
+                
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>            self.messages.append((exc, value))</pre></li>
+                
+                </ol>
+              
+              <ol start="205" class="context-line">
+                <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>
+            self.errorhandler(self, exc, value)</pre> <span>...</span></li></ol>
+              
+                <ol start='206' class="post-context" id="post4356032560">
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>        self._executed = query</pre></li>
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>        if not self._defer_warnings: self._warning_check()</pre></li>
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>        return r</pre></li>
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre>    def executemany(self, query, args):</pre></li>
+                  
+                  <li onclick="toggle('pre4356032560', 'post4356032560')"><pre></pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356032560')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356032560">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>args</td>
+                    <td class="code"><pre>[1,
+ 1,
+ u&#39;image&#39;,
+ None,
+ 14867801278306023067L,
+ 1482415802,
+ None,
+ u&#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None,
+ None]</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>db</td>
+                    <td class="code"><pre>&lt;weakproxy at 0x1039fdec0 to Connection at 0x7fe58d27d620&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>exc</td>
+                    <td class="code"><pre>&lt;class &#39;_mysql_exceptions.IntegrityError&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>item</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>query</td>
+                    <td class="code"><pre>&quot;INSERT INTO `app_message` (`form_user_id`, `public_id`, `type`, `content`, `msgid`, `create_time`, `picurl`, `mediaid`, `format`, `thum_mediaid`, `location_x`, `location_y`, `scale`, `label`, `url`, `description`, `title`, `response_id`) VALUES (1, 1, &#39;image&#39;, NULL, 14867801278306023067, 1482415802, NULL, &#39;lzirGUkEupFUwGEtRollDinUEDoaKdba&#39;, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)&quot;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>r</td>
+                    <td class="code"><pre>None</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>self</td>
+                    <td class="code"><pre>&lt;MySQLdb.cursors.Cursor object at 0x103a4a410&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>value</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+        
+        <li class="frame user">
+          <code>/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/MySQLdb/connections.py</code> in <code>defaulterrorhandler</code>
+
+          
+            <div class="context" id="c4356032416">
+              
+                <ol start="29" class="pre-context" id="pre4356032416">
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    error = errorclass, errorvalue</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    if cursor:</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>        cursor.messages.append(error)</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    else:</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>        connection.messages.append(error)</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    del cursor</pre></li>
+                
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    del connection</pre></li>
+                
+                </ol>
+              
+              <ol start="36" class="context-line">
+                <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>
+    raise errorclass, errorvalue</pre> <span>...</span></li></ol>
+              
+                <ol start='37' class="post-context" id="post4356032416">
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>re_numeric_part = re.compile(r&quot;^(\d+)&quot;)</pre></li>
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre></pre></li>
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>def numeric_part(s):</pre></li>
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre>    &quot;&quot;&quot;Returns the leading numeric part of a string.</pre></li>
+                  
+                  <li onclick="toggle('pre4356032416', 'post4356032416')"><pre></pre></li>
+                  
+              </ol>
+              
+            </div>
+          
+
+          
+            <div class="commands">
+                
+                    <a href="#" onclick="return varToggle(this, '4356032416')"><span>&#x25b6;</span> Local vars</a>
+                
+            </div>
+            <table class="vars" id="v4356032416">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td>error</td>
+                    <td class="code"><pre>(&lt;class &#39;_mysql_exceptions.IntegrityError&#39;&gt;,
+ IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;))</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>errorclass</td>
+                    <td class="code"><pre>&lt;class &#39;_mysql_exceptions.IntegrityError&#39;&gt;</pre></td>
+                  </tr>
+                
+                  <tr>
+                    <td>errorvalue</td>
+                    <td class="code"><pre>IntegrityError(1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)</pre></td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          
+        </li>
+      
+    </ul>
+  </div>
+  
+  <form action="http://dpaste.com/" name="pasteform" id="pasteform" method="post">
+
+  <div id="pastebinTraceback" class="pastebin">
+    <input type="hidden" name="language" value="PythonConsole">
+    <input type="hidden" name="title"
+      value="IntegrityError at /public/1">
+    <input type="hidden" name="source" value="Django Dpaste Agent">
+    <input type="hidden" name="poster" value="Django">
+    <textarea name="content" id="traceback_area" cols="140" rows="25">
+Environment:
+
+
+Request Method: POST
+Request URL: http://127.0.0.1:8001/public/1
+
+Django Version: 1.10.3
+Python Version: 2.7.12
+Installed Applications:
+[&#39;django.contrib.admin&#39;,
+ &#39;django.contrib.auth&#39;,
+ &#39;django.contrib.contenttypes&#39;,
+ &#39;django.contrib.sessions&#39;,
+ &#39;django.contrib.messages&#39;,
+ &#39;django.contrib.staticfiles&#39;,
+ &#39;app&#39;,
+ &#39;wechat_manage&#39;,
+ &#39;permissions&#39;,
+ &#39;django_static&#39;]
+Installed Middleware:
+[&#39;django.middleware.security.SecurityMiddleware&#39;,
+ &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+ &#39;django.middleware.common.CommonMiddleware&#39;,
+ &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+ &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+ &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+ &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+ &#39;app.middleware.log_middle_ware.log_middleware&#39;]
+
+
+
+Traceback:
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/exception.py" in inner
+  39.             response = get_response(request)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/base.py" in _get_response
+  187.                 response = self.process_exception_by_middleware(e, request)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/core/handlers/base.py" in _get_response
+  185.                 response = wrapped_callback(request, *callback_args, **callback_kwargs)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/views/decorators/csrf.py" in wrapped_view
+  58.         return view_func(*args, **kwargs)
+
+File "/Volumes/Ithink/wechatProjects/django_wx_joyme/permissions/utils/decoraters.py" in wrapper
+  71.         return func(request, wechat_instance, *args)
+
+File "/Volumes/Ithink/wechatProjects/django_wx_joyme/app/views/index.py" in reply
+  79.     message_instance.save()
+
+File "/Volumes/Ithink/wechatProjects/django_wx_joyme/app/models/message.py" in save
+  48.         super(Message, self).save(force_insert, force_update, using, update_fields)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py" in save
+  796.                        force_update=force_update, update_fields=update_fields)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py" in save_base
+  824.             updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py" in _save_table
+  908.             result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/base.py" in _do_insert
+  947.                                using=using, raw=raw)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/manager.py" in manager_method
+  85.                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/query.py" in _insert
+  1045.         return query.get_compiler(using=using).execute_sql(return_id)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/models/sql/compiler.py" in execute_sql
+  1054.                 cursor.execute(sql, params)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py" in execute
+  79.             return super(CursorDebugWrapper, self).execute(sql, params)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py" in execute
+  64.                 return self.cursor.execute(sql, params)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/utils.py" in __exit__
+  94.                 six.reraise(dj_exc_type, dj_exc_value, traceback)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/utils.py" in execute
+  64.                 return self.cursor.execute(sql, params)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/django/db/backends/mysql/base.py" in execute
+  110.             return self.cursor.execute(query, args)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/MySQLdb/cursors.py" in execute
+  205.             self.errorhandler(self, exc, value)
+
+File "/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages/MySQLdb/connections.py" in defaulterrorhandler
+  36.     raise errorclass, errorvalue
+
+Exception Type: IntegrityError at /public/1
+Exception Value: (1062, &quot;Duplicate entry &#39;2147483647&#39; for key &#39;app_message_msgid_cd368afa_uniq&#39;&quot;)
+</textarea>
+  <br><br>
+  <input type="submit" value="Share this traceback on a public website">
+  </div>
+</form>
+</div>
+
+
+
+<div id="requestinfo">
+  <h2>Request information</h2>
+
+
+  
+    <h3 id="user-info">USER</h3>
+    <p>AnonymousUser</p>
+  
+
+  <h3 id="get-info">GET</h3>
+  
+    <p>No GET data</p>
+  
+
+  <h3 id="post-info">POST</h3>
+  
+    <table class="req">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td>
+ &lt;xml&gt;
+ &lt;ToUserName&gt;&lt;![CDATA[iyFMiQOKCTR7l8BKZCft]]&gt;&lt;/ToUserName&gt;
+ &lt;FromUserName&gt;&lt;![CDATA[oSRd6wKyAzQqDGhd8EPrWSVivTxE]]&gt;&lt;/FromUserName&gt;
+ &lt;CreateTime&gt;1482415802&lt;/CreateTime&gt;
+ &lt;MsgType&gt;&lt;![CDATA[image]]&gt;&lt;/MsgType&gt;
+ &lt;PicUrl&gt;&lt;![CDATA[https://img11.360buyimg.com/cms/jfs/t3703/296/223334932/244921/9e3c5ae9/5803786dN96d3fe6d.jpg]]&gt;&lt;/PicUrl&gt;
+ &lt;MediaId&gt;&lt;![CDATA[lzirGUkEupFUwGEtRollDinUEDoaKdba]]&gt;&lt;/MediaId&gt;
+ &lt;MsgId&gt;14867801278306023067&lt;/MsgId&gt;
+ &lt;/xml&gt;
+</td>
+            <td class="code"><pre>u&#39;&#39;</pre></td>
+          </tr>
+        
+      </tbody>
+    </table>
+  
+  <h3 id="files-info">FILES</h3>
+  
+    <p>No FILES data</p>
+  
+
+
+  <h3 id="cookie-info">COOKIES</h3>
+  
+    <p>No cookie data</p>
+  
+
+  <h3 id="meta-info">META</h3>
+  <table class="req">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>Apple_PubSub_Socket_Render</td>
+          <td class="code"><pre>&#39;/private/tmp/com.apple.launchd.dWstRmFCcI/Render&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CONTENT_LENGTH</td>
+          <td class="code"><pre>&#39;447&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CONTENT_TYPE</td>
+          <td class="code"><pre>&#39;application/x-www-form-urlencoded&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_SETTINGS_MODULE</td>
+          <td class="code"><pre>&#39;django_wx_joyme.settings&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>GATEWAY_INTERFACE</td>
+          <td class="code"><pre>&#39;CGI/1.1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>GOPATH</td>
+          <td class="code"><pre>&#39;/Users/machao/go/gopath&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>HOME</td>
+          <td class="code"><pre>&#39;/Users/machao&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>HTTP_ACCEPT</td>
+          <td class="code"><pre>&#39;*/*&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>HTTP_HOST</td>
+          <td class="code"><pre>&#39;127.0.0.1:8001&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>HTTP_USER_AGENT</td>
+          <td class="code"><pre>&#39;curl/7.49.1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>IDE_PROJECT_ROOTS</td>
+          <td class="code"><pre>&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>IPYTHONENABLE</td>
+          <td class="code"><pre>&#39;True&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LC_CTYPE</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LESS</td>
+          <td class="code"><pre>&#39;-R&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LIBRARY_ROOTS</td>
+          <td class="code"><pre>&#39;/Users/machao/.pyenv/versions/2.7.12/lib/python2.7:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-darwin:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-mac:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/plat-mac/lib-scriptpackages:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/lib-tk:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/lib-dynload:/Users/machao/.local/lib/python2.7/site-packages:/Users/machao/.pyenv/versions/2.7.12/lib/python2.7/site-packages:/Users/machao/Library/Caches/PyCharm2016.3/python_stubs/1808438738:/Applications/PyCharm.app/Contents/helpers/python-skeletons&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGNAME</td>
+          <td class="code"><pre>&#39;machao&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LSCOLORS</td>
+          <td class="code"><pre>&#39;Gxfxcxdxbxegedabagacad&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PAGER</td>
+          <td class="code"><pre>&#39;less&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PATH</td>
+          <td class="code"><pre>&#39;/Users/machao/.pyenv/versions/3.5.2/bin:/Users/machao/.pyenv/libexec:/Users/machao/.pyenv/plugins/python-build/bin:/Users/machao/.pyenv/shims:/Users/machao/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/machao/.pyenv/shims:/Users/machao/.pyenv/bin:/Users/machao/go/gopath/bin&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PATH_INFO</td>
+          <td class="code"><pre>u&#39;/public/1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PWD</td>
+          <td class="code"><pre>&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYCHARM_HOSTED</td>
+          <td class="code"><pre>&#39;1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYENV_DIR</td>
+          <td class="code"><pre>&#39;/Applications/PyCharm.app/Contents/bin&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYENV_HOOK_PATH</td>
+          <td class="code"><pre>&#39;/Users/machao/.pyenv/pyenv.d:/usr/local/etc/pyenv.d:/etc/pyenv.d:/usr/lib/pyenv/hooks&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYENV_ROOT</td>
+          <td class="code"><pre>&#39;/Users/machao/.pyenv&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYENV_SHELL</td>
+          <td class="code"><pre>&#39;zsh&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYENV_VERSION</td>
+          <td class="code"><pre>&#39;3.5.2&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYTHONDONTWRITEBYTECODE</td>
+          <td class="code"><pre>&#39;1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYTHONIOENCODING</td>
+          <td class="code"><pre>&#39;UTF-8&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYTHONPATH</td>
+          <td class="code"><pre>&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme:/Applications/PyCharm.app/Contents/helpers/pydev&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PYTHONUNBUFFERED</td>
+          <td class="code"><pre>&#39;1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>QUERY_STRING</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>REMOTE_ADDR</td>
+          <td class="code"><pre>&#39;127.0.0.1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>REMOTE_HOST</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>REQUEST_METHOD</td>
+          <td class="code"><pre>&#39;POST&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>RUN_MAIN</td>
+          <td class="code"><pre>&#39;true&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SCRIPT_NAME</td>
+          <td class="code"><pre>u&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SERVER_NAME</td>
+          <td class="code"><pre>&#39;1.0.0.127.in-addr.arpa&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SERVER_PORT</td>
+          <td class="code"><pre>&#39;8001&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SERVER_PROTOCOL</td>
+          <td class="code"><pre>&#39;HTTP/1.1&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SERVER_SOFTWARE</td>
+          <td class="code"><pre>&#39;WSGIServer/0.1 Python/2.7.12&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SHELL</td>
+          <td class="code"><pre>&#39;/bin/zsh&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SSH_AUTH_SOCK</td>
+          <td class="code"><pre>&#39;/private/tmp/com.apple.launchd.UIbKvm9ngP/Listeners&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TMPDIR</td>
+          <td class="code"><pre>&#39;/var/folders/7j/r1r9rnkd35b7j_79v2f_6dyh0000gn/T/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TZ</td>
+          <td class="code"><pre>&#39;Asia/Shanghai&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USER</td>
+          <td class="code"><pre>&#39;machao&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>XPC_FLAGS</td>
+          <td class="code"><pre>&#39;0x0&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>XPC_SERVICE_NAME</td>
+          <td class="code"><pre>&#39;com.jetbrains.pycharm.5272&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>ZSH</td>
+          <td class="code"><pre>&#39;/Users/machao/.oh-my-zsh&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>__CF_USER_TEXT_ENCODING</td>
+          <td class="code"><pre>&#39;0x1F5:0x19:0x34&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.errors</td>
+          <td class="code"><pre>&lt;open file &#39;&lt;stderr&gt;&#39;, mode &#39;w&#39; at 0x1013551e0&gt;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.file_wrapper</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.input</td>
+          <td class="code"><pre>&lt;socket._fileobject object at 0x1039ee250&gt;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.multiprocess</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.multithread</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.run_once</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.url_scheme</td>
+          <td class="code"><pre>&#39;http&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>wsgi.version</td>
+          <td class="code"><pre>(1, 0)</pre></td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+  <h3 id="settings-info">Settings</h3>
+  <h4>Using settings module <code>django_wx_joyme.settings</code></h4>
+  <table class="req">
+    <thead>
+      <tr>
+        <th>Setting</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>ABSOLUTE_URL_OVERRIDES</td>
+          <td class="code"><pre>{}</pre></td>
+        </tr>
+      
+        <tr>
+          <td>ADMINS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>ALLOWED_HOSTS</td>
+          <td class="code"><pre>[&#39;127.0.0.1&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>APPEND_SLASH</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>APP_NAME</td>
+          <td class="code"><pre>&#39;django_wx_joyme&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>AUTHENTICATION_BACKENDS</td>
+          <td class="code"><pre>[u&#39;django.contrib.auth.backends.ModelBackend&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>AUTH_PASSWORD_VALIDATORS</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>AUTH_USER_MODEL</td>
+          <td class="code"><pre>u&#39;auth.User&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>BASE_DIR</td>
+          <td class="code"><pre>&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CACHES</td>
+          <td class="code"><pre>{&#39;default&#39;: {&#39;BACKEND&#39;: &#39;django_redis.cache.RedisCache&#39;,
+             &#39;LOCATION&#39;: &#39;redis://172.16.78.73:6379/1&#39;,
+             &#39;OPTIONS&#39;: {&#39;CLIENT_CLASS&#39;: &#39;django_redis.client.DefaultClient&#39;}}}</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CACHE_MIDDLEWARE_ALIAS</td>
+          <td class="code"><pre>u&#39;default&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CACHE_MIDDLEWARE_KEY_PREFIX</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CACHE_MIDDLEWARE_SECONDS</td>
+          <td class="code"><pre>600</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_AGE</td>
+          <td class="code"><pre>31449600</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_DOMAIN</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_HTTPONLY</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_NAME</td>
+          <td class="code"><pre>u&#39;csrftoken&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_PATH</td>
+          <td class="code"><pre>u&#39;/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_COOKIE_SECURE</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_FAILURE_VIEW</td>
+          <td class="code"><pre>u&#39;django.views.csrf.csrf_failure&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_HEADER_NAME</td>
+          <td class="code"><pre>u&#39;HTTP_X_CSRFTOKEN&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>CSRF_TRUSTED_ORIGINS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATABASES</td>
+          <td class="code"><pre>{&#39;default&#39;: {&#39;ATOMIC_REQUESTS&#39;: False,
+             &#39;AUTOCOMMIT&#39;: True,
+             &#39;CONN_MAX_AGE&#39;: 0,
+             &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
+             &#39;HOST&#39;: &#39;172.16.78.73&#39;,
+             &#39;NAME&#39;: &#39;django_wx_joyme&#39;,
+             &#39;OPTIONS&#39;: {},
+             &#39;PASSWORD&#39;: u&#39;********************&#39;,
+             &#39;PORT&#39;: &#39;3306&#39;,
+             &#39;TEST&#39;: {&#39;CHARSET&#39;: None,
+                      &#39;COLLATION&#39;: None,
+                      &#39;MIRROR&#39;: None,
+                      &#39;NAME&#39;: None},
+             &#39;TIME_ZONE&#39;: None,
+             &#39;USER&#39;: &#39;root&#39;}}</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATABASE_ROUTERS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATA_UPLOAD_MAX_MEMORY_SIZE</td>
+          <td class="code"><pre>2621440</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATA_UPLOAD_MAX_NUMBER_FIELDS</td>
+          <td class="code"><pre>1000</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATETIME_FORMAT</td>
+          <td class="code"><pre>u&#39;N j, Y, P&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATETIME_INPUT_FORMATS</td>
+          <td class="code"><pre>[u&#39;%Y-%m-%d %H:%M:%S&#39;,
+ u&#39;%Y-%m-%d %H:%M:%S.%f&#39;,
+ u&#39;%Y-%m-%d %H:%M&#39;,
+ u&#39;%Y-%m-%d&#39;,
+ u&#39;%m/%d/%Y %H:%M:%S&#39;,
+ u&#39;%m/%d/%Y %H:%M:%S.%f&#39;,
+ u&#39;%m/%d/%Y %H:%M&#39;,
+ u&#39;%m/%d/%Y&#39;,
+ u&#39;%m/%d/%y %H:%M:%S&#39;,
+ u&#39;%m/%d/%y %H:%M:%S.%f&#39;,
+ u&#39;%m/%d/%y %H:%M&#39;,
+ u&#39;%m/%d/%y&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATE_FORMAT</td>
+          <td class="code"><pre>u&#39;N j, Y&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DATE_INPUT_FORMATS</td>
+          <td class="code"><pre>[u&#39;%Y-%m-%d&#39;,
+ u&#39;%m/%d/%Y&#39;,
+ u&#39;%m/%d/%y&#39;,
+ u&#39;%b %d %Y&#39;,
+ u&#39;%b %d, %Y&#39;,
+ u&#39;%d %b %Y&#39;,
+ u&#39;%d %b, %Y&#39;,
+ u&#39;%B %d %Y&#39;,
+ u&#39;%B %d, %Y&#39;,
+ u&#39;%d %B %Y&#39;,
+ u&#39;%d %B, %Y&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEBUG</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEBUG_PROPAGATE_EXCEPTIONS</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DECIMAL_SEPARATOR</td>
+          <td class="code"><pre>u&#39;.&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_CHARSET</td>
+          <td class="code"><pre>u&#39;utf-8&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_CONTENT_TYPE</td>
+          <td class="code"><pre>u&#39;text/html&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_EXCEPTION_REPORTER_FILTER</td>
+          <td class="code"><pre>u&#39;django.views.debug.SafeExceptionReporterFilter&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_FILE_STORAGE</td>
+          <td class="code"><pre>u&#39;django.core.files.storage.FileSystemStorage&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_FROM_EMAIL</td>
+          <td class="code"><pre>u&#39;webmaster@localhost&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_INDEX_TABLESPACE</td>
+          <td class="code"><pre>u&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DEFAULT_TABLESPACE</td>
+          <td class="code"><pre>u&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DISALLOWED_USER_AGENTS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_MEDIA_ROOTS</td>
+          <td class="code"><pre>[&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/upload&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_MEDIA_URL</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_MEDIA_URL_ALWAYS</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_NAME_MAX_LENGTH</td>
+          <td class="code"><pre>40</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_NAME_PREFIX</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_SAVE_PREFIX</td>
+          <td class="code"><pre>&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_USE_MANIFEST_FILE</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>DJANGO_STATIC_USE_SYMLINK</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_BACKEND</td>
+          <td class="code"><pre>u&#39;django.core.mail.backends.smtp.EmailBackend&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_HOST</td>
+          <td class="code"><pre>u&#39;localhost&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_HOST_PASSWORD</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_HOST_USER</td>
+          <td class="code"><pre>u&#39;&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_PORT</td>
+          <td class="code"><pre>25</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_SSL_CERTFILE</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_SSL_KEYFILE</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_SUBJECT_PREFIX</td>
+          <td class="code"><pre>u&#39;[Django] &#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_TIMEOUT</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_USE_SSL</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>EMAIL_USE_TLS</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_CHARSET</td>
+          <td class="code"><pre>u&#39;utf-8&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_UPLOAD_DIRECTORY_PERMISSIONS</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_UPLOAD_HANDLERS</td>
+          <td class="code"><pre>[u&#39;django.core.files.uploadhandler.MemoryFileUploadHandler&#39;,
+ u&#39;django.core.files.uploadhandler.TemporaryFileUploadHandler&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_UPLOAD_MAX_MEMORY_SIZE</td>
+          <td class="code"><pre>2621440</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_UPLOAD_PERMISSIONS</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FILE_UPLOAD_TEMP_DIR</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FIRST_DAY_OF_WEEK</td>
+          <td class="code"><pre>0</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FIXTURE_DIRS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FORCE_SCRIPT_NAME</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>FORMAT_MODULE_PATH</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>IGNORABLE_404_URLS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>INSTALLED_APPS</td>
+          <td class="code"><pre>[&#39;django.contrib.admin&#39;,
+ &#39;django.contrib.auth&#39;,
+ &#39;django.contrib.contenttypes&#39;,
+ &#39;django.contrib.sessions&#39;,
+ &#39;django.contrib.messages&#39;,
+ &#39;django.contrib.staticfiles&#39;,
+ &#39;app&#39;,
+ &#39;wechat_manage&#39;,
+ &#39;permissions&#39;,
+ &#39;django_static&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>INTERNAL_IPS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGES</td>
+          <td class="code"><pre>[(u&#39;af&#39;, u&#39;Afrikaans&#39;),
+ (u&#39;ar&#39;, u&#39;Arabic&#39;),
+ (u&#39;ast&#39;, u&#39;Asturian&#39;),
+ (u&#39;az&#39;, u&#39;Azerbaijani&#39;),
+ (u&#39;bg&#39;, u&#39;Bulgarian&#39;),
+ (u&#39;be&#39;, u&#39;Belarusian&#39;),
+ (u&#39;bn&#39;, u&#39;Bengali&#39;),
+ (u&#39;br&#39;, u&#39;Breton&#39;),
+ (u&#39;bs&#39;, u&#39;Bosnian&#39;),
+ (u&#39;ca&#39;, u&#39;Catalan&#39;),
+ (u&#39;cs&#39;, u&#39;Czech&#39;),
+ (u&#39;cy&#39;, u&#39;Welsh&#39;),
+ (u&#39;da&#39;, u&#39;Danish&#39;),
+ (u&#39;de&#39;, u&#39;German&#39;),
+ (u&#39;dsb&#39;, u&#39;Lower Sorbian&#39;),
+ (u&#39;el&#39;, u&#39;Greek&#39;),
+ (u&#39;en&#39;, u&#39;English&#39;),
+ (u&#39;en-au&#39;, u&#39;Australian English&#39;),
+ (u&#39;en-gb&#39;, u&#39;British English&#39;),
+ (u&#39;eo&#39;, u&#39;Esperanto&#39;),
+ (u&#39;es&#39;, u&#39;Spanish&#39;),
+ (u&#39;es-ar&#39;, u&#39;Argentinian Spanish&#39;),
+ (u&#39;es-co&#39;, u&#39;Colombian Spanish&#39;),
+ (u&#39;es-mx&#39;, u&#39;Mexican Spanish&#39;),
+ (u&#39;es-ni&#39;, u&#39;Nicaraguan Spanish&#39;),
+ (u&#39;es-ve&#39;, u&#39;Venezuelan Spanish&#39;),
+ (u&#39;et&#39;, u&#39;Estonian&#39;),
+ (u&#39;eu&#39;, u&#39;Basque&#39;),
+ (u&#39;fa&#39;, u&#39;Persian&#39;),
+ (u&#39;fi&#39;, u&#39;Finnish&#39;),
+ (u&#39;fr&#39;, u&#39;French&#39;),
+ (u&#39;fy&#39;, u&#39;Frisian&#39;),
+ (u&#39;ga&#39;, u&#39;Irish&#39;),
+ (u&#39;gd&#39;, u&#39;Scottish Gaelic&#39;),
+ (u&#39;gl&#39;, u&#39;Galician&#39;),
+ (u&#39;he&#39;, u&#39;Hebrew&#39;),
+ (u&#39;hi&#39;, u&#39;Hindi&#39;),
+ (u&#39;hr&#39;, u&#39;Croatian&#39;),
+ (u&#39;hsb&#39;, u&#39;Upper Sorbian&#39;),
+ (u&#39;hu&#39;, u&#39;Hungarian&#39;),
+ (u&#39;ia&#39;, u&#39;Interlingua&#39;),
+ (u&#39;id&#39;, u&#39;Indonesian&#39;),
+ (u&#39;io&#39;, u&#39;Ido&#39;),
+ (u&#39;is&#39;, u&#39;Icelandic&#39;),
+ (u&#39;it&#39;, u&#39;Italian&#39;),
+ (u&#39;ja&#39;, u&#39;Japanese&#39;),
+ (u&#39;ka&#39;, u&#39;Georgian&#39;),
+ (u&#39;kk&#39;, u&#39;Kazakh&#39;),
+ (u&#39;km&#39;, u&#39;Khmer&#39;),
+ (u&#39;kn&#39;, u&#39;Kannada&#39;),
+ (u&#39;ko&#39;, u&#39;Korean&#39;),
+ (u&#39;lb&#39;, u&#39;Luxembourgish&#39;),
+ (u&#39;lt&#39;, u&#39;Lithuanian&#39;),
+ (u&#39;lv&#39;, u&#39;Latvian&#39;),
+ (u&#39;mk&#39;, u&#39;Macedonian&#39;),
+ (u&#39;ml&#39;, u&#39;Malayalam&#39;),
+ (u&#39;mn&#39;, u&#39;Mongolian&#39;),
+ (u&#39;mr&#39;, u&#39;Marathi&#39;),
+ (u&#39;my&#39;, u&#39;Burmese&#39;),
+ (u&#39;nb&#39;, u&#39;Norwegian Bokm\xe5l&#39;),
+ (u&#39;ne&#39;, u&#39;Nepali&#39;),
+ (u&#39;nl&#39;, u&#39;Dutch&#39;),
+ (u&#39;nn&#39;, u&#39;Norwegian Nynorsk&#39;),
+ (u&#39;os&#39;, u&#39;Ossetic&#39;),
+ (u&#39;pa&#39;, u&#39;Punjabi&#39;),
+ (u&#39;pl&#39;, u&#39;Polish&#39;),
+ (u&#39;pt&#39;, u&#39;Portuguese&#39;),
+ (u&#39;pt-br&#39;, u&#39;Brazilian Portuguese&#39;),
+ (u&#39;ro&#39;, u&#39;Romanian&#39;),
+ (u&#39;ru&#39;, u&#39;Russian&#39;),
+ (u&#39;sk&#39;, u&#39;Slovak&#39;),
+ (u&#39;sl&#39;, u&#39;Slovenian&#39;),
+ (u&#39;sq&#39;, u&#39;Albanian&#39;),
+ (u&#39;sr&#39;, u&#39;Serbian&#39;),
+ (u&#39;sr-latn&#39;, u&#39;Serbian Latin&#39;),
+ (u&#39;sv&#39;, u&#39;Swedish&#39;),
+ (u&#39;sw&#39;, u&#39;Swahili&#39;),
+ (u&#39;ta&#39;, u&#39;Tamil&#39;),
+ (u&#39;te&#39;, u&#39;Telugu&#39;),
+ (u&#39;th&#39;, u&#39;Thai&#39;),
+ (u&#39;tr&#39;, u&#39;Turkish&#39;),
+ (u&#39;tt&#39;, u&#39;Tatar&#39;),
+ (u&#39;udm&#39;, u&#39;Udmurt&#39;),
+ (u&#39;uk&#39;, u&#39;Ukrainian&#39;),
+ (u&#39;ur&#39;, u&#39;Urdu&#39;),
+ (u&#39;vi&#39;, u&#39;Vietnamese&#39;),
+ (u&#39;zh-hans&#39;, u&#39;Simplified Chinese&#39;),
+ (u&#39;zh-hant&#39;, u&#39;Traditional Chinese&#39;)]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGES_BIDI</td>
+          <td class="code"><pre>[u&#39;he&#39;, u&#39;ar&#39;, u&#39;fa&#39;, u&#39;ur&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGE_CODE</td>
+          <td class="code"><pre>&#39;zh-hans&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGE_COOKIE_AGE</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGE_COOKIE_DOMAIN</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGE_COOKIE_NAME</td>
+          <td class="code"><pre>u&#39;django_language&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LANGUAGE_COOKIE_PATH</td>
+          <td class="code"><pre>u&#39;/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOCALE_PATHS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGGING</td>
+          <td class="code"><pre>{}</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGGING_CONFIG</td>
+          <td class="code"><pre>u&#39;logging.config.dictConfig&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGIN_REDIRECT_URL</td>
+          <td class="code"><pre>u&#39;/accounts/profile/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGIN_URL</td>
+          <td class="code"><pre>u&#39;/accounts/login/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>LOGOUT_REDIRECT_URL</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MANAGERS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MEDIA_PATH</td>
+          <td class="code"><pre>&#39;/upload&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MEDIA_ROOT</td>
+          <td class="code"><pre>&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/upload&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MEDIA_URL</td>
+          <td class="code"><pre>&#39;/upload/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MESSAGE_STORAGE</td>
+          <td class="code"><pre>u&#39;django.contrib.messages.storage.fallback.FallbackStorage&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MIDDLEWARE</td>
+          <td class="code"><pre>[&#39;django.middleware.security.SecurityMiddleware&#39;,
+ &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;,
+ &#39;django.middleware.common.CommonMiddleware&#39;,
+ &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+ &#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;,
+ &#39;django.contrib.messages.middleware.MessageMiddleware&#39;,
+ &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+ &#39;app.middleware.log_middle_ware.log_middleware&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MIDDLEWARE_CLASSES</td>
+          <td class="code"><pre>[u&#39;django.middleware.common.CommonMiddleware&#39;,
+ u&#39;django.middleware.csrf.CsrfViewMiddleware&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MIGRATION_MODULES</td>
+          <td class="code"><pre>{}</pre></td>
+        </tr>
+      
+        <tr>
+          <td>MONTH_DAY_FORMAT</td>
+          <td class="code"><pre>u&#39;F j&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>NUMBER_GROUPING</td>
+          <td class="code"><pre>0</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PASSWORD_HASHERS</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PASSWORD_RESET_TIMEOUT_DAYS</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>PREPEND_WWW</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>ROOT_URLCONF</td>
+          <td class="code"><pre>&#39;django_wx_joyme.urls&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECRET_KEY</td>
+          <td class="code"><pre>u&#39;********************&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_BROWSER_XSS_FILTER</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_CONTENT_TYPE_NOSNIFF</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_HSTS_INCLUDE_SUBDOMAINS</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_HSTS_SECONDS</td>
+          <td class="code"><pre>0</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_PROXY_SSL_HEADER</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_REDIRECT_EXEMPT</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_SSL_HOST</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SECURE_SSL_REDIRECT</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SERVER_EMAIL</td>
+          <td class="code"><pre>u&#39;root@localhost&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_CACHE_ALIAS</td>
+          <td class="code"><pre>u&#39;default&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_AGE</td>
+          <td class="code"><pre>1209600</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_DOMAIN</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_HTTPONLY</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_NAME</td>
+          <td class="code"><pre>u&#39;sessionid&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_PATH</td>
+          <td class="code"><pre>u&#39;/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_COOKIE_SECURE</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_ENGINE</td>
+          <td class="code"><pre>u&#39;django.contrib.sessions.backends.db&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_EXPIRE_AT_BROWSER_CLOSE</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_FILE_PATH</td>
+          <td class="code"><pre>None</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_SAVE_EVERY_REQUEST</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SESSION_SERIALIZER</td>
+          <td class="code"><pre>u&#39;django.contrib.sessions.serializers.JSONSerializer&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SETTINGS_MODULE</td>
+          <td class="code"><pre>&#39;django_wx_joyme.settings&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SHORT_DATETIME_FORMAT</td>
+          <td class="code"><pre>u&#39;m/d/Y P&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SHORT_DATE_FORMAT</td>
+          <td class="code"><pre>u&#39;m/d/Y&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SIGNING_BACKEND</td>
+          <td class="code"><pre>u&#39;django.core.signing.TimestampSigner&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>SILENCED_SYSTEM_CHECKS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>STATICFILES_DIRS</td>
+          <td class="code"><pre>[&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/node_modules&#39;,
+ &#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/upload&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>STATICFILES_FINDERS</td>
+          <td class="code"><pre>[u&#39;django.contrib.staticfiles.finders.FileSystemFinder&#39;,
+ u&#39;django.contrib.staticfiles.finders.AppDirectoriesFinder&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>STATICFILES_STORAGE</td>
+          <td class="code"><pre>u&#39;django.contrib.staticfiles.storage.StaticFilesStorage&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>STATIC_ROOT</td>
+          <td class="code"><pre>&#39;static&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>STATIC_URL</td>
+          <td class="code"><pre>&#39;/static/&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TEMPLATES</td>
+          <td class="code"><pre>[{&#39;APP_DIRS&#39;: True,
+  &#39;BACKEND&#39;: &#39;django.template.backends.django.DjangoTemplates&#39;,
+  &#39;DIRS&#39;: [&#39;/Volumes/Ithink/wechatProjects/django_wx_joyme/template&#39;],
+  &#39;OPTIONS&#39;: {&#39;context_processors&#39;: [&#39;django.template.context_processors.debug&#39;,
+                                     &#39;django.template.context_processors.request&#39;,
+                                     &#39;django.contrib.auth.context_processors.auth&#39;,
+                                     &#39;django.contrib.messages.context_processors.messages&#39;]}}]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TEST_NON_SERIALIZED_APPS</td>
+          <td class="code"><pre>[]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TEST_RUNNER</td>
+          <td class="code"><pre>u&#39;django.test.runner.DiscoverRunner&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>THOUSAND_SEPARATOR</td>
+          <td class="code"><pre>u&#39;,&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TIME_FORMAT</td>
+          <td class="code"><pre>u&#39;P&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TIME_INPUT_FORMATS</td>
+          <td class="code"><pre>[u&#39;%H:%M:%S&#39;, u&#39;%H:%M:%S.%f&#39;, u&#39;%H:%M&#39;]</pre></td>
+        </tr>
+      
+        <tr>
+          <td>TIME_ZONE</td>
+          <td class="code"><pre>&#39;Asia/Shanghai&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_ETAGS</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_I18N</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_L10N</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_THOUSAND_SEPARATOR</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_TZ</td>
+          <td class="code"><pre>True</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_X_FORWARDED_HOST</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>USE_X_FORWARDED_PORT</td>
+          <td class="code"><pre>False</pre></td>
+        </tr>
+      
+        <tr>
+          <td>WSGI_APPLICATION</td>
+          <td class="code"><pre>&#39;django_wx_joyme.wsgi.application&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>X_FRAME_OPTIONS</td>
+          <td class="code"><pre>u&#39;SAMEORIGIN&#39;</pre></td>
+        </tr>
+      
+        <tr>
+          <td>YEAR_MONTH_FORMAT</td>
+          <td class="code"><pre>u&#39;F Y&#39;</pre></td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+</div>
+
+  <div id="explanation">
+    <p>
+      You're seeing this error because you have <code>DEBUG = True</code> in your
+      Django settings file. Change that to <code>False</code>, and Django will
+      display a standard page generated by the handler for this status code.
+    </p>
+  </div>
+
+</body>
+</html>
