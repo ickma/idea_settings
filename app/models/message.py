@@ -7,7 +7,8 @@ from wechat_manage.models.followers_model import PublicFollowers
 from wechat_manage.models.public_model import PublicAccount
 from wechat_manage.models.reply_model import ReplyConfigModel
 from feather_models import FeatureModel
-from wechat_sdk.messages import WechatMessage
+from wechat_sdk.messages import WechatMessage, EventMessage, ImageMessage, LinkMessage, TextMessage, VideoMessage \
+    , VoiceMessage, ShortVideoMessage, LocationMessage, UnknownMessage
 
 
 class MsgResponse(models.Model):
@@ -46,9 +47,14 @@ class Message(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # todo 实现消息处理和save逻辑
         msg_instance = self.msg_instance
-        if msg_instance.type == 'text':
+        """:type :TextMessage|LocationMessage|ImageMessage"""
 
-        super(Message, self).save(force_insert, force_update, using, update_fields)
+        self.form_user = self.msg_instance.target
+        if hasattr(msg_instance, 'media_id'):
+            self.mediaid = msg_instance.media_id
+        if hasattr(msg_instance, 'picurl'):
+            self.public = msg_instance.picurl
+            # super(Message, self).save(force_insert, force_update, using, update_fields)
 
     @property
     def msg_instance(self):
@@ -58,3 +64,16 @@ class Message(models.Model):
     def msg_instance(self, value):
         if isinstance(value, WechatMessage):
             self._msg_instance = value
+        else:
+            raise TypeError(u'不是合法的WechatMessage实例')
+
+    @property
+    def public(self):
+        return self._public
+
+    @public.setter
+    def public(self, value):
+        if isinstance(value, PublicAccount):
+            self._public = value
+        else:
+            raise TypeError(u'不是合法的publicAccount实例')

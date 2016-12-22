@@ -30,7 +30,6 @@ def index(request):
     table_heads = [x[1] for x in public_index]
     table_datas = []
     for public in publics:
-        # todo 将默认管理起始页改为用户管理l
         public.public_manage = '<a href="/wechat/%s/followers/query">进入管理</a>' % public.id
         line = [getattr(public, key[0]) for key in public_index]
         table_datas += [line]
