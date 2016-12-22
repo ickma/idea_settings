@@ -58,4 +58,6 @@ class ReplyConfigModel(models.Model):
         :return:
         """
         key_words = [x.split('\n') for x in cls.objects.filter(public=public)]
-        return filter(lambda z, y: z + y, key_words)
+        return reduce(lambda z, y: z + y, key_words)
+
+

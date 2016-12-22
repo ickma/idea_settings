@@ -24,10 +24,12 @@ from app.views import index
 from permissions.views import user_profile
 from django.conf import settings
 from django.conf.urls.static import static
+from app.views.index import reply
 
 urlpatterns = [
-                  url(r'^admin/', admin.site.urls),
                   url(r'^$', index.index),
+                  url(r'^public/(?P<publicid>\d+)', reply, name=u'公众号对外接口'),  # 公众号向微信服务器提供的唯一接口
+                  url(r'^admin/', admin.site.urls),
                   # set login url
                   url(r'^accounts/login/$', login, {'template_name': 'log/login.html'}, name='login'),
                   url(r'^user/profile$', user_profile, name=u'用户资料'),
