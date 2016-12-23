@@ -3,6 +3,7 @@ url=127.0.0.1
 port=8000
 path=/public/1
 type=text
+
 #解析帮助命令
 while getopts "hm:t:o" opt;do
     case ${opt} in
@@ -34,6 +35,15 @@ while getopts "hm:t:o" opt;do
         image)
         type=image
             ;;
+         video)
+         type=video
+         ;;
+         voice)
+         type=voice
+         ;;
+         event)
+         type=event
+         ;;
         esac
       esac
 

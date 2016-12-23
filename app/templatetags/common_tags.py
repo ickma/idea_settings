@@ -36,6 +36,8 @@ def get_side_bar(context):
     request = context['request']  # type:HttpRequest
 
     public = context.get('public')
+    if not  public:
+        public=context.get('wechatsdk')
     if public and isinstance(public, WechatBasic):
         public = PublicAccount.objects.get(app_id=public.conf.appid)
     elif not public:

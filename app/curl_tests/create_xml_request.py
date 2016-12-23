@@ -17,7 +17,7 @@ timestamp = int(time.time())
 # 测试图片消息sample
 image_url = 'https://img11.360buyimg.com/cms/jfs/t3703/296/223334932/244921/9e3c5ae9/5803786dN96d3fe6d.jpg'
 # 测试用msgid
-random_msgid = random.randint(2 ** 63 + 1, 2 ** 64)
+random_msgid = random.randint(2 ** 10 + 1, 2 ** 64)
 # 测试用mediaid
 random_mediaid = ''.join([random.choice(string.letters) for n in range(32)])
 text_msg = """<xml>
@@ -42,12 +42,53 @@ image_msg = """
 """.format(openid=user_openid, token=public_token, timestamp=timestamp, imageurl=image_url, msgid=random_msgid,
            mediaid=random_mediaid)
 
+voice_msg = """
+<xml>
+<ToUserName><![CDATA[{token}]]></ToUserName>
+<FromUserName><![CDATA[{openid}]]></FromUserName>
+<CreateTime>{timestamp}</CreateTime>
+<MsgType><![CDATA[voice]]></MsgType>
+<MediaId><![CDATA[{mediaid}]]></MediaId>
+<Format><![CDATA[amr]]></Format>
+<MsgId>{msgid}</MsgId>
+</xml>
+""".format(openid=user_openid, token=public_token, timestamp=timestamp, mediaid=random_mediaid, msgid=random_msgid)
+
+video_msg = """
+<xml>
+<ToUserName><![CDATA[{token}]]></ToUserName>
+<FromUserName><![CDATA[{openid}]]></FromUserName>
+<CreateTime>{timestamp}</CreateTime>
+<MsgType><![CDATA[video]]></MsgType>
+<MediaId><![CDATA[{mediaid}]]></MediaId>
+<ThumbMediaId><![CDATA[{mediaid}]]></ThumbMediaId>
+<MsgId>{msgid}</MsgId>
+</xml>
+""".format(token=public_token, openid=user_openid, timestamp=timestamp, mediaid=random_mediaid, msgid=random_msgid)
+
+event_msg = """
+<xml>
+<ToUserName><![CDATA[{toekn}]]></ToUserName>
+<FromUserName><![CDATA[{openid}]]></FromUserName>
+<CreateTime>{timestamp}</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[HAHA]]></EventKey>
+</xml>
+""".format(toekn=public_token, openid=user_openid, timestamp=timestamp)
+
 testing_url = os.environ['testing_url']
 testing_type = os.environ['testing_type']
 # 读取当前的测试类型
 test_xml = text_msg
 if testing_type == 'image':
     test_xml = image_msg
+if testing_type == 'voice':
+    test_xml = voice_msg
+if testing_type == 'video':
+    test_xml = video_msg
+if testing_type == 'event':
+    test_xml = event_msg
 
 need_output = ''
 try:

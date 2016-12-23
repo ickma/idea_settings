@@ -49,7 +49,7 @@ class PublicAccount(models.Model):
 
 class PublicMenuConfig(models.Model):
     menu_cats = [
-        ('click', u'点击事件'),
+        ('click', u'选择功能'),
         ('view', u'绑定网址'),
         ('scancode_push', u'自动扫码'),
         ('scancode_waitmsg', u'扫码事件'),
@@ -95,3 +95,12 @@ class PublicMenuConfig(models.Model):
                                                menu_level=2).count() >= 5:
                 raise Exception(u'当前一级菜单下创建的菜单已经达到5个，请先进行删除操作')
         return True
+
+    @classmethod
+    def get_level_one_menus(cls,public):
+        """
+        :param public:
+        :return:
+        """
+
+        return [(x.id, x.menu_name) for x in cls.objects.filter(public=public,menu_level=1)]

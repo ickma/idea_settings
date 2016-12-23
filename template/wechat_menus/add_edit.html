@@ -3,20 +3,41 @@
 
     <!--suppress ALL -->
     <script>
-    var info_lable=$('[name=menu_info]').parent().parent().children('label');
-    $('[name=menu_cates]').change(function () {
-        var current_menu_type=$(this).val()
-        switch (current_menu_type){
-            case 'click':
-                info_lable.text('选择事件');
-                break;
-            case "view":
-                info_lable.text('填写网址');
-                break;
+        {#    判断是否为处理1级菜单，如果是1级菜单，隐藏选择上级菜单选项#}
+        $(document).ready(function () {
+            var level_label = $('[name=menu_level]');
+            var parent_index_label = $('[name=parent_menu]').parent().parent();
+            level_label.change(function () {
+                var level = $(this).val();
+                if (level == "1") {
+                    parent_index_label.hide();
+                }
+                else {
+                    parent_index_label.show();
+                }
 
+            })
+            {#            动态绑定选择功能和填写网址#}
+            var info_label = $('[name=menu_info]').parent().parent().children('label');
+            var feather_label = $('[name=feathers]').parent().parent();
+            var url_label = $('[name=url]').parent().parent();
+            url_label.hide();
+            $('[name=menu_cates]').change(function () {
+                var current_menu_type = $(this).val()
+                switch (current_menu_type) {
+                    case 'click':
+                        feather_label.show();
+                        url_label.hide();
+                        url_label.find('input').prop('required', false);
+                        break;
+                    case "view":
+                        feather_label.hide();
+                        url_label.show();
+                        url_label.find('input').prop('required', true);
+                        break;
 
-
-        }
-    })
+                }
+            })
+        })
     </script>
 {% endblock %}

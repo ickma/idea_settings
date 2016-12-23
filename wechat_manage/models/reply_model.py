@@ -26,7 +26,7 @@ class ReplyConfigModel(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if self.reply_type == 3 and not self.keywords:
             raise ValueError(u'关键字不能为空')
-        if not self.content and not self.file and not self.feather:
+        if not self.reply_content and not self.file and not self.feather:
             raise ValueError(u'回复内容未选择或正确')
         if self.get_content_type_display() == u'功能配置':
             self.file = self.content = None
@@ -34,9 +34,12 @@ class ReplyConfigModel(models.Model):
         if self.content_type == 1:
             self.file = None
             self.feather = None
-        elif self.content_type != 6:
+        elif self.content_type == 6:
+            self.file = None
+            self.reply_content = None
+        else:
             self.feather = None
-            self.content = None
+            self.reply_content = None
         super(ReplyConfigModel, self).save(force_insert, force_update, using, update_fields)
 
     def get_feather_id(self):
@@ -53,11 +56,12 @@ class ReplyConfigModel(models.Model):
     def get_public_keywords(cls, public):
         """
         返回当前公众号下的所有已定义的关键字
+        返回格式为[(id,keyword1),(id),keyword2]
         :type public:PublicAccount
         :param public:
         :return:
+        :rtype:list[tuple(ReplyConfigModel,list[unicode])]
         """
-        key_words = [x.split('\n') for x in cls.objects.filter(public=public)]
-        return reduce(lambda z, y: z + y, key_words)
-
-
+        # 获取keywords
+        _key_words = [(x, x.keywords.split('\n')) for x in cls.objects.filter(public=public)]
+        return _key_words

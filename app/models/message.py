@@ -27,9 +27,10 @@ class Message(models.Model):
                     ('link', u'链接'), ('location', u'地理位置')]
     form_user = models.ForeignKey(PublicFollowers, verbose_name=u'用户')
     public = models.ForeignKey(PublicAccount, verbose_name=u'公众号')
+    xml = models.TextField(verbose_name=u'原始xml')
     type = models.CharField(choices=type_choices, verbose_name=u'消息类型', max_length=20)
     content = models.TextField(verbose_name=u'消息内容', null=True)
-    msgid = models.BigIntegerField(verbose_name=u'消息ID', unique=True)
+    msgid = models.BigIntegerField(verbose_name=u'消息ID', null=True)
     create_time = models.IntegerField(verbose_name=u'创建时间')
     picurl = models.CharField(max_length=255, verbose_name=u'图片链接', null=True)
     mediaid = models.CharField(max_length=255, verbose_name=u'mediaID', null=True)
@@ -43,18 +44,52 @@ class Message(models.Model):
     description = models.TextField(verbose_name=u'简介', null=True)
     title = models.TextField(verbose_name=u'标题', null=True)
     response = models.OneToOneField(MsgResponse, verbose_name=u'回复内容', null=True)
+    event_type = models.CharField(max_length=20, null=True, verbose_name=u'事件类型')
+    event_key = models.CharField(max_length=50, null=True, verbose_name=u'事件key')
+    ticket = models.TextField(verbose_name=u'二维码换取ticket')
+    latitude = models.FloatField(verbose_name=u'上报的地理位置的纬度', null=True)
+    longitude = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
+    precision = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # todo 实现消息处理和save逻辑
+        fields_need_msgid = ['text', 'image', 'video', 'shortvideo', 'location', 'voice', 'link']
         msg_instance = self.msg_instance
-        """:type :TextMessage|LocationMessage|ImageMessage"""
-
-        self.form_user = self.msg_instance.target
+        """:type :TextMessage|LocationMessage|ImageMessage|VoiceMessage|EventMessage|LinkMessage|VideoMessage|ShortVideoMessage"""
+        self.type = msg_instance.type
+        self.create_time = msg_instance.time
+        self.msgid = msg_instance.id
+        if hasattr(msg_instance, 'content'):
+            self.content = msg_instance.content
         if hasattr(msg_instance, 'media_id'):
             self.mediaid = msg_instance.media_id
         if hasattr(msg_instance, 'picurl'):
-            self.public = msg_instance.picurl
-            # super(Message, self).save(force_insert, force_update, using, update_fields)
+            self.picurl = msg_instance.picurl
+        if hasattr(msg_instance, 'format'):
+            self.format = msg_instance.format
+        if hasattr(msg_instance, 'thumb_media_id'):
+            self.thum_mediaid = msg_instance.thumb_media_id
+        if hasattr(msg_instance, 'location'):
+            self.location_x = msg_instance.location[0]
+            self.location_y = msg_instance.location[1]
+        if hasattr(msg_instance, 'scale'):
+            self.scale = msg_instance.scale
+        if hasattr(msg_instance, 'label'):
+            self.label = msg_instance.label
+        if hasattr(msg_instance, 'url'):
+            self.url = msg_instance.url
+        if hasattr(msg_instance, 'description'):
+            self.description = msg_instance.description
+        if hasattr(msg_instance, 'title'):
+            self.title = msg_instance.title
+        if hasattr(msg_instance, 'key'):
+            self.event_key = msg_instance.key
+
+        if hasattr(msg_instance, 'latitude'):
+            self.latitude = msg_instance.latitude
+            self.longitude = msg_instance.longitude
+            self.precision = msg_instance.precision
+        # todo  检查当前msgid  是否存在重复
+        super(Message, self).save(force_insert, force_update, using, update_fields)
 
     @property
     def msg_instance(self):
@@ -66,14 +101,3 @@ class Message(models.Model):
             self._msg_instance = value
         else:
             raise TypeError(u'不是合法的WechatMessage实例')
-
-    @property
-    def public(self):
-        return self._public
-
-    @public.setter
-    def public(self, value):
-        if isinstance(value, PublicAccount):
-            self._public = value
-        else:
-            raise TypeError(u'不是合法的publicAccount实例')

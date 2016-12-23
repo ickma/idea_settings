@@ -27,6 +27,10 @@ MENU_MANEGE_CONFIG = {
     'children': [
         {
             'name': u'同步菜单',
+            'path': '/wechat/{0}/menu/sync'
+        },
+        {
+            'name': u'显示菜单',
             'path': '/wechat/{0}/menu/display'
         },
         {

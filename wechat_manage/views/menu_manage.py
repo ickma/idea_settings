@@ -18,21 +18,20 @@ from wechat_manage.utils.menu_utils import menu_info_format
 
 
 @login_required
-# @catch_error
+@catch_error
 @auth_public
-def display(request, public, *args):
+def sync_menus(request, wechatsdk, *args):
     """
-    创建公众号菜单
-    :param public: public 实例
-    :type public:WechatBasic
-    :param request:request实例
-    :type request:HttpRequest
-
+    从服务器同步菜单设置
+    :param request:
+    :param wechatsdk:
+    :param args:
     :return:
     """
-    page_title = u'菜单设置'
-    public_instance = PublicAccount.objects.get(app_id=public.conf.appid)
-    menu_settings = public.get_menu()['menu']['button']
+    public_instance = args[0]
+    #  获取服务器菜单配置
+    menu_settings = wechatsdk.get_menu()['menu']['button']
+
     menus = []
     # 获取菜单配置
     for n, m in enumerate(menu_settings):
@@ -42,7 +41,7 @@ def display(request, public, *args):
             menus += [dict(x.items() + [('parent_index', n), ('menu_level', 2)]) for x in
                       m['sub_button']]  # type:list[dict]
 
-    # 情况数据库
+    # 清空数据库
     PublicMenuConfig.objects.filter(public=public_instance).delete()
     # 保存到数据库
     for m in menus:
@@ -54,9 +53,30 @@ def display(request, public, *args):
         menu_instance.info = json.dumps(m)
         menu_instance.parent_index = m['parent_index']
         menu_instance.save()
-    menus = PublicMenuConfig.objects.filter(public=public_instance)
+    success_msg = u'菜单已更新成功'
 
-    # form = MenuCreateForm(initial=request.GET)
+    return render(request, 'error/success.html', locals())
+
+
+@login_required
+# @catch_error
+@auth_public
+def display(request, wechatsdk, *args):
+    """
+    创建公众号菜单
+    :param wechatsdk:
+    :type wechatsdk:WechatBasic
+    :param request:request实例
+    :type request:HttpRequest
+
+    :return:
+    """
+    page_title = u'菜单设置'
+    public_instance = args[0]
+    action = get_params(request, name='action')
+    if action == 'add':
+        return menu_add(request, public_instance.id)
+    menus = PublicMenuConfig.objects.filter(public=public_instance)
 
     return render(request, 'wechat_menus/display.html', locals())
 
@@ -88,18 +108,18 @@ def menu_add(request, public, *args):
         menu_info_format(menu_instance)
         menu_instance.save()
 
+        return render(request, 'error/success.html', locals())
     if request.method == 'GET':
-        form_method = 'post'
-        parent_name = PublicMenuConfig.objects.get(id=parent_id).menu_name if menu_level == 2 else ''
         # 判断当前的菜单是否有超过规定数量
+        form_method = 'post'
 
-        form = MenuCreateForm(initial={'menu_level': menu_level, 'parent_menu': parent_name})
+        form = MenuCreateForm(initial={'menu_level': menu_level}, public=public_instance)
 
         return render(request, 'wechat_menus/add_edit.html', locals())
 
 
 @login_required
-@catch_error
+# @catch_error
 @auth_public
 def menu_edit(request, public, *args):
     """
@@ -110,7 +130,7 @@ def menu_edit(request, public, *args):
     """
     public_instance = args[0]
     page_title = u'编辑公众号菜单'
-    menu_id = get_params(request, name='id', formatter=int, default=0)
+    menu_id = get_params(request, name='menuid', formatter=int, default=0)
     if menu_id:
         try:
             menu_instance = PublicMenuConfig.objects.get(id=menu_id)

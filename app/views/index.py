@@ -10,6 +10,7 @@ from . import HttpRequest, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from app.models.message import Message, MsgResponse
 from wechat_manage.models.followers_model import PublicFollowers
+from app.messages.reply import Reply
 
 
 @login_required
@@ -67,16 +68,18 @@ def reply(request, public, *args):
     # sdk解析后将消息保存到实例中
     public.parse_data(request.body)
     # 从实例获取解析后的xml
-    msg = public.get_message()  # type:WechatMessage
+    msg = public.get_message()
+    """:type msg:WechatMessage"""
     user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)
-    message_instance = Message(form_user=user_instance, public=public_instance, type=msg.type, create_time=msg.time,
-                               msgid=msg.id)
-    if msg.type == 'text':
-        message_instance.content = msg.content
-    try:
-        message_instance.mediaid = msg.media_id
-    except AttributeError:
-        pass
+    #
+    message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
+    message_instance.msg_instance = msg
+    # 保存当前请求
     message_instance.save()
-
-    pass
+    # todo 实现回复逻辑
+    reply_instance = Reply(message_instance=message_instance, wechatsdk_instance=public,
+                           public_instance=public_instance)
+    response = reply_instance.reply()
+    message_instance.response = reply_instance.messages_response_instance
+    message_instance.save()
+    return HttpResponse(content=response)

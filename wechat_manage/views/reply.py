@@ -68,7 +68,7 @@ def keywords_reply(request, public, *args):
     action = get_params(request, name='action', default='')
     # 保存POST提交
     if request.method == 'POST':
-        reply_instance.content = get_params(request, name='reply_content', method='post')
+        reply_instance.reply_content = get_params(request, name='reply_content', method='post')
         reply_instance.content_type = get_params(request, name='content_type', method='post', formatter=int)
         # 绑定feather到reply实例
         feather_id = get_params(request, name='feather', method='post', formatter=int)

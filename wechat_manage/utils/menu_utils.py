@@ -16,7 +16,8 @@ def menu_info_format(menu_instance):
     """
     if menu_instance.menu_type == 'view':
         menu_instance.info = json.dumps({'url': menu_instance.info})
-    # todo 实现对事件等类型的格式化
+    # todo 格式化功能选择
+
     if not isinstance(menu_instance.parent_index, int):
         menu_instance.parent_index = PublicMenuConfig.objects.get(public=menu_instance.public,
                                                                   menu_name=menu_instance.parent_index,
