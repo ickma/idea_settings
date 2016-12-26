@@ -171,5 +171,6 @@ APP_NAME = 'django_wx_joyme'
 import custome_settings
 
 if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
+    DATABASES['default']['HOST']='localost'
     DATABASES['default']['USER'] = 'django_wx'
     DATABASES['default']['PASSWORD'] = '055b6527a0'
