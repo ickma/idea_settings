@@ -174,4 +174,4 @@ if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     DATABASES['default']['HOST'] = 'localhost'
     DATABASES['default']['USER'] = 'django_wx'
     # DATABASES['default']['PASSWORD'] = '055b6527a0'
-    DATABASES['default']['PASSWORD'] =
+    DATABASES['default']['PASSWORD'] =''
