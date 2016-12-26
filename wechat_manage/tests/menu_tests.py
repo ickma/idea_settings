@@ -39,7 +39,7 @@ class MenuTestCase(TestCase):
                         {
                             "type": "view",
                             "name": "视频",
-                            "url": "http://v.qq.com/"
+                            "url": "http://v.QQ.com/"
                         },
                         {
                             "type": "click",

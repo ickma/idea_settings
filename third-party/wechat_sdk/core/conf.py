@@ -199,7 +199,7 @@ class WechatConf(object):
             return
 
         response_json = self.__request.get(
-            url="https://api.weixin.qq.com/cgi-bin/token",
+            url="https://api.weixin.QQ.com/cgi-bin/token",
             params={
                 "grant_type": "client_credential",
                 "appid": self.__appid,
@@ -227,7 +227,7 @@ class WechatConf(object):
             return
 
         response_json = self.__request.get(
-            url="https://api.weixin.qq.com/cgi-bin/ticket/getticket",
+            url="https://api.weixin.QQ.com/cgi-bin/ticket/getticket",
             params={
                 "type": "jsapi",
             },

@@ -21,7 +21,7 @@ TESTS_PATH = os.path.abspath(os.path.dirname(__file__))
 FIXTURE_PATH = os.path.join(TESTS_PATH, 'fixtures')
 
 
-@urlmatch(netloc=r'(.*\.)?api\.weixin\.qq\.com$')
+@urlmatch(netloc=r'(.*\.)?api\.weixin\.QQ\.com$')
 def wechat_api_mock(url, request):
     path = url.path.replace('/cgi-bin/', '').replace('/', '_')
     if path.startswith('_'):
@@ -132,7 +132,7 @@ class WechatBasicTestCase(unittest.TestCase):
         noncestr = 'Wm3WZYTPz0wzccnW'
         jsapi_ticket = 'sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg'  # NOQA
         timestamp = 1414587457
-        url = 'http://mp.weixin.qq.com?params=value'
+        url = 'http://mp.weixin.QQ.com?params=value'
 
         # 测试无 appid 和 appsecret 初始化
         wechat = WechatBasic()
@@ -487,7 +487,7 @@ class WechatBasicTestCase(unittest.TestCase):
 <CreateTime>123456789</CreateTime>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[VIEW]]></Event>
-<EventKey><![CDATA[www.qq.com]]></EventKey>
+<EventKey><![CDATA[www.QQ.com]]></EventKey>
 </xml>"""
 
         wechat = WechatBasic()
@@ -499,7 +499,7 @@ class WechatBasicTestCase(unittest.TestCase):
         self.assertEqual(message.target, 'toUser')
         self.assertEqual(message.source, 'FromUser')
         self.assertEqual(message.time, 123456789)
-        self.assertEqual(message.key, 'www.qq.com')
+        self.assertEqual(message.key, 'www.QQ.com')
 
     def test_response_text(self):
         wechat = WechatBasic()
@@ -664,7 +664,7 @@ class WechatBasicTestCase(unittest.TestCase):
                         {
                             'type': 'view',
                             'name': '视频',
-                            'url': 'http://v.qq.com/'
+                            'url': 'http://v.QQ.com/'
                         },
                         {
                             'type': 'click',
@@ -724,7 +724,7 @@ class WechatBasicTestCase(unittest.TestCase):
                             {
                                 "type": "view",
                                 "name": "视频",
-                                "url": "http://v.qq.com/",
+                                "url": "http://v.QQ.com/",
                                 "sub_button": []
                             },
                             {
@@ -978,7 +978,7 @@ class WechatBasicTestCase(unittest.TestCase):
             resp = wechat.create_qrcode(data)
             self.assertEqual(resp['ticket'], 'gQH47joAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2taZ2Z3TVRtNzJXV1Brb3ZhYmJJAAIEZ23sUwMEmm3sUw==')
             self.assertEqual(resp['expire_seconds'], 60)
-            self.assertEqual(resp['url'], 'http://weixin.qq.com/q/kZgfwMTm72WWPkovabbI')
+            self.assertEqual(resp['url'], 'http://weixin.QQ.com/q/kZgfwMTm72WWPkovabbI')
 
     def test_get_template_id(self):
         # 测试无 appid 和 appsecret 初始化

@@ -4,8 +4,9 @@
 
 from django.contrib.auth.decorators import login_required
 from permissions.utils.decoraters import auth_public
-from . import HttpRequest, HttpResponse, WechatBasic, render
+from . import HttpRequest, WechatBasic, render
 from . import get_params, catch_error
+from . import ViewNotReady
 from wechat_manage.models.followers_model import PublicFollowers
 from wechat_manage.models.public_model import PublicAccount
 from wechat_manage.utils.followers_utils import get_all_openids
@@ -14,7 +15,7 @@ from wechat_manage.utils.followers_utils import get_all_openids
 @login_required
 @catch_error
 @auth_public
-def user_index(request, public,*args):
+def user_index(request, public, *args):
     """
     :type request: HttpRequest
     :type public:WechatBasic
@@ -31,7 +32,7 @@ def user_index(request, public,*args):
 @catch_error
 @login_required
 @auth_public
-def sync_followers(request, public,*args,**kwargs):
+def sync_followers(request, public, *args, **kwargs):
     """
     同步粉丝信息
     :param request:
@@ -72,3 +73,26 @@ def sync_followers(request, public,*args,**kwargs):
         else:
             jump_url = "'%s?step=2&index=%s" % (request.path, start_index + once_total)
     return render(request, 'followers/followers_info.html', locals())
+
+
+@login_required
+@catch_error
+@auth_public
+def followers_group(request, wechatsdk, *args):
+    """
+    用户分组
+    :param request:
+    :param wechatsdk:
+    :type request: object
+    :return:
+    """
+    # not ready
+    raise ViewNotReady
+
+
+@login_required
+@catch_error
+@auth_public
+def followers_message(request, wechasdk, *args):
+    raise ViewNotReady
+    pass

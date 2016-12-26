@@ -72,14 +72,16 @@ def reply(request, public, *args):
     """:type msg:WechatMessage"""
     user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)
     #
+    """实例化message"""
     message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
     message_instance.msg_instance = msg
     # 保存当前请求
     message_instance.save()
-    # todo 实现回复逻辑
+    # 回复逻辑
     reply_instance = Reply(message_instance=message_instance, wechatsdk_instance=public,
                            public_instance=public_instance)
     response = reply_instance.reply()
+    """保存回复的response 实例"""
     message_instance.response = reply_instance.messages_response_instance
     message_instance.save()
     return HttpResponse(content=response)

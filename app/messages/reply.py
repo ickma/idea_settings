@@ -4,23 +4,31 @@
 
 from . import WechatBasic
 from wechat_sdk import messages
+from wechat_sdk.messages import EventMessage, TextMessage, ImageMessage, LinkMessage \
+    , VideoMessage, VoiceMessage, ShortVideoMessage, LocationMessage
+from app.feathers import BaseFeather
 from app.models.message import Message, MsgResponse
 from wechat_manage.models.public_model import PublicAccount
 from wechat_manage.models.reply_model import ReplyConfigModel
 
 
 class Reply(object):
+    """Reply 实例"""
     hint_word = None
     _is_hint = False
     hint_keyword_instance = None
-    """:type:ReplyConfigModel"""
+    """:type hint_keyword_instance :ReplyConfigModel"""
     _response_type = None
     _response_content = None
     _response_msgid = None
+    feather = None
+    """:type feather:"""
 
     def __init__(self, message_instance, public_instance, wechatsdk_instance):
         """
-
+        :type wechatsdk_instance: WechatBasic
+        :type message_instance:Message
+        :type public_instance:PublicAccount
         :param message_instance:
         :param public_instance:
         """
@@ -41,8 +49,14 @@ class Reply(object):
 
         # message_response 添加public 属性
         self.messages_response_instance.public = public_instance
-        self._keywords = ReplyConfigModel.get_public_keywords(self.public_instance)
-        self._get_hint_word()
+        # 处理event事件推送
+        if isinstance(self.message_instance.msg_instance, EventMessage):
+            self._get_feather()
+
+        # 处理普通用户消息
+        else:
+            self._keywords = ReplyConfigModel.get_public_keywords(self.public_instance)
+            self._get_hint_word()
         super(Reply, self).__init__()
 
     def __call__(self, *args, **kwargs):
@@ -56,6 +70,19 @@ class Reply(object):
     @keywords.setter
     def keywords(self, value):
         pass
+
+    def _get_feather(self):
+        """
+        获取当前事件对应的功能实例
+        :return:
+        """
+        from app.feathers.feather_proxy import FeatherProxy
+        # 根据消息中的key值获取对应的功能cls
+        self.feather_cls = FeatherProxy.get_feather(self.message_instance.msg_instance.key)
+        # 实例化当前功能类
+        self.feather = self.feather_cls(message_instance=self.message_instance.msg_instance,
+                                        wechatsdk=self.wechatsdk_instance, public_instance=self.public_instance)
+        """:type feather:BaseFeather"""
 
     def _get_hint_word(self):
         """
@@ -78,6 +105,18 @@ class Reply(object):
         return None
 
     def reply(self):
+        """
+        回复方法
+        :return:
+        """
+        # 处理时间推送
+        if self.feather:
+            # 执行事件响应
+            response = self.feather.process()
+            """设置响应模型的response content"""
+            """response"""
+            self.messages_response_instance = self.feather.response_model_instance
+            return response
         if self._is_hint:
             response = self._reply()
             # 为msg response 添加属性

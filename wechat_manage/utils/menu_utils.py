@@ -3,6 +3,7 @@
 # @company:joyme
 from wechat_manage.models.public_model import PublicMenuConfig
 import json
+from app.models.feather_models import FeatureModel
 
 
 def menu_info_format(menu_instance):
@@ -14,11 +15,12 @@ def menu_info_format(menu_instance):
     :return:
     :rtype:PublicMenuConfig
     """
-    if menu_instance.menu_type == 'view':
-        menu_instance.info = json.dumps({'url': menu_instance.info})
     # todo 格式化功能选择
+    # 格式化当前 菜单对应的功能
+    if menu_instance.menu_type == 'click':
+        menu_instance.feather.key = menu_instance.feather.feather_class
 
-    if not isinstance(menu_instance.parent_index, int):
+    if not isinstance(menu_instance.parent_index, int) and menu_instance.menu_level == 2:
         menu_instance.parent_index = PublicMenuConfig.objects.get(public=menu_instance.public,
                                                                   menu_name=menu_instance.parent_index,
                                                                   menu_level=1).parent_index

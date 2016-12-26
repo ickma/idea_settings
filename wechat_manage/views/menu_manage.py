@@ -35,7 +35,9 @@ def sync_menus(request, wechatsdk, *args):
     menus = []
     # 获取菜单配置
     for n, m in enumerate(menu_settings):
+        #  格式化1级菜单
         menus += [dict(m.items() + [('parent_index', n), ('menu_level', 1)])]
+        #  格式化2级菜单
         if m['sub_button']:
             # menus += [x.update({'parent_index': n, 'menu_level': 2}) for x in m['sub_button']]
             menus += [dict(x.items() + [('parent_index', n), ('menu_level', 2)]) for x in
@@ -49,9 +51,11 @@ def sync_menus(request, wechatsdk, *args):
         menu_instance.public = public_instance
         menu_instance.menu_level = m['menu_level']
         menu_instance.menu_type = m.get('type', '')
+        menu_instance.url = m.get('url', '')
+        menu_instance.key = m.get('key', '')
         menu_instance.menu_name = m['name']
-        menu_instance.info = json.dumps(m)
         menu_instance.parent_index = m['parent_index']
+        menu_instance.sync_status = True
         menu_instance.save()
     success_msg = u'菜单已更新成功'
 
@@ -76,8 +80,11 @@ def display(request, wechatsdk, *args):
     action = get_params(request, name='action')
     if action == 'add':
         return menu_add(request, public_instance.id)
+    if action == 'delete':
+        menu_id = get_params(request, name='id', formatter=int)
+        PublicMenuConfig.objects.get(pk=menu_id).delete()
+        return render(request, 'error/success.html', locals())
     menus = PublicMenuConfig.objects.filter(public=public_instance)
-
     return render(request, 'wechat_menus/display.html', locals())
 
 
@@ -101,10 +108,11 @@ def menu_add(request, public, *args):
         menu_instance = PublicMenuConfig()
         menu_instance.menu_name = get_params(request, method='post', name='menu_name')
         menu_instance.menu_level = get_params(request, method='post', name='menu_level')
+        menu_instance.feather_id = get_params(request, method='post', name='feathers', formatter=int)
+        menu_instance.url = get_params(request, method='post', name='url')
         menu_instance.menu_type = get_params(request, method='post', name='menu_cates')
-        menu_instance.info = get_params(request, method='post', name='menu_info')
         menu_instance.public = public_instance
-        menu_instance.parent_index = get_params(request, method='post', name='parent_menu')
+        menu_instance.parent_index = get_params(request, method='post', name='parent_menu', formatter=int)
         menu_info_format(menu_instance)
         menu_instance.save()
 
@@ -154,3 +162,22 @@ def menu_edit(request, public, *args):
         pass
     all_menus = PublicMenuConfig.objects.filter(public=public_instance)
     return render(request, 'wechat_manage/menu_display.html', locals())
+
+
+@login_required
+# @catch_error
+@auth_public
+def menu_push(request, wechatsdk, *args):
+    """
+
+    :param wechatsdk:
+    :type wechatsdk:WechatBasic
+    :param request:
+    :param args:
+    :return:
+    """
+
+    menus = PublicMenuConfig.get_formated_menus(public=args[0])
+    wechatsdk.create_menu(menus)
+    success_msg = u'提交成功 请使用拉取菜单功能从服务器获取最新菜单配置'
+    return render(request, 'error/success.html', locals())

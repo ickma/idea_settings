@@ -3,6 +3,7 @@
 {% load form_table_tags %}
 {% block table_head %}
     <tr>
+        <th>选择</th>
         <th>名称</th>
         <th>类型</th>
         <th>事件</th>
@@ -15,16 +16,35 @@
 {% block table_datas %}
     {% for foo in menus %}
         <tr>
-            <td>{{ foo.menu_name }}</td>
-            <td>{{ foo.get_menu_type_display }}</td>
-            <td>{{ foo |format_menu_info }}</td>
-            <td>{{ foo.id | get_menu_parent }}</td>
-            <td>{{ foo.created_time }}</td>
         {% autoescape off %}
 
-           <td>{{ foo|create_action }}</td>
+            {{ foo|create_choose_html }}
+        {% endautoescape %}
+
+
+        <td {% if foo.menu_level == 1 %}
+            class="text-bold" style="color: #00a7d0"
+        {% endif %}> {{ foo.menu_name }}</td>
+        <td>{{ foo.get_menu_type_display }}</td>
+        <td>{{ foo | format_menu_info }}</td>
+        <td {% if foo.menu_level == 1 %}
+
+            class="text-bold" style="color: #00a7d0"
+
+        {% endif %}>{{ foo.id |get_menu_parent }}</td>
+        <td>{% if foo.sync_status %}
+        {{ foo.created_time }}
+            {% else %}
+            未同步
+        {% endif %}
+        </td>
+
+        {% autoescape off %}
+
+            <td>{{ foo|create_action }}</td>
         {% endautoescape %}
 
     {% endfor %}
+</tr>
 
 {% endblock %}

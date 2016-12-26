@@ -68,7 +68,7 @@ class WechatExt(WechatBase):
         :raises LoginVerifyCodeError: 需要验证码或验证码出错，该异常为 ``LoginError`` 的子类
         :raises LoginError: 登录出错异常，异常内容为微信服务器响应的内容，可作为日志记录下来
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/login'
+        url = 'https://mp.weixin.QQ.com/cgi-bin/login'
         payload = {
             'username': self.__username,
             'pwd': self.__password,
@@ -77,7 +77,7 @@ class WechatExt(WechatBase):
         }
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN',
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN',
             'Cookie': self.__cookies,
         }
         r = requests.post(url, data=payload, headers=headers)
@@ -106,13 +106,13 @@ class WechatExt(WechatBase):
         获取登录验证码并存储
         :param file_path: 将验证码图片保存的文件路径
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/verifycode'
+        url = 'https://mp.weixin.QQ.com/cgi-bin/verifycode'
         payload = {
             'username': self.__username,
             'r': int(random.random() * 10000000000000),
         }
         headers = {
-            'referer': 'https://mp.weixin.qq.com/',
+            'referer': 'https://mp.weixin.QQ.com/',
         }
         r = requests.get(url, data=payload, headers=headers, stream=True)
 
@@ -170,7 +170,7 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         :raises ValueError: 参数出错, 具体内容有 ``fake id not exist``
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response'
+        url = 'https://mp.weixin.QQ.com/cgi-bin/singlesend?t=ajax-response'
         payload = {
             'tofakeid': fakeid,
             'type': 1,
@@ -180,7 +180,7 @@ class WechatExt(WechatBase):
         }
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/singlesendpage?t=message/send&action=index&tofakeid={fakeid}&token={token}&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/singlesendpage?t=message/send&action=index&tofakeid={fakeid}&token={token}&lang=zh_CN'.format(
                 fakeid=fakeid,
                 token=self.__token,
             ),
@@ -229,7 +229,7 @@ class WechatExt(WechatBase):
         :return: 返回的 JSON 数据
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/contactmanage?t=user/index&pagesize={pagesize}&pageidx={page}&type=0&groupid={groupid}&lang=zh_CN&f=json&token={token}'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/contactmanage?t=user/index&pagesize={pagesize}&pageidx={page}&type=0&groupid={groupid}&lang=zh_CN&f=json&token={token}'.format(
             pagesize=pagesize,
             page=page,
             groupid=groupid,
@@ -237,7 +237,7 @@ class WechatExt(WechatBase):
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/contactmanage?t=user/index&pagesize={pagesize}&pageidx={page}&type=0&groupid=0&lang=zh_CN&token={token}'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/contactmanage?t=user/index&pagesize={pagesize}&pageidx={page}&type=0&groupid=0&lang=zh_CN&token={token}'.format(
                 pagesize=pagesize,
                 page=page,
                 token=self.__token,
@@ -327,7 +327,7 @@ class WechatExt(WechatBase):
         """
         self._init_plugin_token_appid()
 
-        url = 'http://mta.qq.com/mta/wechat/ctr_article_detail/get_list?sort=RefDate%20desc&keyword=&page={page}&appid={appid}&pluginid=luopan&token={token}&from=&src=false&devtype=3&time_type=day&start_date={start_date}&end_date={end_date}&need_compare=0&app_id=&rnd={rnd}&ajax=1'.format(
+        url = 'http://mta.QQ.com/mta/wechat/ctr_article_detail/get_list?sort=RefDate%20desc&keyword=&page={page}&appid={appid}&pluginid=luopan&token={token}&from=&src=false&devtype=3&time_type=day&start_date={start_date}&end_date={end_date}&need_compare=0&app_id=&rnd={rnd}&ajax=1'.format(
             page=page,
             appid=self.__appid,
             token=self.__plugin_token,
@@ -337,7 +337,7 @@ class WechatExt(WechatBase):
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'http://mta.qq.com/mta/wechat/ctr_article_detail/get_list?sort=RefDate%20desc&keyword=&page={page}&appid={appid}&pluginid=luopan&token={token}&from=&src=false&devtype=3&time_type=day&start_date={start_date}&end_date={end_date}&need_compare=0&app_id=&rnd={rnd}&ajax=1'.format(
+            'referer': 'http://mta.QQ.com/mta/wechat/ctr_article_detail/get_list?sort=RefDate%20desc&keyword=&page={page}&appid={appid}&pluginid=luopan&token={token}&from=&src=false&devtype=3&time_type=day&start_date={start_date}&end_date={end_date}&need_compare=0&app_id=&rnd={rnd}&ajax=1'.format(
                 page=page,
                 appid=self.__appid,
                 token=self.__plugin_token,
@@ -392,12 +392,12 @@ class WechatExt(WechatBase):
         :return: 返回的 JSON 数据
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/contactmanage?t=user/index&pagesize=10&pageidx=0&type=0&groupid=0&lang=zh_CN&f=json&token={token}'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/contactmanage?t=user/index&pagesize=10&pageidx=0&type=0&groupid=0&lang=zh_CN&f=json&token={token}'.format(
             token=self.__token,
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/contactmanage?t=user/index&pagesize=10&pageidx=0&type=0&groupid=0&lang=zh_CN&token='.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/contactmanage?t=user/index&pagesize=10&pageidx=0&type=0&groupid=0&lang=zh_CN&token='.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -426,7 +426,7 @@ class WechatExt(WechatBase):
                             "show_cover_pic": 1,
                             "author": "",
                             "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3GQgcgkDSoEm668gClFVDt3BR8GGQ5eB8HoL4vDezzKtSblIjckOf7A/0",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204884970&idx=1&sn=bf25c51f07260d4ed38305a1cbc0ce0f#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204884970&idx=1&sn=bf25c51f07260d4ed38305a1cbc0ce0f#rd",
                             "source_url": "",
                             "file_id": 204884939,
                             "digest": "98路线路1.农大- 2.金阳小区- 3.市客运司- 4.市制药厂- 5.新农大- 6.独山子酒店- 7.三"
@@ -437,7 +437,7 @@ class WechatExt(WechatBase):
                     "show_cover_pic": 1,
                     "author": "",
                     "app_id": 204884970,
-                    "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204884970&idx=1&sn=bf25c51f07260d4ed38305a1cbc0ce0f#rd",
+                    "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204884970&idx=1&sn=bf25c51f07260d4ed38305a1cbc0ce0f#rd",
                     "create_time": "1405237966",
                     "file_id": 204884939,
                     "img_url": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3GQgcgkDSoEm668gClFVDt3BR8GGQ5eB8HoL4vDezzKtSblIjckOf7A/0",
@@ -451,7 +451,7 @@ class WechatExt(WechatBase):
                             "show_cover_pic": 0,
                             "author": "",
                             "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3icvFgkxZRyIrkLbic9I5ZKLa3XB8UqNlkT8CYibByHuraSvVoeSzdTRLQ/0",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=1&sn=68d62215052d29ece3f2664e9c4e8cab#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=1&sn=68d62215052d29ece3f2664e9c4e8cab#rd",
                             "source_url": "",
                             "file_id": 204883412,
                             "digest": "1月1．新疆软件园展厅设计方案汇报会2013年1月15日在维泰大厦4楼9号会议室召开新疆软件园展厅设计工作完"
@@ -462,7 +462,7 @@ class WechatExt(WechatBase):
                             "show_cover_pic": 0,
                             "author": "",
                             "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3oErGEhSicRQc82icibxZOZ2YAGNgiaGYfOFYppmPzOOS0v1xfZ1nvyT58g/0",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=2&sn=e7db9b30d770c85c61008d2f523b8610#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=2&sn=e7db9b30d770c85c61008d2f523b8610#rd",
                             "source_url": "",
                             "file_id": 204883398,
                             "digest": "1月1．新疆软件园环评顺利通过专家会评审2012年1月30日，新疆软件园环境影响评价顺利通过专家会评审，与会"
@@ -473,7 +473,7 @@ class WechatExt(WechatBase):
                             "show_cover_pic": 0,
                             "author": "",
                             "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3qA7tEN8GvkgDwnOfKsGsicJeQ6PxQSgWuJXfQaXkpM4VNlQicOWJM4Tg/0",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=3&sn=4cb1c6d25cbe6dfeff37f52a62532bd0#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=3&sn=4cb1c6d25cbe6dfeff37f52a62532bd0#rd",
                             "source_url": "",
                             "file_id": 204883393,
                             "digest": "6月1．软件园召开第一次建设领导小组会议2011年6月7日，第一次软件园建设领导小组会议召开，会议认为，新疆"
@@ -484,7 +484,7 @@ class WechatExt(WechatBase):
                             "show_cover_pic": 0,
                             "author": "",
                             "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3YG4sSuf9X9ecMPjDRju842IbIvpFWK7tuZs0Po4kZCz4URzOBj5rnQ/0",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=4&sn=4319f7f051f36ed972e2f05a221738ec#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=4&sn=4319f7f051f36ed972e2f05a221738ec#rd",
                             "source_url": "",
                             "file_id": 204884043,
                             "digest": "5月1．新疆软件园与开发区（头屯河区）管委会、经信委签署《新疆软件园建设战略合作协议》2010年5月12日，"
@@ -495,7 +495,7 @@ class WechatExt(WechatBase):
                     "show_cover_pic": 0,
                     "author": "",
                     "app_id": 204883415,
-                    "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=1&sn=68d62215052d29ece3f2664e9c4e8cab#rd",
+                    "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204883415&idx=1&sn=68d62215052d29ece3f2664e9c4e8cab#rd",
                     "create_time": "1405232974",
                     "file_id": 204883412,
                     "img_url": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3icvFgkxZRyIrkLbic9I5ZKLa3XB8UqNlkT8CYibByHuraSvVoeSzdTRLQ/0",
@@ -509,7 +509,7 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
         begin = page * pagesize
-        url = "https://mp.weixin.qq.com/cgi-bin/appmsg?token={token}&lang=zh_CN&type=10&action=list&begin={begin}&count={pagesize}&f=json&random={random}".format(
+        url = "https://mp.weixin.QQ.com/cgi-bin/appmsg?token={token}&lang=zh_CN&type=10&action=list&begin={begin}&count={pagesize}&f=json&random={random}".format(
             token=self.__token,
             begin=begin,
             pagesize=pagesize,
@@ -517,7 +517,7 @@ class WechatExt(WechatBase):
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/masssendpage?t=mass/send&token={token}&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/masssendpage?t=mass/send&token={token}&lang=zh_CN'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -586,7 +586,7 @@ class WechatExt(WechatBase):
                                     "show_cover_pic": 1,
                                     "author": "",
                                     "cover": "https://mmbiz.qlogo.cn/mmbiz/D2pflbZwStFibz2Sb1kWOuHrxtDMPKJic3oErGEhSicRQc82icibxZOZ2YAGNgiaGYfOFYppmPzOOS0v1xfZ1nvyT58g/0",
-                                    "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204885255&idx=1&sn=40e07d236a497e36d2d3e9711dfe090a#rd",
+                                    "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204885255&idx=1&sn=40e07d236a497e36d2d3e9711dfe090a#rd",
                                     "source_url": "",
                                     "content": "",
                                     "file_id": 204885252,
@@ -598,7 +598,7 @@ class WechatExt(WechatBase):
                             "title": "软件企业有望拎包入住新疆软件园",
                             "nick_name": "Doraemonext",
                             "to_uin": 844735403,
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MjM5MTA2ODcwOA==&mid=204885255&idx=1&sn=40e07d236a497e36d2d3e9711dfe090a#rd",
+                            "content_url": "http://mp.weixin.QQ.com/s?__biz=MjM5MTA2ODcwOA==&mid=204885255&idx=1&sn=40e07d236a497e36d2d3e9711dfe090a#rd",
                             "show_type": 1,
                             "content": "",
                             "source": "biz",
@@ -622,7 +622,7 @@ class WechatExt(WechatBase):
         """
         self._init_fakeid()
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/singlesendpage?tofakeid={fakeid}&action=sync&lastmsgfromfakeid={fromfakeid}&lastmsgid={last_msgid}&createtime={create_time}&token={token}&lang=zh_CN&f=json&ajax=1'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/singlesendpage?tofakeid={fakeid}&action=sync&lastmsgfromfakeid={fromfakeid}&lastmsgid={last_msgid}&createtime={create_time}&token={token}&lang=zh_CN&f=json&ajax=1'.format(
             fakeid=fakeid,
             fromfakeid=self.__fakeid,
             last_msgid=last_msgid,
@@ -632,7 +632,7 @@ class WechatExt(WechatBase):
 
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(token=self.__token),
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(token=self.__token),
             'cookie': self.__cookies,
         }
 
@@ -652,7 +652,7 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         :raises ValueError: 参数出错, 具体内容有 ``fake id not exist`` 及 ``message id not exist``
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response'
+        url = 'https://mp.weixin.QQ.com/cgi-bin/singlesend?t=ajax-response'
         payload = {
             'lang': 'zh_CN',
             'f': 'json',
@@ -667,7 +667,7 @@ class WechatExt(WechatBase):
         }
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/singlemsgpage?fromfakeid={fakeid}&msgid=&source=&count=20&t=wxm-singlechat&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/singlemsgpage?fromfakeid={fakeid}&msgid=&source=&count=20&t=wxm-singlechat&lang=zh_CN'.format(
                 fakeid=fakeid,
             ),
             'cookie': self.__cookies,
@@ -723,7 +723,7 @@ class WechatExt(WechatBase):
             if 'title' not in item or 'content' not in item:
                 raise ValueError('The news item needs to provide at least two arguments: title, content')
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/operate_appmsg?lang=zh_CN&t=ajax-response&sub=create&token={token}'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/operate_appmsg?lang=zh_CN&t=ajax-response&sub=create&token={token}'.format(
             token=self.__token,
         )
         payload = {
@@ -736,7 +736,7 @@ class WechatExt(WechatBase):
             'error': 'false',
         }
         headers = {
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/operate_appmsg?lang=zh_CN&sub=edit&t=wxm-appmsgs-edit-new&type=10&subtype=3&token={token}'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/operate_appmsg?lang=zh_CN&sub=edit&t=wxm-appmsgs-edit-new&type=10&subtype=3&token={token}'.format(
                 token=self.__token
             ),
             'cookie': self.__cookies,
@@ -773,7 +773,7 @@ class WechatExt(WechatBase):
         """
         self._init_ticket()
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/filetransfer?action=upload_material&f=json&ticket_id={ticket_id}&ticket={ticket}&token={token}&lang=zh_CN'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/filetransfer?action=upload_material&f=json&ticket_id={ticket_id}&ticket={ticket}&token={token}&lang=zh_CN'.format(
             ticket_id=self.__ticket_id,
             ticket=self.__ticket,
             token=self.__token,
@@ -788,7 +788,7 @@ class WechatExt(WechatBase):
             'Upload': 'Submit Query',
         }
         headers = {
-            'referer': 'http://mp.weixin.qq.com/cgi-bin/indexpage?t=wxm-upload&lang=zh_CN&type=2&formId=1',
+            'referer': 'http://mp.weixin.QQ.com/cgi-bin/indexpage?t=wxm-upload&lang=zh_CN&type=2&formId=1',
             'cookie': self.__cookies,
         }
         r = requests.post(url, files=files, data=payloads, headers=headers)
@@ -817,7 +817,7 @@ class WechatExt(WechatBase):
         if type == 4:  # 此处判断为兼容历史版本, 微信官方已经将视频类型修改为 15
             type = 15
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&f=json&token={token}&lang=zh_CN'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/singlesend?t=ajax-response&f=json&token={token}&lang=zh_CN'.format(
             token=self.__token,
         )
         payloads = {}
@@ -848,7 +848,7 @@ class WechatExt(WechatBase):
                 'imgcode': '',
             }
         headers = {
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/singlesendpage?tofakeid={fakeid}&t=message/send&action=index&token={token}&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/singlesendpage?tofakeid={fakeid}&t=message/send&action=index&token={token}&lang=zh_CN'.format(
                 fakeid=fakeid,
                 token=self.__token,
             ),
@@ -910,7 +910,7 @@ class WechatExt(WechatBase):
         :return: 返回的 JSON 数据
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/filepage?token={token}&lang=zh_CN&type={type}&random={random}&begin={begin}&count={count}&f=json'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/filepage?token={token}&lang=zh_CN&type={type}&random={random}&begin={begin}&count={count}&f=json'.format(
             token=self.__token,
             type=type,
             random=round(random.random(), 3),
@@ -919,7 +919,7 @@ class WechatExt(WechatBase):
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/masssendpage?t=mass/send&token={token}&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/masssendpage?t=mass/send&token={token}&lang=zh_CN'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -986,7 +986,7 @@ class WechatExt(WechatBase):
         :return: 返回的 JSON 数据
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/getcontactinfo'
+        url = 'https://mp.weixin.QQ.com/cgi-bin/getcontactinfo'
         payloads = {
             'ajax': 1,
             'lang': 'zh_CN',
@@ -997,7 +997,7 @@ class WechatExt(WechatBase):
         }
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/getmessage?t=wxm-message&lang=zh_CN&count=50&token={token}'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/getmessage?t=wxm-message&lang=zh_CN&count=50&token={token}'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1018,13 +1018,13 @@ class WechatExt(WechatBase):
         :return: 二进制 JPG 数据字符串, 可直接作为 File Object 中 write 的参数
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/misc/getheadimg?fakeid={fakeid}&token={token}&lang=zh_CN'.format(
+        url = 'https://mp.weixin.QQ.com/misc/getheadimg?fakeid={fakeid}&token={token}&lang=zh_CN'.format(
             fakeid=fakeid,
             token=self.__token,
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/getmessage?t=wxm-message&lang=zh_CN&count=50&token={token}'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/getmessage?t=wxm-message&lang=zh_CN&count=50&token={token}'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1039,7 +1039,7 @@ class WechatExt(WechatBase):
         :param lastid: 最近获取的消息 ID, 为 0 时获取总消息数目
         :return: 消息数目
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/getnewmsgnum?f=json&t=ajax-getmsgnum&lastmsgid={lastid}&token={token}&lang=zh_CN'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/getnewmsgnum?f=json&t=ajax-getmsgnum&lastmsgid={lastid}&token={token}&lang=zh_CN'.format(
             lastid=lastid,
             token=self.__token,
         )
@@ -1052,7 +1052,7 @@ class WechatExt(WechatBase):
         }
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1161,7 +1161,7 @@ class WechatExt(WechatBase):
         if lastid == 0:
             lastid = ''
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&f=json&lang=zh_CN{star}&count={count}&day={day}&frommsgid={lastid}&offset={offset}&token={token}'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&f=json&lang=zh_CN{star}&count={count}&day={day}&frommsgid={lastid}&offset={offset}&token={token}'.format(
             star=star_param,
             count=count,
             day=day,
@@ -1171,7 +1171,7 @@ class WechatExt(WechatBase):
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(token=self.__token),
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&count=20&day=7&token={token}&lang=zh_CN'.format(token=self.__token),
             'cookie': self.__cookies,
         }
         r = requests.get(url, headers=headers)
@@ -1195,14 +1195,14 @@ class WechatExt(WechatBase):
         if mode != 'large' and mode != 'small':
             raise ValueError('mode error')
 
-        url = 'https://mp.weixin.qq.com/cgi-bin/getimgdata?token={token}&msgid={msgid}&mode={mode}&source=&fileId=0'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/getimgdata?token={token}&msgid={msgid}&mode={mode}&source=&fileId=0'.format(
             msgid=msgid,
             token=self.__token,
             mode=mode,
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1226,13 +1226,13 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         :raises ValueError: 参数出错, 错误原因直接打印异常即可, 错误内容: ``voice message not exist``: msg参数无效
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/getvoicedata?msgid={msgid}&fileid=&token={token}&lang=zh_CN'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/getvoicedata?msgid={msgid}&fileid=&token={token}&lang=zh_CN'.format(
             msgid=msgid,
             token=self.__token,
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1256,13 +1256,13 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         :raises ValueError: 参数出错, 错误原因直接打印异常即可, 错误内容: ``video message not exist``: msg参数无效
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/getvideodata?msgid={msgid}&fileid=&token={token}'.format(
+        url = 'https://mp.weixin.QQ.com/cgi-bin/getvideodata?msgid={msgid}&fileid=&token={token}'.format(
             msgid=msgid,
             token=self.__token,
         )
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
+            'referer': 'https://mp.weixin.QQ.com/cgi-bin/message?t=message/list&token={token}&count=20&day=7'.format(
                 token=self.__token,
             ),
             'cookie': self.__cookies,
@@ -1299,10 +1299,10 @@ class WechatExt(WechatBase):
         初始化公众号自身的属性值 (目前包括 ``Ticket`` 值 及 公众号自身的 ``fakeid`` 值)
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
-        url = 'https://mp.weixin.qq.com/cgi-bin/home?t=home/index&lang=zh_CN&token={token}'.format(token=self.__token)
+        url = 'https://mp.weixin.QQ.com/cgi-bin/home?t=home/index&lang=zh_CN&token={token}'.format(token=self.__token)
         headers = {
             'x-requested-with': 'XMLHttpRequest',
-            'referer': 'https://mp.weixin.qq.com',
+            'referer': 'https://mp.weixin.QQ.com',
             'cookie': self.__cookies,
         }
         r = requests.get(url, headers=headers)
@@ -1347,12 +1347,12 @@ class WechatExt(WechatBase):
         :raises NeedLoginError: 操作未执行成功, 需要再次尝试登录, 异常内容为服务器返回的错误数据
         """
         if not self.__plugin_token or not self.__appid:
-            url = 'https://mp.weixin.qq.com/misc/pluginloginpage?action=stat_article_detail&pluginid=luopan&t=statistics/index&token={token}&lang=zh_CN'.format(
+            url = 'https://mp.weixin.QQ.com/misc/pluginloginpage?action=stat_article_detail&pluginid=luopan&t=statistics/index&token={token}&lang=zh_CN'.format(
                 token=self.__token,
             )
             headers = {
                 'x-requested-with': 'XMLHttpRequest',
-                'referer': 'https://mp.weixin.qq.com/misc/pluginloginpage?action=stat_article_detail&pluginid=luopan&t=statistics/index&token={token}&lang=zh_CN'.format(
+                'referer': 'https://mp.weixin.QQ.com/misc/pluginloginpage?action=stat_article_detail&pluginid=luopan&t=statistics/index&token={token}&lang=zh_CN'.format(
                     token=self.__token,
                 ),
                 'cookie': self.__cookies,

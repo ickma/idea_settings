@@ -15,7 +15,7 @@ def get_menu_parent_name(menu_id):
     """
     menu_instance = PublicMenuConfig.objects.get(id=menu_id)
     if menu_instance.menu_level == 1:
-        return ''
+        return u'一级菜单'
     else:
         return PublicMenuConfig.objects.get(parent_index=menu_instance.parent_index, menu_level=1).menu_name
 
@@ -29,14 +29,16 @@ def format_menu_info(menu):
     :return:
     """
     level = menu.menu_level
-    info = json.loads(menu.info)
-    if level == 1 and info.get('sub_button',None):
-        return u'弹出子菜单'
-    menu_type = info.get('type', None)
+    if level == 1:
+        if not (menu.url or menu.key):
+            return u'弹出子菜单'
+    menu_type = menu.menu_type
     if not menu_type:
         return ''
     if menu_type == 'click':
-        return u'触发事件:%s' % info['key']
+        if menu.feather:
+            return u'触发功能:%s' % menu.feather.feather_class
+        else:
+            return menu.key
     elif menu_type == 'view':
-        return u'跳转到:%s' % info['url']
-
+        return u'跳转到:%s' % menu.url

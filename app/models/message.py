@@ -20,6 +20,7 @@ class MsgResponse(models.Model):
     msgid = models.CharField(verbose_name=u'回复的msgid', null=True, max_length=255)
     feather = models.ForeignKey(FeatureModel, verbose_name=u'触发的事件', null=True)
     keywords = models.CharField(verbose_name=u'触发的关键字', null=True, max_length=255)
+    created_at = models.DateTimeField(verbose_name=u'创建时间', auto_now=True)
 
 
 class Message(models.Model):

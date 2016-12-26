@@ -4,6 +4,7 @@
 # 公众号相关model
 from django.db import models
 from django_wx_joyme.utils.string_util import create_random_str
+from app.models.feather_models import FeatureModel
 from django.contrib.admin.options import ModelAdmin
 
 
@@ -49,7 +50,7 @@ class PublicAccount(models.Model):
 
 class PublicMenuConfig(models.Model):
     menu_cats = [
-        ('click', u'选择功能'),
+        ('click', u'触发功能'),
         ('view', u'绑定网址'),
         ('scancode_push', u'自动扫码'),
         ('scancode_waitmsg', u'扫码事件'),
@@ -66,8 +67,15 @@ class PublicMenuConfig(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name=u'创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name=u'更新时间')
     info = models.TextField(verbose_name=u'信息内容')
+    url = models.CharField(verbose_name='url', null=True, blank=True, max_length=255)
+    key = models.CharField(verbose_name='key', null=True, blank=True, max_length=100)
+    feather = models.ForeignKey(FeatureModel, verbose_name=u'功能外键', null=True)
     menu_level = models.IntegerField(choices=((1, u'一级菜单'), (2, u'二级菜单')))
     parent_index = models.IntegerField(verbose_name=u'父级菜单序列号')
+    sync_status = models.BooleanField(verbose_name=u'同步状态', default=False)
+
+    class Meta:
+        ordering = ['parent_index']
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """
@@ -79,11 +87,32 @@ class PublicMenuConfig(models.Model):
         :return:
         """
         self.check_limit()
+        #
+        if bool(self.key) != self.feather:
+            if self.feather:
+                self.key = self.feather.feather_class
+            if self.key:
+                try:
+                    self.feather = FeatureModel.objects.get(feather_class=self.key)
+                except FeatureModel.DoesNotExist:
+                    pass
         super(PublicMenuConfig, self).save(force_insert, force_update, using, update_fields)
+
+    def delete(self, using=None, keep_parents=False):
+        """
+        删除方法
+        删除一级菜单同步删除一级菜单下的二级菜单
+        :param using:
+        :param keep_parents:
+        :return:
+        """
+        if self.menu_level == 1:
+            PublicMenuConfig.objects.filter(public=self.public, menu_level=2, parent_index=self.parent_index).delete()
+        super(PublicMenuConfig, self).delete()
 
     def check_limit(self):
         """
-        检查是否查出限制
+        检查当前菜单是否符合要求
         :return:
         """
         if self.menu_level == 1:
@@ -97,10 +126,45 @@ class PublicMenuConfig(models.Model):
         return True
 
     @classmethod
-    def get_level_one_menus(cls,public):
+    def get_level_one_menus(cls, public):
         """
         :param public:
         :return:
         """
 
-        return [(x.id, x.menu_name) for x in cls.objects.filter(public=public,menu_level=1)]
+        return [(x.parent_index, x.menu_name) for x in cls.objects.filter(public=public, menu_level=1)]
+
+    @classmethod
+    def get_formated_menus(cls, public):
+        """
+
+        :param public:
+        :return:
+        """
+        parent_menus = cls.objects.filter(public=public, menu_level=1)
+        menus = {'button': []}
+
+        def formart_menu(x):
+            """
+
+            :param x:
+            :type x:PublicMenuConfig
+            :return:
+            """
+            _x = {'type': x.menu_type, 'name': x.menu_name}
+            if x.key:
+                _x['key'] = x.key
+            if x.url:
+                _x['url'] = x.url
+            return _x
+
+        for m in parent_menus:
+            try:
+                menu = cls.objects.filter(public=public, menu_level=2, parent_index=m.parent_index)
+                assert menu.count() > 0
+                menus['button'] += [{'name': m.menu_name, 'sub_button': [formart_menu(_m) for _m in menu]}]
+            except AssertionError, cls.DoesNotExist:
+                if m.key or m.url:
+                    menus['button'] += [formart_menu(m)]
+
+        return menus

@@ -26,20 +26,17 @@ MENU_MANEGE_CONFIG = {
     'name': u'菜单配置',
     'children': [
         {
-            'name': u'同步菜单',
+            'name': u'拉取菜单',
             'path': '/wechat/{0}/menu/sync'
         },
         {
-            'name': u'显示菜单',
+            'name': u'编辑菜单',
             'path': '/wechat/{0}/menu/display'
         },
+
         {
-            'name': u'菜单编辑',
-            'path': '/wechat/{0}/menu/edit'
-        },
-        {
-            'name': u'菜单增加',
-            'path': '/wechat/{0}/menu/add'
+            'name': u'推送菜单',
+            'path': '/wechat/{0}/menu/push'
         },
 
     ]
@@ -54,7 +51,7 @@ USER_MANAGE_CONFIG = {
         },
         {
             'name': u'聊天记录',
-            'path': '{0}'
+            'path': '/wechat/{0}/followers/message'
         },
         {
             'name': u'所有用户',
@@ -62,7 +59,7 @@ USER_MANAGE_CONFIG = {
         },
         {
             'name': u'用户分组',
-            'path': '{0}'
+            'path': '/wechat/{0}/followers/group'
         },
 
     ]

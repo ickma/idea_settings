@@ -130,7 +130,7 @@ STATIC_ROOT = 'static'
 """copy app/static to root path"""
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'node_modules'),
-    os.path.join(BASE_DIR,'upload')
+    os.path.join(BASE_DIR, 'upload')
 
 ]
 
@@ -169,3 +169,7 @@ if os.path.isdir(os.path.join(BASE_DIR, 'django_wx_joyme', 'home_settings')):
 APP_NAME = 'django_wx_joyme'
 
 import custome_settings
+
+if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
+    DATABASES['default']['USER'] = 'django_wx'
+    DATABASES['default']['PASSWORD'] = '055b6527a0'

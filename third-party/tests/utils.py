@@ -11,7 +11,7 @@ TESTS_PATH = os.path.abspath(os.path.dirname(__file__))
 FIXTURE_PATH = os.path.join(TESTS_PATH, 'fixtures')
 
 
-@urlmatch(netloc=r'(.*\.)?api\.weixin\.qq\.com$')
+@urlmatch(netloc=r'(.*\.)?api\.weixin\.QQ\.com$')
 def api_weixin_mock(url, request):
     path = url.path.replace('/cgi-bin/', '').replace('/', '_')
     if path.startswith('_'):
