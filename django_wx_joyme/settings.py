@@ -25,6 +25,10 @@ SECRET_KEY = '(y@wu*h2eny#u9%w6%+h2i(@)5(l-60&-(3ipo*zxq*my1xull'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
+"""import python modules"""
+import sys
+
+sys.path.insert(0, os.path.join(BASE_DIR, 'third-party'))
 
 # Application definition
 
@@ -149,10 +153,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 MEDIA_PATH = '/upload'
 MEDIA_URL = '/upload/'
 
-"""import python modules"""
-import sys
-
-sys.path.insert(0, os.path.join(BASE_DIR, 'third-party'))
 
 """home develop settings"""
 import os
@@ -171,6 +171,7 @@ APP_NAME = 'django_wx_joyme'
 import custome_settings
 
 if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
-    DATABASES['default']['HOST']='localost'
+    DATABASES['default']['HOST'] = 'localhost'
+    CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
     DATABASES['default']['USER'] = 'django_wx'
     DATABASES['default']['PASSWORD'] = '055b6527a0'
