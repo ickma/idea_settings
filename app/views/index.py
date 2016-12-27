@@ -32,7 +32,7 @@ def index(request):
     table_datas = []
     for public in publics:
         public.public_manage = '<a href="/wechat/%s/followers/query">进入管理</a>' % public.id
-        public.api_url='%s/public/%d'%(request.get_host(),public.id)
+        public.api_url = '%s/public/%d' % (request.get_host(), public.id)
         line = [getattr(public, key[0]) for key in public_index]
 
         table_datas += [line]
