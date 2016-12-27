@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_wx_joyme',
-        'USER': 'root',
-        'PASSWORD': '11119999',
+        'USER': 'django_wx',
+        'PASSWORD': '055b6527a0',
         'HOST': '172.16.78.73',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -173,5 +173,4 @@ if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
     DATABASES['default']['HOST'] = 'localhost'
     DATABASES['default']['USER'] = 'django_wx'
-    # DATABASES['default']['PASSWORD'] = '055b6527a0'
-    DATABASES['default']['PASSWORD'] =''
+    DATABASES['default']['PASSWORD'] = '055b6527a0'
