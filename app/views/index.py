@@ -22,7 +22,7 @@ def index(request):
     :return:
     """
     public_index = [('id', 'id'), ('public_name', u'名称'), ('public_type', u'公众号类别') \
-        , ('create_time', u'创建时间'), ('public_manage', u'进入公众号')]
+        , ('create_time', u'创建时间'), ('token', 'toekn'), ('api_url', u'接口地址'), ('public_manage', u'进入公众号')]
     page_title = u'微信管理:后台首页'
     table_title = u'选择公众号'
     # 获取公众号信息
@@ -32,7 +32,9 @@ def index(request):
     table_datas = []
     for public in publics:
         public.public_manage = '<a href="/wechat/%s/followers/query">进入管理</a>' % public.id
+        public.api_url='%s/public/%d'%(request.get_host(),public.id)
         line = [getattr(public, key[0]) for key in public_index]
+
         table_datas += [line]
     return render(request, 'base/simple_table.html', locals())
 
