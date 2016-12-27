@@ -40,7 +40,7 @@ def auth_public(func):
 
         # 实例化wechat_sdk实例
         # 获取缓存项
-        cache_access_token_name = '%s_public_%s_access_token' % (settings.APP_NAME, public_instance.public_token)
+        cache_access_token_name = '%s_public_%s_access_token' % (settings.APP_NAME, public_instance.token)
         cached_access_token = cache.get(cache_access_token_name, {})
         cache_js_ticket_name = cache_access_token_name.replace('access_token', 'js_ticket')
         cached_ticket = cache.get(cache_js_ticket_name, {})

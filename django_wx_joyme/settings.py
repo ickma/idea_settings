@@ -171,6 +171,5 @@ import custome_settings
 
 if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
-    DATABASES['default']['HOST'] = 'localhost'
-    DATABASES['default']['USER'] = 'django_wx'
-    DATABASES['default']['PASSWORD'] = '055b6527a0'
+    DATABASES['default']['HOST'] = '127.0.0.1'
+
