@@ -24,7 +24,7 @@ SECRET_KEY = '(y@wu*h2eny#u9%w6%+h2i(@)5(l-60&-(3ipo*zxq*my1xull'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'http://wechat.youku-game.com/']
 """import python modules"""
 import sys
 
@@ -172,4 +172,3 @@ import custome_settings
 if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
     DATABASES['default']['HOST'] = '127.0.0.1'
-
