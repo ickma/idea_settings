@@ -51,7 +51,7 @@ USER_MANAGE_CONFIG = {
         },
         {
             'name': u'聊天记录',
-            'path': '/wechat/{0}/followers/message'
+            'path': '/wechat/{0}/messages/display'
         },
         {
             'name': u'所有用户',
@@ -90,4 +90,4 @@ FEATHER_MANAGE_CONFIG = {
     ]
 }
 
-MENU_CONFIG = [BASIC_CONFIG, MENU_MANEGE_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG,FEATHER_MANAGE_CONFIG]
+MENU_CONFIG = [BASIC_CONFIG, MENU_MANEGE_CONFIG, USER_MANAGE_CONFIG, MATERIAL_MANAGE_CONFIG, FEATHER_MANAGE_CONFIG]

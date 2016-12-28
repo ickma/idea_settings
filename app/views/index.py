@@ -12,7 +12,6 @@ from app.models.message import Message, MsgResponse
 from wechat_manage.models.followers_model import PublicFollowers
 from app.messages.reply import Reply
 
-
 @login_required
 @catch_error
 def index(request):

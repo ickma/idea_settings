@@ -25,9 +25,11 @@ from permissions.views import user_profile
 from django.conf import settings
 from django.conf.urls.static import static
 from app.views.index import reply
+from app.views.messages import messages
 
 urlpatterns = [
                   url(r'^$', index.index),
+                  url(r'^wechat/(?P<publicid>\d+)/messages/display', messages, name=u'查看用户聊天'),
                   url(r'^public/(?P<publicid>\d+)', reply, name=u'公众号对外接口'),  # 公众号向微信服务器提供的唯一接口
                   url(r'^admin/', admin.site.urls),
                   # set login url
