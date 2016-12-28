@@ -33,6 +33,7 @@ class Message(models.Model):
     content = models.TextField(verbose_name=u'消息内容', null=True)
     msgid = models.BigIntegerField(verbose_name=u'消息ID', null=True)
     create_time = models.IntegerField(verbose_name=u'创建时间')
+    created_at = models.DateTimeField(verbose_name=u'创建时间', auto_now_add=True)
     picurl = models.CharField(max_length=255, verbose_name=u'图片链接', null=True)
     mediaid = models.CharField(max_length=255, verbose_name=u'mediaID', null=True)
     format = models.CharField(max_length=20, verbose_name=u'文件格式', null=True)

@@ -6,6 +6,7 @@
         <th>性别</th>
         <th>所在地区</th>
         <th>content</th>
+        <th>时间</th>
 
     </tr>
 {% endblock %}
@@ -18,6 +19,7 @@
             <td>{{ foo.form_user.get_sex_display }}</td>
             <td>{{ foo.form_user.get_areas_display }}</td>
             <td>{{ foo.content }}</td>
+            <td>{{ foo.created_at }}</td>
 
         </tr>
     {% endfor %}
