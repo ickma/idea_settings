@@ -53,11 +53,11 @@ def reply(request, public, *args):
     """
     # 判断是否为微信的验证url请求
     signature = get_params(request, name='signature')
-    if signature:
+    echostr = get_params(request, name='echostr', default=None)
+    if echostr:
         # 微信服务器验证url有效性逻辑
         nonce = get_params(request, name='nonce')
         timestamp = get_params(request, name='timestamp')
-        echostr = get_params(request, name='echostr')
         if public.check_signature(signature, timestamp, nonce):
             return HttpResponse(echostr)
     # 获取微信公众号配置实例
@@ -73,7 +73,6 @@ def reply(request, public, *args):
     msg = public.get_message()
     """:type msg:WechatMessage"""
     user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)
-    #
     """实例化message"""
     message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
     message_instance.msg_instance = msg

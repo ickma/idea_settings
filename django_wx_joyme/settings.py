@@ -24,7 +24,7 @@ SECRET_KEY = '(y@wu*h2eny#u9%w6%+h2i(@)5(l-60&-(3ipo*zxq*my1xull'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'http://wechat.youku-game.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'wechat.youku-game.com/']
 """import python modules"""
 import sys
 
