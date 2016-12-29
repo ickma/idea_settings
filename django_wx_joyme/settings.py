@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'xadmin',
     # 'crispy_forms',
+    'el_pagination',
     'app',  # app
     'wechat_manage',
     'permissions',
@@ -76,6 +77,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'django_wx_joyme.wsgi.application'
 

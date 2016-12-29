@@ -305,7 +305,7 @@ desired effect
         page_count.change(function () {
             parser.href = window.location.href
             if (parser.search) {
-                if (parser.search.indexOf('pc=')>1) {
+                if (parser.search.indexOf('pc=')>0) {
                     parser.search = parser.search.replace(/pc=(\d+)/, 'pc=' + page_count.val())
                 }
                 else {

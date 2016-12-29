@@ -9,11 +9,11 @@ from app.models.message import Message
 
 
 @login_required
-@catch_error
+# @catch_error
 @auth_public
 def messages(request, wechatsdk, *args):
     public_instance = args[0]
-    messages = Message.objects.filter(public=public_instance)
+    table_datas = messages = Message.objects.filter(public=public_instance)
 
     return render(request, 'messages/display.html', locals())
     pass

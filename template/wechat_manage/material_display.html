@@ -1,5 +1,6 @@
 {% extends "base/editable_table.html" %}
 {% load form_table_tags %}
+{% pc %}
 {% load wechat_material_tags %}
 {% block table_head %}
     <tr>
@@ -14,8 +15,6 @@
 {% block table_datas %}
     {% for foo in all_medias|create_show_index %}
         {% autoescape off %}
-
-
             <tr>
                 {{ foo|create_choose_html }}
                 <td>{{ foo.show_index }}</td>

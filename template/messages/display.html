@@ -1,4 +1,6 @@
 {% extends "base/simple_table.html" %}
+{% load el_pagination_tags %}
+{% load form_table_tags %}
 {% block table_head %}
     <tr>
         <th>昵称</th>
@@ -7,11 +9,15 @@
         <th>所在地区</th>
         <th>content</th>
         <th>时间</th>
+        <th>回复</th>
 
     </tr>
 {% endblock %}
 
 {% block table_datas %}
+    {% get_pc %}
+
+        {% paginate pc messages %}
     {% for foo in messages %}
         <tr>
             <td>{{ foo.form_user.nickname }}</td>
@@ -20,8 +26,16 @@
             <td>{{ foo.form_user.get_areas_display }}</td>
             <td>{{ foo.content }}</td>
             <td>{{ foo.created_at }}</td>
+            <td></td>
 
         </tr>
     {% endfor %}
 
-{% endblock %}loc %}
+{% endblock %}
+{% block pagination %}
+    {% autoescape off %}
+
+    {% include "base/pagination.html" %}
+    {% endautoescape %}
+
+{% endblock %}

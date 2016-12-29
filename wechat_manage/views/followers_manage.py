@@ -24,7 +24,7 @@ def user_index(request, public, *args):
     :return:
     """
     public_instance = PublicAccount.objects.get(app_id=public.conf.appid)
-    datas = PublicFollowers.objects.all().filter(public=public_instance)
+    table_datas=datas = PublicFollowers.objects.all().filter(public=public_instance)
     page_title = u'粉丝首页'
     return render(request, 'followers/followers_table.html', locals())
 

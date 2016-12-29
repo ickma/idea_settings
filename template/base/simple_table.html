@@ -1,12 +1,13 @@
 {% extends "base/index.html" %}
 {% load time_date_tags %}
+{% load el_pagination_tags %}
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">{{ table_title |default:page_title }}</h3>
-                        <label>
+                    <label>
                         <select
                                 name="pc" aria-controls="example1" class="form-control input-large">
                             <option value="10">10</option>
@@ -39,7 +40,6 @@
                             </tr>
                         {% endblock %}
                         {% block table_datas %}
-
                             {% for line in table_datas %}
                                 <tr>
                                     {% autoescape off %}
@@ -51,10 +51,14 @@
                                 </tr>
 
                             {% endfor %}
-                        {% endblock %}
 
+                        {% endblock %}
                     </table>
                 </div>
+            {% block pagination %}
+                {% include "base/pagination.html" %}
+
+            {% endblock %}
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

@@ -1,8 +1,10 @@
 # coding:utf8
 # @author:nick
 # @company:joyme
+import math
 
 from . import register
+from django import template
 
 
 @register.filter(name='create_action')
@@ -52,3 +54,53 @@ def create_choose_html(instance):
     return """
       <td data-delete-id="{0}"><input type="checkbox" title=""></td>
     """.format(instance.id)
+
+
+@register.simple_tag(name='get_pc', takes_context=True)
+def get_pc(context):
+    """
+    获取pc
+    :param context:
+    :return:
+    """
+    request = context['request']
+    if request.GET.get('pc', None):
+        pc = request.GET.get('pc')
+    else:
+        pc = 10
+    context.dicts[0]['pc'] = pc
+    return ''
+
+
+# class PageCount(template.Node):
+#     def render(self, context):
+#         context['pc'] = get_pc(context)
+#         return ''
+
+# register.tag('get_pc',PageCount.render)
+@register.simple_tag(takes_context=True, name='make_pagination')
+def make_pagination(context):
+    """
+    分页标签
+    判断循环中的某页和当前页是否在同一分组
+
+    :return:
+    :rtype:str
+    """
+    """兼容方法，某些情况下只传入lines,不传入table_datas"""
+    if not context.get('table_datas') and context.get('lines'):
+        context['table_datas'] = context['lines']
+    if len(context['table_datas']) == 0:
+        return ''
+    page_max, html = 10, ''
+    pages = context['pages']
+    request = context['request']
+    # 获取当前页页码
+    current_page_num = filter(lambda x: x.is_current, pages)[0].number
+    # return math.ceil(page_num / page_max) == math.ceil(page_current / page_max)
+
+    for p in pages:
+        if math.ceil(p.number / page_max) == math.ceil(current_page_num / page_max):
+            class_name = "active" if p.is_current else''
+            html += "<li class=\"paginate_button %s\"><a href=\"%s\">%d</a></li>\n" % (class_name, p.url, p.number)
+    return html
