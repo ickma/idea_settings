@@ -1,6 +1,6 @@
 {% extends "base/editable_table.html" %}
 {% load form_table_tags %}
-{% pc %}
+{% load el_pagination_tags %}
 {% load wechat_material_tags %}
 {% block table_head %}
     <tr>
@@ -13,18 +13,16 @@
     </tr>
 {% endblock %}
 {% block table_datas %}
-    {% for foo in all_medias|create_show_index %}
-        {% autoescape off %}
-            <tr>
-                {{ foo|create_choose_html }}
-                <td>{{ foo.show_index }}</td>
-                <td>{{ foo.name }}</td>
-                <td>{{ foo| format_material_display}}</td>
-                <td>{{ foo.get_type_display }}</td>
-                <td>{{ foo|create_action }}</td>
-            </tr>
-        {% endautoescape %}
+    {% autoescape off %}
+        <tr>
+            {{ foo|create_choose_html }}
+            <td>{%  create_show_index forloop.revcounter %}</td>
+            <td>{{ foo.name }}</td>
+            <td>{{ foo| format_material_display }}</td>
+            <td>{{ foo.get_type_display }}</td>
+            <td>{{ foo|create_action }}</td>
+        </tr>
+    {% endautoescape %}
 
-    {% endfor %}
 
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends "base/index.html" %}
 {% load static %}
+{% load el_pagination_tags %}
 {% load time_date_tags %}
+{% load form_table_tags %}
 {% block css %}
     <link rel="stylesheet" href="{% static "admin-lte/plugins/iCheck/flat/blue.css" %}">
     <link rel="stylesheet" href="{% static "custom-js/utils/pczoom/pczomm.css" %}">
@@ -36,10 +38,11 @@
                     <div class="mailbox-controls">
                         <!-- Check all button -->
                         <a href="?action=add">
-                        <button type="button" class="btn btn-default btn-sm " data-toggle="tooltip" data-placement="top"
-                                title="新增"><i
-                                class="fa fa-plus"></i>
-                        </button>
+                            <button type="button" class="btn btn-default btn-sm " data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="新增"><i
+                                    class="fa fa-plus"></i>
+                            </button>
                         </a>
                         <button type="button" class="btn btn-default btn-sm checkbox-toggle" id="check-all"
                                 data-toggle="tooltip" data-placement="top" title="全选/反选"><i
@@ -50,8 +53,8 @@
                                 title="删除选中项"><i class="fa fa-trash-o"></i></button>
                         <!-- /.btn-group -->
 
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                           data-placement="top" title="刷新当前页"><i class="fa fa-refresh"></i></button>
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                data-placement="top" title="刷新当前页"><i class="fa fa-refresh"></i></button>
 
                         <!-- /.pull-right -->
                     </div>
@@ -69,33 +72,19 @@
                                 {% endfor %}
                             </tr>
                         {% endblock %}
-                        {% block table_datas %}
+                        {% get_pc %}
+                        {% paginate table_datas as page_table_datas %}
+                        {% for foo in page_table_datas %}
+                            <tr>
+                                {% block table_datas %}
+                                {% endblock %}
+                            </tr>
 
-                            {% for line in table_datas %}
-                                <tr>
-                                    <td>
-                                        <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false"
-                                             style="position: relative;"><label>
-                                            <input type="checkbox"
-                                                   style="position: absolute; opacity: 0;">
-                                        </label>
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; margin: 0; padding: 0; background: rgb(255, 255, 255); border: 0; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    {% autoescape off %}
-                                        {% for foo in line %}
-                                            <td class="center"> {{ foo }}</td>
-                                        {% endfor %}
-
-                                    {% endautoescape %}
-                                </tr>
-
-                            {% endfor %}
-                        {% endblock %}
+                        {% endfor %}
 
                     </table>
                 </div>
+                {% include "base/pagination.html" %}
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

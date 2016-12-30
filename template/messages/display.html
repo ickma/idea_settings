@@ -3,6 +3,7 @@
 {% load form_table_tags %}
 {% block table_head %}
     <tr>
+    <th>序号</th>
         <th>昵称</th>
         <th>头像</th>
         <th>性别</th>
@@ -15,7 +16,7 @@
 {% endblock %}
 
 {% block table_datas %}
-
+    <td>{% create_show_index  forloop.counter%}</td>
     <td>{{ foo.form_user.nickname }}</td>
     <td><img style="width: 30px;height: auto;" src="{{ foo.form_user.headimgurl }}"></td>
     <td>{{ foo.form_user.get_sex_display }}</td>

@@ -14,6 +14,5 @@ from app.models.message import Message
 def messages(request, wechatsdk, *args):
     public_instance = args[0]
     table_datas = messages = Message.objects.filter(public=public_instance)
-
+    # table_datas=Message.group_messages()
     return render(request, 'messages/display.html', locals())
-    pass

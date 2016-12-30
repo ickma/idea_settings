@@ -14,6 +14,6 @@ def format_material_display(material):
     """
     material_type = material.type
     if material_type == 'image':
-        return '<div class="hover_zoom_img"><a href="%s"><img src="%s" ></a></div>' % (
+        return '<div class="hover_zoom_img"><a href="%s"><img src="%s" style="width:30px;height:30px"></a></div>' % (
             material.file.url, material.file.url)
     return material.file.path

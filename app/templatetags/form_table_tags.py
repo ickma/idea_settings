@@ -4,6 +4,7 @@
 import math
 
 from . import register
+from django.db.models.query import QuerySet
 from django import template
 
 
@@ -28,20 +29,23 @@ def create_action(line_data):
     """.format(line_data.id)
 
 
-@register.filter(name='create_show_index')
-def create_show_index(datas):
+@register.simple_tag(name='create_show_index', takes_context=True)
+def create_show_index(context, counter):
     """
     生成用于显示的id
     将数据库中的id进行重新排序
-    :param datas:
-    :type datas:list
+    :param counter: 
+    :param context: 
     :return:
     """
-    data_length = len(datas)
-    for k, line in enumerate(datas):
-        line.show_index = data_length - k
+    table_datas = context['table_datas']
+    """:type :QuerySet"""
+    data_length = table_datas.count()
 
-    return datas
+    request = context['request']
+    page = int(request.GET.get('page', 1))
+    pc = context['pc']
+    return data_length - (((page - 1) * pc) + counter) + 1
 
 
 @register.filter(name="create_choose_html")
@@ -68,7 +72,7 @@ def get_pc(context):
         pc = request.GET.get('pc')
     else:
         pc = 10
-    context.dicts[0]['pc'] = pc
+    context.dicts[0]['pc'] = int(pc)
     return ''
 
 
@@ -107,9 +111,9 @@ def make_pagination(context):
 
 
 @register.simple_tag(name='show_page_data_index', takes_context=True)
-def show_page_data_index(context, ):
+def show_page_data_index(context):
     request = context['request']
-    page = request.GET.get('page',default=1)
+    page = request.GET.get('page', default=1)
     pc = context['pc']
     index_from = (int(page) - 1) * int(pc)
     return "%s to %s " % (index_from + 1, index_from + int(pc))

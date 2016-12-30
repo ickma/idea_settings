@@ -103,3 +103,11 @@ class Message(models.Model):
             self._msg_instance = value
         else:
             raise TypeError(u'不是合法的WechatMessage实例')
+
+    @classmethod
+    def group_messages(cls):
+        return cls.objects.raw('SELECT * FROM app_message GROUP BY form_user_id')
+
+    class Meta:
+        ordering = ['-id']
+

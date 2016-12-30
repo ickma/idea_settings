@@ -44,8 +44,6 @@ def material_manage(request, public, *args):
         form_method = 'post'
         return render(request, 'base/form.html', locals())
 
-    all_medias = MediaModel.objects.filter(public=public_instance)
+    table_datas = all_medias = MediaModel.objects.filter(public=public_instance)
 
     return render(request, 'wechat_manage/material_display.html', locals())
-
-    pass

@@ -1,0 +1,15 @@
+{% load form_table_tags %}
+{% load el_pagination_tags %}
+{% get_pc %}
+
+{% paginate pc table_datas as page_table_datas %}
+{% for foo in page_table_datas %}
+    <tr>
+        {% autoescape off %}
+            {% block table_datas %}
+            {% endblock %}
+
+        {% endautoescape %}
+    </tr>
+
+{% endfor %}
