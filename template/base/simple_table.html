@@ -1,6 +1,7 @@
 {% extends "base/index.html" %}
 {% load time_date_tags %}
 {% load el_pagination_tags %}
+{% load form_table_tags %}
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
@@ -39,26 +40,26 @@
                                 {% endfor %}
                             </tr>
                         {% endblock %}
-                        {% block table_datas %}
-                            {% for line in table_datas %}
-                                <tr>
-                                    {% autoescape off %}
-                                        {% for foo in line %}
-                                            <td class="center"> {{ foo }}</td>
-                                        {% endfor %}
 
-                                    {% endautoescape %}
-                                </tr>
+                        {% get_pc %}
+                        {% paginate pc table_datas as page_table_datas %}
+                        {% for foo in page_table_datas %}
+                            <tr>
+                                {% autoescape off %}
+                                    {% block table_datas %}
+                                    {% endblock %}
 
-                            {% endfor %}
+                                {% endautoescape %}
+                            </tr>
 
-                        {% endblock %}
+                        {% endfor %}
+
                     </table>
                 </div>
-            {% block pagination %}
-                {% include "base/pagination.html" %}
+                {% block pagination %}
+                    {% include "base/pagination.html" %}
 
-            {% endblock %}
+                {% endblock %}
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

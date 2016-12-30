@@ -104,3 +104,12 @@ def make_pagination(context):
             class_name = "active" if p.is_current else''
             html += "<li class=\"paginate_button %s\"><a href=\"%s\">%d</a></li>\n" % (class_name, p.url, p.number)
     return html
+
+
+@register.simple_tag(name='show_page_data_index', takes_context=True)
+def show_page_data_index(context, ):
+    request = context['request']
+    page = request.GET.get('page',default=1)
+    pc = context['pc']
+    index_from = (int(page) - 1) * int(pc)
+    return "%s to %s " % (index_from + 1, index_from + int(pc))

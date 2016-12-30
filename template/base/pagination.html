@@ -1,21 +1,22 @@
 {% load form_table_tags %}
 {% load el_pagination_tags %}
-{%  get_pages %}
+{% get_pages %}
 <div class="row">
     <div class="col-sm-5">
-        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries
+        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing {% show_page_data_index %}
+            of {{ table_datas.count }} entries
         </div>
     </div>
     <div class="col-sm-7">
         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
             <ul class="pagination">
-                <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                                                                        aria-controls="example2"
-                                                                                        data-dt-idx="0" tabindex="0">Previous</a>
-                </li>
-            {%  make_pagination %}
-                <li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7"
-                                                                       tabindex="0">Next</a></li>
+                <li>{{ pages.first_as_arrow }}</li>
+                <li>{{ pages.previous }}</li>
+                {% autoescape off %}
+                    {% make_pagination %}
+                {% endautoescape %}
+                <li>{{ pages.next }}</li>
+                <li>{{ pages.last_as_arrow }}</li>
             </ul>
         </div>
     </div>

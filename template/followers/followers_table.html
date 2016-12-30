@@ -16,24 +16,14 @@
 
 {% endblock %}
 {% block table_datas %}
-
-    {% for foo in datas %}
-        <tr>
-
-            <td>{{ foo.id }}</td>
-            <td>{{ foo.nickname }}</td>
-            <td><img src="{{ foo.headimgurl }}" alt="" style="height: 30px;width: auto"></td>
-            <td>{{ foo.get_subscribe_display }}</td>
-            <td>{{ foo.subscribe_time|ts_to_str }}</td>
-            <td>{{ foo.country }}</td>
-            <td>{{ foo.province }}</td>
-            <td>{{ foo.city }}</td>
-            <td>{{ foo.get_sex_display }}</td>
-            <td>{{ foo.remark }}</td>
-        </tr>
-
-
-    {% endfor %}
-
-
+    <td>{{ foo.id }}</td>
+    <td>{{ foo.nickname }}</td>
+    <td><img src="{{ foo.headimgurl }}" alt="" style="height: 30px;width: auto"></td>
+    <td>{{ foo.get_subscribe_display }}</td>
+    <td>{{ foo.subscribe_time|ts_to_str }}</td>
+    <td>{{ foo.country }}</td>
+    <td>{{ foo.province }}</td>
+    <td>{{ foo.city }}</td>
+    <td>{{ foo.get_sex_display }}</td>
+    <td>{{ foo.remark }}</td>
 {% endblock %}
