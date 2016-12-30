@@ -114,6 +114,8 @@ def make_pagination(context):
 def show_page_data_index(context):
     request = context['request']
     page = request.GET.get('page', default=1)
-    pc = context['pc']
+    pc = int(context['pc'])
+    page_table_datas = context['page_table_datas']
+    
     index_from = (int(page) - 1) * int(pc)
-    return "%s to %s " % (index_from + 1, index_from + int(pc))
+    return "%s - %s " % (index_from + 1, index_from + min(pc, len(page_table_datas)))

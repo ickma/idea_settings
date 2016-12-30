@@ -14,37 +14,33 @@
     </tr>
 {% endblock %}
 {% block table_datas %}
-    {% for foo in menus %}
-        <tr>
-        {% autoescape off %}
+    {% autoescape off %}
 
-            {{ foo|create_choose_html }}
-        {% endautoescape %}
+        {{ foo|create_choose_html }}
+    {% endautoescape %}
 
 
-        <td {% if foo.menu_level == 1 %}
-            class="text-bold" style="color: #00a7d0"
-        {% endif %}> {{ foo.menu_name }}</td>
-        <td>{{ foo.get_menu_type_display }}</td>
-        <td>{{ foo | format_menu_info }}</td>
-        <td {% if foo.menu_level == 1 %}
+    <td {% if foo.menu_level == 1 %}
+        class="text-bold" style="color: #00a7d0"
+    {% endif %}> {{ foo.menu_name }}</td>
+    <td>{{ foo.get_menu_type_display }}</td>
+    <td>{{ foo | format_menu_info }}</td>
+    <td {% if foo.menu_level == 1 %}
 
-            class="text-bold" style="color: #00a7d0"
+        class="text-bold" style="color: #00a7d0"
 
-        {% endif %}>{{ foo.id |get_menu_parent }}</td>
-        <td>{% if foo.sync_status %}
+    {% endif %}>{{ foo.id |get_menu_parent }}</td>
+    <td>{% if foo.sync_status %}
         {{ foo.created_time }}
-            {% else %}
-            未同步
-        {% endif %}
-        </td>
+    {% else %}
+        未同步
+    {% endif %}
+    </td>
 
-        {% autoescape off %}
+    {% autoescape off %}
 
-            <td>{{ foo|create_action }}</td>
-        {% endautoescape %}
+        <td>{{ foo|create_action }}</td>
+    {% endautoescape %}
 
-    {% endfor %}
-</tr>
 
 {% endblock %}

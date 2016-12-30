@@ -80,11 +80,13 @@ def display(request, wechatsdk, *args):
     action = get_params(request, name='action')
     if action == 'add':
         return menu_add(request, public_instance.id)
+    if action == 'edit':
+        return menu_edit(request, public_instance.id)
     if action == 'delete':
         menu_id = get_params(request, name='id', formatter=int)
         PublicMenuConfig.objects.get(pk=menu_id).delete()
         return render(request, 'error/success.html', locals())
-    menus = PublicMenuConfig.objects.filter(public=public_instance)
+    table_datas = menus = PublicMenuConfig.objects.filter(public=public_instance)
     return render(request, 'wechat_menus/display.html', locals())
 
 
@@ -131,17 +133,17 @@ def menu_add(request, public, *args):
 @auth_public
 def menu_edit(request, public, *args):
     """
-
+    编辑菜单
     :param request:
     :param public:
     :return:
     """
     public_instance = args[0]
     page_title = u'编辑公众号菜单'
-    menu_id = get_params(request, name='menuid', formatter=int, default=0)
+    menu_id = get_params(request, name='id', formatter=int, default=0)
     if menu_id:
         try:
-            menu_instance = PublicMenuConfig.objects.get(id=menu_id)
+            menu_instance = PublicMenuConfig.objects.get(pk=menu_id)
         except PublicMenuConfig.DoesNotExist:
             error_msg = u"当前id不存在对应的菜单"
             return render(request, 'error/error.html', locals())
