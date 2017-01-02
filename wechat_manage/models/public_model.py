@@ -50,6 +50,7 @@ class PublicAccount(models.Model):
 
 class PublicMenuConfig(models.Model):
     menu_cats = [
+        ('as_parent', u'弹出子菜单'),
         ('click', u'触发功能'),
         ('view', u'绑定网址'),
         ('scancode_push', u'自动扫码'),
@@ -144,7 +145,7 @@ class PublicMenuConfig(models.Model):
         parent_menus = cls.objects.filter(public=public, menu_level=1)
         menus = {'button': []}
 
-        def formart_menu(x):
+        def format_menu(x):
             """
 
             :param x:
@@ -162,9 +163,9 @@ class PublicMenuConfig(models.Model):
             try:
                 menu = cls.objects.filter(public=public, menu_level=2, parent_index=m.parent_index)
                 assert menu.count() > 0
-                menus['button'] += [{'name': m.menu_name, 'sub_button': [formart_menu(_m) for _m in menu]}]
+                menus['button'] += [{'name': m.menu_name, 'sub_button': [format_menu(_m) for _m in menu]}]
             except AssertionError, cls.DoesNotExist:
                 if m.key or m.url:
-                    menus['button'] += [formart_menu(m)]
+                    menus['button'] += [format_menu(m)]
 
         return menus

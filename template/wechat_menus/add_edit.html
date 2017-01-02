@@ -21,8 +21,26 @@
             var info_label = $('[name=menu_info]').parent().parent().children('label');
             var feather_label = $('[name=feathers]').parent().parent();
             var url_label = $('[name=url]').parent().parent();
-            url_label.hide();
-            $('[name=menu_cates]').change(function () {
+            {#            初始化当前菜单类型#}
+            {#            根据菜单类型，隐藏不属于当前类型的输入项#}
+            var menu_cate_init = $('[name=menu_cates]').val();
+            if (menu_cate_init == 'view') {
+                feather_label.hide();
+            }
+            else if (menu_cate_init == 'click') {
+                url_label.hide();
+            }
+            else {
+                feather_label.hide();
+                url_label.hide();
+            }
+            $('[name=menu_cates]').change(function (e) {
+                    var menu_level=$('[name=menu_level]')
+                if (menu_level.val() == 2 && $(this).val()=='as_parent') {
+                    alert('二级菜单类型不允许设置为弹出子菜单');
+                    $(this).val("click");
+                }
+
                 var current_menu_type = $(this).val()
                 switch (current_menu_type) {
                     case 'click':
@@ -38,6 +56,8 @@
 
                 }
             })
+
+
         })
     </script>
 {% endblock %}

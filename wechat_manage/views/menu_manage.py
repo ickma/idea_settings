@@ -108,6 +108,12 @@ def menu_add(request, public, *args):
     parent_id = get_params(request, name='parentid', formatter=int, default=0)
     if request.method == 'POST':
         menu_instance = PublicMenuConfig()
+        menu_id = get_params(request, method='get', name='id', formatter=int)
+        if menu_id:
+            try:
+                menu_instance = PublicMenuConfig.objects.get(pk=menu_id)
+            except menu_instance.DoesNotExist:
+                pass
         menu_instance.menu_name = get_params(request, method='post', name='menu_name')
         menu_instance.menu_level = get_params(request, method='post', name='menu_level')
         menu_instance.feather_id = get_params(request, method='post', name='feathers', formatter=int)
@@ -139,7 +145,11 @@ def menu_edit(request, public, *args):
     :return:
     """
     public_instance = args[0]
+    """:type:PublicAccount"""
+    if request.method == 'POST':
+        return menu_add(request, public_instance.id)
     page_title = u'编辑公众号菜单'
+    form_method='post'
     menu_id = get_params(request, name='id', formatter=int, default=0)
     if menu_id:
         try:
@@ -154,16 +164,14 @@ def menu_edit(request, public, *args):
         'menu_type': menu_instance.menu_type,
         'menu_name': menu_instance.menu_name,
         'menu_info': menu_instance.info,
-        'parent_menu': menu_instance.parent_index
+        'parent_menu': menu_instance.parent_index,
+        'url': menu_instance.url,
+        'key': menu_instance.key
     }
     form = MenuCreateForm(initial=menu_init)
     if menu_instance.menu_level == 1:
         _ = form.fields.pop('parent_menu')
     return render(request, 'wechat_menus/add_edit.html', locals())
-    if request.method == 'POST':
-        pass
-    all_menus = PublicMenuConfig.objects.filter(public=public_instance)
-    return render(request, 'wechat_manage/menu_display.html', locals())
 
 
 @login_required

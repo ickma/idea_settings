@@ -22,8 +22,7 @@ class BaseForm(forms.Form):
 class MenuCreateForm(BaseForm):
     # 公众号菜单创建form
 
-    menu_level_1_choice = [('', u'弹出子菜单')]
-    menu_cates_choice = PublicMenuConfig.menu_cats[:2]
+    menu_cates_choice = PublicMenuConfig.menu_cats[:3]
     menu_name = forms.CharField(max_length=10, label=u'菜单名单')
     menu_level = forms.IntegerField(
         widget=forms.Select(choices=[(1, u'1级菜单'), (2, u'2级菜单')], attrs={'readonly': 'readonly'}),
@@ -55,9 +54,12 @@ class MenuCreateForm(BaseForm):
             self.fields['parent_menu'].widget.choices = PublicMenuConfig.get_level_one_menus(public)
         if initial['menu_level'] == 1:
             self.fields['parent_menu'] = None
-            if initial['menu_type'] == 'view':
-                initial['menu_info'] = json.loads(initial['menu_info'])['url']
-            if initial['menu_type'] == 'click':
-                initial['menu_info'] = json.loads(initial['menu_info'])['key']
 
-            self.fields['menu_cates'].widget.choices += MenuCreateForm.menu_level_1_choice
+        if initial.get('url'):
+            self.fields['menu_cates'].initial = 'view'
+            self.fields['url'].initial = initial['url']
+        elif initial.get('key'):
+            self.fields['menu_cates'].initial = 'click'
+            self.fields['feathers'].initial = initial['key']
+        elif initial['menu_cates'] == 'as_parent':
+            self.fields['menu_cates'].initial = 'as_parent'
