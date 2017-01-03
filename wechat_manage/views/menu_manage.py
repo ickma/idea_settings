@@ -115,12 +115,13 @@ def menu_add(request, public, *args):
             except menu_instance.DoesNotExist:
                 pass
         menu_instance.menu_name = get_params(request, method='post', name='menu_name')
-        menu_instance.menu_level = get_params(request, method='post', name='menu_level')
         menu_instance.feather_id = get_params(request, method='post', name='feathers', formatter=int)
         menu_instance.url = get_params(request, method='post', name='url')
         menu_instance.menu_type = get_params(request, method='post', name='menu_cates')
         menu_instance.public = public_instance
-        menu_instance.parent_index = get_params(request, method='post', name='parent_menu', formatter=int)
+        if not menu_instance.id:
+            menu_instance.menu_level = get_params(request, method='post', name='menu_level')
+            menu_instance.parent_index = get_params(request, method='post', name='parent_menu', formatter=int)
         menu_info_format(menu_instance)
         menu_instance.save()
 
@@ -128,9 +129,7 @@ def menu_add(request, public, *args):
     if request.method == 'GET':
         # 判断当前的菜单是否有超过规定数量
         form_method = 'post'
-
         form = MenuCreateForm(initial={'menu_level': menu_level}, public=public_instance)
-
         return render(request, 'wechat_menus/add_edit.html', locals())
 
 
@@ -149,7 +148,7 @@ def menu_edit(request, public, *args):
     if request.method == 'POST':
         return menu_add(request, public_instance.id)
     page_title = u'编辑公众号菜单'
-    form_method='post'
+    form_method = 'post'
     menu_id = get_params(request, name='id', formatter=int, default=0)
     if menu_id:
         try:
@@ -168,7 +167,7 @@ def menu_edit(request, public, *args):
         'url': menu_instance.url,
         'key': menu_instance.key
     }
-    form = MenuCreateForm(initial=menu_init)
+    form = MenuCreateForm(initial=menu_init, action='edit')
     if menu_instance.menu_level == 1:
         _ = form.fields.pop('parent_menu')
     return render(request, 'wechat_menus/add_edit.html', locals())

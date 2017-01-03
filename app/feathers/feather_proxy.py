@@ -4,6 +4,7 @@
 from . import BaseFeather
 from present_manage import Present
 from present_manage import Test
+from funny import Funny
 
 
 class FeatherProxy(object):
@@ -67,3 +68,4 @@ FeatherProxy.register('Present', Present)
 """注册Test功能"""
 FeatherProxy.register('Test', Test)
 """注册其它Feather"""
+FeatherProxy.register('Funny', Funny)

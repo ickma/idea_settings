@@ -11,9 +11,19 @@
                 var level = $(this).val();
                 if (level == "1") {
                     parent_index_label.hide();
+                    parent_index_label.find('select').attr('required', false);
+                    return false;
                 }
                 else {
+                    if (parent_index_label.find('option').length == 0) {
+                        alert('没有可供使用的一级菜单');
+                        parent_index_label.find('select').val('')
+                        $(this).val("1")
+                        return false;
+
+                    }
                     parent_index_label.show();
+                    parent_index_label.find('select').attr('required', true);
                 }
 
             })
@@ -35,8 +45,8 @@
                 url_label.hide();
             }
             $('[name=menu_cates]').change(function (e) {
-                    var menu_level=$('[name=menu_level]')
-                if (menu_level.val() == 2 && $(this).val()=='as_parent') {
+                var menu_level = $('[name=menu_level]')
+                if (menu_level.val() == 2 && $(this).val() == 'as_parent') {
                     alert('二级菜单类型不允许设置为弹出子菜单');
                     $(this).val("click");
                 }

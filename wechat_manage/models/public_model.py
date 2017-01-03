@@ -50,9 +50,9 @@ class PublicAccount(models.Model):
 
 class PublicMenuConfig(models.Model):
     menu_cats = [
-        ('as_parent', u'弹出子菜单'),
         ('click', u'触发功能'),
         ('view', u'绑定网址'),
+        ('as_parent', u'弹出子菜单'),
         ('scancode_push', u'自动扫码'),
         ('scancode_waitmsg', u'扫码事件'),
         ('pic_sysphoto', u'自动拍照发图'),
@@ -97,6 +97,9 @@ class PublicMenuConfig(models.Model):
                     self.feather = FeatureModel.objects.get(feather_class=self.key)
                 except FeatureModel.DoesNotExist:
                     pass
+        if not self.parent_index:
+            self.parent_index = PublicMenuConfig.objects.filter(public=self.public, menu_level=1).count()
+
         super(PublicMenuConfig, self).save(force_insert, force_update, using, update_fields)
 
     def delete(self, using=None, keep_parents=False):
@@ -116,23 +119,26 @@ class PublicMenuConfig(models.Model):
         检查当前菜单是否符合要求
         :return:
         """
-        if self.menu_level == 1:
+        if self.menu_level == 1 and not self.id:
             if PublicMenuConfig.objects.filter(public=self.public, menu_level=1).count() >= 3:
                 raise Exception(u'创建的一级菜单已经达到3个，请先进行删除操作')
         else:
 
-            if PublicMenuConfig.objects.filter(public=self.public, parent_index=self.parent_index,
-                                               menu_level=2).count() >= 5:
+            if not self.id and PublicMenuConfig.objects.filter(public=self.public, parent_index=self.parent_index,
+                                                               menu_level=2).count() >= 5:
                 raise Exception(u'当前一级菜单下创建的菜单已经达到5个，请先进行删除操作')
         return True
 
     @classmethod
-    def get_level_one_menus(cls, public):
+    def get_level_one_menus(cls, public, only_as_parent=False):
         """
+        :param only_as_parent:
         :param public:
         :return:
         """
-
+        if only_as_parent:
+            return [(x.parent_index, x.menu_name) for x in
+                    cls.objects.filter(public=public, menu_level=1, menu_type='as_parent')]
         return [(x.parent_index, x.menu_name) for x in cls.objects.filter(public=public, menu_level=1)]
 
     @classmethod
