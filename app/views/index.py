@@ -1,5 +1,5 @@
 # coding:utf8
-# @author:nick
+#  @author:nick
 # @company:joyme
 from django.shortcuts import render
 from wechat_sdk.messages import WechatMessage
@@ -72,9 +72,19 @@ def reply(request, public, *args):
     # 从实例获取解析后的xml
     msg = public.get_message()
     """:type msg:WechatMessage"""
-    user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)
+    try:
+        user_instance = PublicFollowers.objects.get(public=public_instance, openid=msg.source)
+    except PublicFollowers.DoesNotExist:
+        user_instance = public.get_user_info(user_id=msg.source)
+        """:type:dict"""
+        # todo 实例化当前用户,待测试
+        _user_instance = PublicFollowers(public=public_instance)
+        for k, v in user_instance.items():
+            setattr(_user_instance, k, v)
+        _user_instance.save()
     """实例化message"""
     message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
+
     message_instance.msg_instance = msg
     # 保存当前请求
     message_instance.save()

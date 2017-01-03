@@ -90,6 +90,7 @@ class Message(models.Model):
             self.latitude = msg_instance.latitude
             self.longitude = msg_instance.longitude
             self.precision = msg_instance.precision
+
         # todo  检查当前msgid  是否存在重复
         super(Message, self).save(force_insert, force_update, using, update_fields)
 
@@ -110,4 +111,3 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['-id']
-
