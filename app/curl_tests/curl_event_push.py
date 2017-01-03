@@ -25,7 +25,7 @@ class EventPush(object):
     """
 
     def __init__(self):
-        self.xml = self.xml_raw.format(event_type="CLICK", event_key='Test', timestamp=timestamp, token=public_token,
+        self.xml = self.xml_raw.format(event_type="CLICK", event_key='Funny', timestamp=timestamp, token=public_token,
                                        openid=user_openid)
         super(EventPush, self).__init__()
 
