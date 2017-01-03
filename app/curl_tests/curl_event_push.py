@@ -48,7 +48,7 @@ class EventPushProxy(object):
         pass
 
     def push(self):
-        testing_url = 'http://127.0.0.1:8001/public/1'
+        testing_url = 'http://127.0.0.1:8000/public/1'
         os.system('curl -d "%s" %s' % (self._class.get_xml(), testing_url))
 
 

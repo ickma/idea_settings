@@ -20,7 +20,7 @@ def menu_info_format(menu_instance):
     if menu_instance.menu_type == 'click':
         menu_instance.feather.key = menu_instance.feather.feather_class
 
-    if not isinstance(menu_instance.parent_index, int) and menu_instance.menu_level == 2:
+    if not isinstance(menu_instance.parent_index, (int, long)) and menu_instance.menu_level == 2:
         menu_instance.parent_index = PublicMenuConfig.objects.get(public=menu_instance.public,
                                                                   menu_name=menu_instance.parent_index,
                                                                   menu_level=1).parent_index

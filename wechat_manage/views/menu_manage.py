@@ -37,8 +37,10 @@ def sync_menus(request, wechatsdk, *args):
     for n, m in enumerate(menu_settings):
         #  格式化1级菜单
         menus += [dict(m.items() + [('parent_index', n), ('menu_level', 1)])]
+
         #  格式化2级菜单
         if m['sub_button']:
+            menus[-1]['type'] = 'as_parent'
             # menus += [x.update({'parent_index': n, 'menu_level': 2}) for x in m['sub_button']]
             menus += [dict(x.items() + [('parent_index', n), ('menu_level', 2)]) for x in
                       m['sub_button']]  # type:list[dict]
@@ -167,7 +169,7 @@ def menu_edit(request, public, *args):
         'url': menu_instance.url,
         'key': menu_instance.key
     }
-    form = MenuCreateForm(initial=menu_init, action='edit')
+    form = MenuCreateForm(initial=menu_init, action='edit',public=public_instance)
     if menu_instance.menu_level == 1:
         _ = form.fields.pop('parent_menu')
     return render(request, 'wechat_menus/add_edit.html', locals())
