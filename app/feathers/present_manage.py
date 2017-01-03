@@ -17,7 +17,6 @@ class Test(BaseFeather):
 
     def get_response(self):
         """
-
         :return:
         """
         self.response_type = 'text'

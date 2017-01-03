@@ -1,6 +1,6 @@
 {% extends "base/editable_table.html" %}
 {% load static %}
-{%  load form_table_tags %}
+{% load form_table_tags %}
 {% block table_head %}
     <tr>
         <th>选择</th>
@@ -13,21 +13,18 @@
 {% endblock %}
 {% block table_datas %}
 
-    {% for foo in all_replies|create_show_index %}
-        <tr>
-            <td data-delete-id="{{ foo.id }}"><input type="checkbox" title=""></td>
-            <td>{{ foo.show_index}}</td>
-            <td>{{foo.get_content_type_display}}</td>
-            <td>{{  foo.content}}</td>
-            <td>{{ foo.keywords}}</td>
-            {% autoescape off %}
+    <td data-delete-id="{{ foo.id }}"><input type="checkbox" title=""></td>
+    <td>{% create_show_index forloop.counter %}</td>
+    <td>{{ foo.get_content_type_display }}</td>
+    <td>{{ foo.content }}</td>
+    <td>{{ foo.keywords }}</td>
+    {% autoescape off %}
 
-                <td>{{ foo|create_action }}</td>
-            {% endautoescape %}
+        <td>{{ foo|create_action }}</td>
+    {% endautoescape %}
 
-        </tr>
 
-    {% endfor %}
+
 
 {% endblock %}
 {% block custom_js %}

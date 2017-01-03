@@ -97,6 +97,6 @@ def keywords_reply(request, public, *args):
         form = KeyWorldReplyForm(initial=initial)
         return render(request, "wechat_manage/reply_base.html", locals())
 
-    all_replies = ReplyConfigModel.objects.filter(reply_type=3, public=public_instance)
+    all_replies = table_datas = ReplyConfigModel.objects.filter(reply_type=3, public=public_instance)
 
     return render(request, "wechat_manage/reply_keyword.html", locals())

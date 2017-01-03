@@ -12,6 +12,7 @@ from app.models.message import Message, MsgResponse
 from wechat_manage.models.followers_model import PublicFollowers
 from app.messages.reply import Reply
 
+
 @login_required
 @catch_error
 def index(request):
@@ -20,8 +21,8 @@ def index(request):
     :param request:
     :return:
     """
-    public_index = [('id', 'id'), ('public_name', u'名称'), ('public_type', u'公众号类别') \
-        , ('create_time', u'创建时间'), ('token', 'toekn'), ('api_url', u'接口地址'), ('public_manage', u'进入公众号')]
+    public_index = [('id', 'id'), ('public_name', u'名称'), ('public_type', u'公众号类别'), \
+                    ('create_time', u'创建时间'), ('token', 'toekn'), ('api_url', u'接口地址'), ('public_manage', u'进入公众号')]
     page_title = u'微信管理:后台首页'
     table_title = u'选择公众号'
     # 获取公众号信息
@@ -35,7 +36,7 @@ def index(request):
         line = [getattr(public, key[0]) for key in public_index]
 
         table_datas += [line]
-    return render(request, 'base/simple_table.html', locals())
+    return render(request, 'index/index_page.html', locals())
 
 
 @csrf_exempt
