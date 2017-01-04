@@ -85,7 +85,7 @@ FEATHER_MANAGE_CONFIG = {
     'children': [
         {
             'name': u'礼包管理',
-            'path': '{0}'
+            'path': '/app/{0}/present/index'
         }
     ]
 }

@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'app',  # app
     'wechat_manage',
     'permissions',
-    'django_static'
+    'django_static',
+    # 'django_q'
+    'bootstrap3_datetime'
 ]
 
 MIDDLEWARE = [
@@ -175,3 +177,19 @@ if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
     DATABASES['default']['HOST'] = '127.0.0.1'
     DEBUG = False
+
+# Q_CLUSTER = {
+#     'name': 'django_wx_joyme',
+#     'workers': 8,
+#     'recycle': 500,
+#     'timeout': 60,
+#     'compress': True,
+#     'cpu_affinity': 1,
+#     'save_limit': 250,
+#     'queue_limit': 500,
+#     'label': 'Django Q',
+#     'redis': {
+#         'host': '172.16.78.73',
+#         'port': 6379,
+#         'db': 0, }
+# }

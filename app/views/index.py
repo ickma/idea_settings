@@ -27,7 +27,6 @@ def index(request):
     table_title = u'选择公众号'
     # 获取公众号信息
     publics = PublicAccount.objects.all()
-
     table_heads = [x[1] for x in public_index]
     table_datas = []
     for public in publics:
