@@ -1,0 +1,18 @@
+.hover_zoom_img{
+    display: block;
+    /*position: relative;*/
+    z-index: 999;
+    width: 100px;
+    height: 50px;
+}
+.hover_zoom_img img{
+    width: auto;
+    height: 50px;
+}
+.hover_zoom_img img.zoom{
+    width: 50%;
+    height: auto;
+    display: block;
+    position: absolute;
+    overflow: visible;
+}

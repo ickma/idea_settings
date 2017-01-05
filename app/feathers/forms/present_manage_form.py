@@ -3,10 +3,10 @@
 # @company:joyme
 
 from django.forms.models import ModelForm
-from django.forms.utils import ErrorList
 
 from app.models.feather_models import PresentSendActivity
 from  bootstrap3_datetime.widgets import DateTimePicker
+from django import forms
 
 
 class PresentForm(ModelForm):
@@ -14,12 +14,18 @@ class PresentForm(ModelForm):
         model = PresentSendActivity
         exclude = ['create_user', 'public']
         widgets = {
-            'start_date': DateTimePicker(options={"format": "YYYY-MM-DD HH:mm:SS", 'pickTime': False,'language':'zh-CN'})
+            'start_date': DateTimePicker(
+                options={"format": "YYYY-MM-DD HH:mm:SS", 'pickTime': True, 'language': 'zh-CN'}),
+            'end_date': DateTimePicker(
+                options={"format": "YYYY-MM-DD HH:mm:SS", 'pickTime': True, 'language': 'zh-CN'}),
+            'duplicate_prompt': forms.Textarea(attrs={'rows': 5}),
+            'exceed_prompt': forms.Textarea(attrs={'rows': 5}),
+            'end_prompt': forms.Textarea(attrs={'rows': 5}),
+            'name': forms.TextInput(attrs={'style': 'width:100%'})
+
         }
 
-    def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None, initial=None, error_class=ErrorList,
-                 label_suffix=None, empty_permitted=False, instance=None, use_required_attribute=None):
-        super(PresentForm, self).__init__(data, files, auto_id, prefix, initial, error_class, label_suffix,
-                                          empty_permitted, instance, use_required_attribute)
-        for _, v in self.fields.items():
-            v.widget.attrs['style'] = 'width:30%'
+
+class PresentCodeImportForm(forms.Form):
+    """激活码上传"""
+    codes = forms.FileField(label='上传文件', help_text=u'txt格式,每个激活码独占1行')

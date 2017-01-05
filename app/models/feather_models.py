@@ -40,6 +40,7 @@ class PresentSendActivity(models.Model):
     start_date = models.DateTimeField(verbose_name=u'开始时间')
     end_date = models.DateTimeField(verbose_name=u'结束时间', null=True)
     create_user = models.ForeignKey(User, verbose_name=u'创建人')
+    create_time = models.DateTimeField(auto_now_add=True)
     # total_per_day = models.IntegerField(verbose_name=u'每天最多发放量', null=True)
     # total_per_day_per_follower = models.IntegerField(verbose_name=u'每人每天最多发放量', default=1)
     # total_per_follower = models.IntegerField(verbose_name=u'每个用户累计最多领取量', default=1)
@@ -73,5 +74,3 @@ class Present(models.Model):
 
     def __unicode__(self):
         print '%s | %s' % (self.receiver_follower, self.received_time)
-
-

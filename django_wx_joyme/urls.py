@@ -38,6 +38,6 @@ urlpatterns = [
                   url(r'^user/profile$', user_profile, name=u'用户资料'),
                   #     set logout url
                   url(r'^signout', logout_then_login, name='signout'),
-                  url(r'^wechat/(?P<publicid>\d+)', include(wechat_manage_urls)),
-                  url(r'^app/(?P<publicid>\d+)', include(feather_url))
+                  url(r'^wechat/(?P<publicid>\d+)/', include(wechat_manage_urls)),
+                  url(r'^app/(?P<publicid>\d+)/', include(feather_url))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

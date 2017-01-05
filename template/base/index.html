@@ -25,6 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="{% static "admin-lte/dist/css/skins/skin-blue-light.min.css" %}">
+    <link rel="stylesheet" href="{% static "bootstrap3_datetime/css/bootstrap-datetimepicker.min.css" %}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +36,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     {% block css %}
 
     {% endblock %}
+<!-- jQuery 2.2.3 -->
+<script src="{% static "admin-lte/plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{% static "admin-lte/bootstrap/js/bootstrap.min.js" %}"></script>
+<script src="{% static "bootstrap3_datetime/js/moment.min.js" %}"></script>
+<script src="{% static "bootstrap3_datetime/js/bootstrap-datetimepicker.min.js" %}"></script>
+<script src="{% static "bootstrap3_datetime/js/locales/bootstrap-datetimepicker.zh-CN.js" %}"></script>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -292,10 +301,7 @@ desired effect
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.2.3 -->
-<script src="{% static "admin-lte/plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{% static "admin-lte/bootstrap/js/bootstrap.min.js" %}"></script>
+
 <!-- AdminLTE App -->
 <script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
 <script>
