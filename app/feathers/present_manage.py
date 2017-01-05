@@ -24,7 +24,7 @@ class Present(BaseFeather):
         except PresentSendActivity.DoesNotExist:
             return u'当前暂时没有获得'
         from django.utils import timezone
-        datetime_now=timezone.now()
+        datetime_now = timezone.now()
         start_time = activity.start_date
         end_time = activity.end_date
         if datetime_now < start_time:
@@ -41,6 +41,7 @@ class Present(BaseFeather):
             code_instance = last_codes[0]
             code_instance.received_time = datetime_now
             code_instance.receiver_follower = self.follower_instance
+            code_instance.status = True
             code_instance.save()
             return code_instance.exchange_code
 
