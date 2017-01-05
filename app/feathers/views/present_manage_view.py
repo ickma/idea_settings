@@ -83,7 +83,8 @@ def present_code_import(request, activity_id):
 
         if form.is_valid():
             # todo 读取上传文件
-            code_lines = form.codes.read()
-            return render()
+            _file = form.cleaned_data['codes'].file.read().split('\n')
+            return render(request, 'error/success.html', locals())
+
     form_method = 'post'
     return render(request, 'base/form.html', locals())

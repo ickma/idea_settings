@@ -3,6 +3,7 @@
 {% load el_pagination_tags %}
 {% load time_date_tags %}
 {% load form_table_tags %}
+{% load url_tags %}
 {% block css %}
     <link rel="stylesheet" href="{% static "admin-lte/plugins/iCheck/flat/blue.css" %}">
     <link rel="stylesheet" href="{% static "custom-js/utils/pczoom/pczomm.css" %}">
@@ -37,7 +38,7 @@
                     </div>
                     <div class="mailbox-controls">
                         <!-- Check all button -->
-                        <a href="?action=add">
+                        <a href="{{ request.get_full_path |url_add }}">
                             <button type="button" class="btn btn-default btn-sm " data-toggle="tooltip"
                                     data-placement="top"
                                     title="新增"><i
@@ -61,7 +62,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover table-striped" >
+                    <table class="table table-hover table-striped">
                         {#              table head#}
                         {% block table_head %}
 
