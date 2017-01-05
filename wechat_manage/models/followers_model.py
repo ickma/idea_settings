@@ -28,3 +28,6 @@ class PublicFollowers(models.Model):
     def get_areas_display(self):
         """输出用户所在地"""
         return '%s|%s|%s' % (self.country, self.province, self.city)
+
+    def __unicode__(self):
+        return self.nickname

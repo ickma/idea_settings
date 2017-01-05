@@ -82,7 +82,7 @@ def present_code_index(request, publicid):
         return present_code_import(request, activity_id)
     present_codes = Present.objects.filter(activity__id=activity_id)
 
-    table_heads = [u'序号', u'活动名称', u'激活码创建时间', u'创建人', u'激活码信息', u'领取状态', u'领取时间', u'领取人']
+    table_heads = [u'序号', u'活动名称', u'激活码创建时间', u'创建人', u'激活码信息', u'领取状态', u'领取人', u'领取时间']
     table_datas = present_codes
     return render(request, "feathers/presents/present_codes_index.html", locals())
 
