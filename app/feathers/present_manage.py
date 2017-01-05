@@ -2,8 +2,8 @@
 # @author:nick
 # @company:joyme
 from . import BaseFeather
-from . import WechatBasic
-from django.shortcuts import render
+from app.models.feather_models import PresentSendActivity
+from app.models.feather_models import Present as PresentModel
 
 
 class Present(BaseFeather):
@@ -17,42 +17,32 @@ class Present(BaseFeather):
     """能查询剩余多少未发，可以追加"""
     """只能通过菜单栏、关键字领取"""
 
-
-    @staticmethod
-    def manage(request):
-        """
-        活动管理方法
-        :param request:
-        :return:
-        """
-        return render(request, 'feathers/presents/presents_admin_index.html', locals())
-
-    def view_presents(self):
-        """
-        查看已上传的礼包方法
-        :return:
-        """
-        return self
-        pass
-
-    def presents_receive(self):
-        """
-        查看用户已领取的礼包
-        :return:
-        """
-        return self
-        pass
-
-    def upload_presents(self):
-        """
-        上传礼包的view 方法
-        :return:
-        """
-        return self
-        pass
-
     def get_response(self):
-        pass
+        self.response_type = 'text'
+        try:
+            activity = PresentSendActivity.objects.get(status=True, public=self.public_instance)
+        except PresentSendActivity.DoesNotExist:
+            return u'当前暂时没有获得'
+        from django.utils import timezone
+        datetime_now=timezone.now()
+        start_time = activity.start_date
+        end_time = activity.end_date
+        if datetime_now < start_time:
+            return activity.not_start_prompt
+        if datetime_now > end_time:
+            return activity.end_prompt
+
+        if PresentModel.objects.filter(activity=activity, receiver_follower=self.follower_instance):
+            # 判断当前用户是否已领取
+            return activity.duplicate_prompt
+
+        last_codes = PresentModel.objects.filter(activity=activity, status=False)
+        if last_codes:
+            code_instance = last_codes[0]
+            code_instance.received_time = datetime_now
+            code_instance.receiver_follower = self.follower_instance
+            code_instance.save()
+            return code_instance.exchange_code
 
 
 class Test(BaseFeather):

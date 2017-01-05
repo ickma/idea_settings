@@ -24,8 +24,9 @@ def index(request, wechat_sdk, *args):
     public_instance = args[0]
     """:type:PublicAccount"""
     action = get_params(request, name='action')
-    if action == 'add':
+    if action:
         return add_edit(request, public_instance.id)
+
     activities = table_datas = PresentSendActivity.objects.filter(public=public_instance)
     table_heads = [u'序号', u'名称', u'创建时间', u'开始时间', u'结束时间', u'当前状态', u'激活码管理', u'操作']
     return render(request, 'feathers/presents/presents_admin_index.html', locals())
@@ -37,12 +38,17 @@ def index(request, wechat_sdk, *args):
 def add_edit(request, wechat_sdk, *args):
     """
     编辑或新增活动
+    :param activity_id:
     :param wechat_sdk:
     :param request:
     :return:
     """
     public_instance = args[0]
     form = PresentForm()
+    activity_id = get_params(request, name='id', formatter=int)
+    if activity_id:
+        activity_instance = PresentSendActivity.objects.get(pk=activity_id)
+        form = PresentForm(instance=activity_instance)
     form_method = 'post'
     if request.method == 'POST':
         from datetime import datetime
@@ -52,11 +58,16 @@ def add_edit(request, wechat_sdk, *args):
 
         request.POST.update({'create_user': request.user, 'public': public_instance})
         activity = PresentForm(request.POST)
-        _activity = activity.save(commit=False)
-        _activity.public = public_instance
-        _activity.create_user = request.user
-        _activity.save()
-        activity.save_m2m()
+        if activity_id:
+            activity = PresentForm(request.POST, instance=activity_instance)
+        if activity.is_valid():
+            _activity = activity.save(commit=False)
+            _activity.public = public_instance
+            _activity.create_user = request.user
+            _activity.save()
+            activity.save_m2m()
+        else:
+            raise Exception(activity.errors)
         return render(request, 'error/success.html', locals())
 
     return render(request, 'base/form.html', locals())
@@ -69,22 +80,35 @@ def present_code_index(request, publicid):
     action = get_params(request, name='action')
     if action == 'add':
         return present_code_import(request, activity_id)
-    present_codes = Present.objects.filter(pk=activity_id)
+    present_codes = Present.objects.filter(activity__id=activity_id)
 
-    table_heads = [u'序号', u'活动名称', u'激活码id', u'激活码信息', u'创建时间', u'领取时间', u'领取人`']
+    table_heads = [u'序号', u'活动名称', u'激活码创建时间', u'创建人', u'激活码信息', u'领取状态', u'领取时间', u'领取人']
     table_datas = present_codes
     return render(request, "feathers/presents/present_codes_index.html", locals())
 
 
 def present_code_import(request, activity_id):
+    """
+    上传激活码方法
+    :param request:
+    :param activity_id:
+    :return:
+    """
     form = PresentCodeImportForm()
     if request.method == 'POST':
         form = PresentCodeImportForm(files=request.FILES)
-
+        activity = PresentSendActivity.objects.get(pk=activity_id)
         if form.is_valid():
             # todo 读取上传文件
-            _file = form.cleaned_data['codes'].file.read().split('\n')
+            # 获取上传文件
+            codes = form.cleaned_data['codes'].file.read().split('\n')
+            for code in codes:
+                if code:
+                    code = Present(activity=activity, exchange_code=code, created_user=request.user)
+                    code.save()
+            success_msg = u'上传成功'
             return render(request, 'error/success.html', locals())
 
     form_method = 'post'
+
     return render(request, 'base/form.html', locals())

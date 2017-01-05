@@ -15,12 +15,13 @@ class PresentForm(ModelForm):
         exclude = ['create_user', 'public']
         widgets = {
             'start_date': DateTimePicker(
-                options={"format": "YYYY-MM-DD HH:mm:SS", 'pickTime': True, 'language': 'zh-CN'}),
+                options={"format": "YYYY-MM-DD HH:mm:ss", 'pickTime': True, 'language': 'zh-CN'}),
             'end_date': DateTimePicker(
-                options={"format": "YYYY-MM-DD HH:mm:SS", 'pickTime': True, 'language': 'zh-CN'}),
+                options={"format": "YYYY-MM-DD HH:mm:ss", 'pickTime': True, 'language': 'zh-CN'}),
             'duplicate_prompt': forms.Textarea(attrs={'rows': 5}),
             'exceed_prompt': forms.Textarea(attrs={'rows': 5}),
             'end_prompt': forms.Textarea(attrs={'rows': 5}),
+            'not_start_prompt': forms.Textarea(attrs={'rows': 5}),
             'name': forms.TextInput(attrs={'style': 'width:100%'})
 
         }

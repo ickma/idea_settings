@@ -2,10 +2,11 @@
 {% load form_table_tags %}
 {% block table_datas %}
 {% autoescape off %}
+    {{ foo | create_choose_html }}
     <td>{% create_show_index forloop.counter %}</td>
-    <td>{{  foo.activity.name }}</td>
+    <td>{{  foo.activity }}</td>
     <td>{{ foo.created_time }}</td>
-    <td>{{ foo.create_user }}</td>
+    <td>{{ foo.created_user }}</td>
     <td>{{ foo.exchange_code }}</td>
     <td>
 {% if foo.status%}
@@ -14,8 +15,12 @@
     未领取
 	{% endif %}
 	</td>
-    <td>{{ foo.receiver_follower }}</td>
-    <td>{{ foo.received_time }}</td>
+    <td>{% if  foo.receiver_follower%}
+    {{ foo.receiver_follower }}
+    {% endif %}</td>
+    <td>{% if foo.received_time %}
+        foo.received_time
+    {% endif %}</td>
 
 {% endautoescape %}
 
