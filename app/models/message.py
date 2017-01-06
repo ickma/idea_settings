@@ -112,7 +112,7 @@ class Message(models.Model):
         if self.content:
             return self.content
         elif self.picurl:
-            return '<a href="{0}"><img scr="{0}" style="height:30px;width:auto"></a>'.format(self.picurl)
+            return '<a href="{0}"><img src="{0}" style="height:30px;width:auto"></a>'.format(self.picurl)
 
     class Meta:
         ordering = ['-id']
