@@ -8,7 +8,8 @@
         <th>头像</th>
         <th>性别</th>
         <th>所在地区</th>
-        <th>content</th>
+        <th>内容</th>
+        <th>内容类型</th>
         <th>时间</th>
         <th>回复</th>
 
@@ -22,6 +23,7 @@
     <td>{{ foo.form_user.get_sex_display }}</td>
     <td>{{ foo.form_user.get_areas_display }}</td>
     <td>{{ foo.display }} </td>
+    <td>{{ foo.get_ctype_display }}</td>
     <td>{{ foo.created_at }}</td>
     <td>{{ foo.response.content }}</td>
     <td></td>
