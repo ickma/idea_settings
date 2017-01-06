@@ -70,7 +70,7 @@ class Present(models.Model):
     received_time = models.DateTimeField(verbose_name=u'领取时间',null=True)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
         verbose_name = '礼包领取记录'
 
     def __unicode__(self):

@@ -1,5 +1,6 @@
 {% extends "base/simple_table.html" %}
 {% load time_date_tags %}
+{% load form_table_tags %}
 {% block  table_head %}
     <tr>
         <th>id</th>
@@ -16,7 +17,7 @@
 
 {% endblock %}
 {% block table_datas %}
-    <td>{{ foo.id }}</td>
+    <td>{% create_show_index forloop.counter %}</td>
     <td>{{ foo.nickname }}</td>
     <td><img src="{{ foo.headimgurl }}" alt="" style="height: 30px;width: auto"></td>
     <td>{{ foo.get_subscribe_display }}</td>

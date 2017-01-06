@@ -100,6 +100,6 @@ def get_user_headimage(context):
         head_image = context['request'].user.headimgae
 
     except (NameError, AttributeError):
-        return PublicFollowers.objects.get(id=1).headimgurl
+        return "/upload/default_head_image.png"
 
     return head_image

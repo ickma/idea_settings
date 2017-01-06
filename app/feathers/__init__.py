@@ -12,13 +12,14 @@ from wechat_manage.models.followers_model import PublicFollowers
 class BaseFeather(object):
     """:type message_instance:WechatMessage"""
 
-    def __init__(self, message_instance, wechatsdk, public_instance):
+    def __init__(self, message_instance, wechatsdk, public_instance, follower_instance):
         """
         :type message_instance:WechatMessage|EventMessage
         :type wechatsdk:WechatBasic
         :param message_instance:
         :param wechatsdk:
         """
+        self.follower_instance = follower_instance
         self.public_instance = public_instance
         self.response_content = None
         self.response_type = None
@@ -31,17 +32,6 @@ class BaseFeather(object):
             self.message_instance = wechatsdk.get_message()
             """:type message_instance:EventMessage"""
         # 绑定粉丝的model实例
-        try:
-            follower_instance = PublicFollowers.objects.get(public=public_instance, openid=message_instance.source)
-        # 如果当前粉丝不在已获取的粉丝列表中，重新获取
-        except PublicFollowers.DoesNotExist:
-            #  如果当前用户不存在，则获取当前用户
-            follower_info = wechatsdk.get_user_info(message_instance.target)
-            follower_instance = PublicFollowers()
-            for k, v in follower_info:
-                setattr(follower_instance, k, v)
-            follower_instance.save()
-        self.follower_instance = follower_instance
         self.wechatsdk = wechatsdk
 
     @property

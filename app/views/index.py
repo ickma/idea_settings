@@ -2,13 +2,12 @@
 #  @author:nick
 # @company:joyme
 from django.shortcuts import render
-from wechat_sdk.messages import WechatMessage
 from wechat_manage.models.public_model import PublicAccount
 from wechat_sdk import WechatBasic
 from . import login_required, catch_error, auth_public, get_params
-from . import HttpRequest, HttpResponse
+from . import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from app.models.message import Message, MsgResponse
+from app.models.message import Message
 from wechat_manage.models.followers_model import PublicFollowers
 from app.messages.reply import Reply
 
@@ -21,7 +20,7 @@ def index(request):
     :param request:
     :return:
     """
-    public_index = [('id', 'id'), ('public_name', u'名称'), ('public_type', u'公众号类别'), \
+    public_index = [('id', 'id'), ('public_name', u'名称'), ('public_type', u'公众号类别'),
                     ('create_time', u'创建时间'), ('token', 'toekn'), ('api_url', u'接口地址'), ('public_manage', u'进入公众号')]
     page_title = u'微信管理:后台首页'
     table_title = u'选择公众号'
@@ -76,11 +75,11 @@ def reply(request, public, *args):
     except PublicFollowers.DoesNotExist:
         user_instance = public.get_user_info(user_id=msg.source)
         """:type:dict"""
-        # todo 实例化当前用户,待测试
         _user_instance = PublicFollowers(public=public_instance)
         for k, v in user_instance.items():
             setattr(_user_instance, k, v)
         _user_instance.save()
+        user_instance = _user_instance
     """实例化message"""
     message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
 
@@ -89,7 +88,7 @@ def reply(request, public, *args):
     message_instance.save()
     # 回复逻辑
     reply_instance = Reply(message_instance=message_instance, wechatsdk_instance=public,
-                           public_instance=public_instance)
+                           public_instance=public_instance, follower_instance=user_instance)
     response = reply_instance.reply()
     """保存回复的response 实例"""
     message_instance.response = reply_instance.messages_response_instance

@@ -99,11 +99,9 @@ def present_code_import(request, activity_id):
         form = PresentCodeImportForm(files=request.FILES)
         activity = PresentSendActivity.objects.get(pk=activity_id)
         if form.is_valid():
-            # todo 读取上传文件
             # 获取上传文件
 
-            # codes = form.cleaned_data['codes'].file.read().split('\n')
-            codes=form.cleaned_data['codes']
+            codes = form.cleaned_data['codes']
             for code in codes:
                 if code:
                     code = Present(activity=activity, exchange_code=code, created_user=request.user)

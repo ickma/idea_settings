@@ -19,10 +19,12 @@ class Present(BaseFeather):
 
     def get_response(self):
         self.response_type = 'text'
+        # 判断当前是否有开启状态的活动
         try:
             activity = PresentSendActivity.objects.get(status=True, public=self.public_instance)
         except PresentSendActivity.DoesNotExist:
             return u'当前暂时没有获得'
+
         from django.utils import timezone
         datetime_now = timezone.now()
         start_time = activity.start_date
@@ -44,6 +46,8 @@ class Present(BaseFeather):
             code_instance.status = True
             code_instance.save()
             return code_instance.exchange_code
+        else:
+            return activity.exceed_prompt
 
 
 class Test(BaseFeather):

@@ -10,6 +10,7 @@ from app.feathers import BaseFeather
 from app.models.message import Message, MsgResponse
 from wechat_manage.models.public_model import PublicAccount
 from wechat_manage.models.reply_model import ReplyConfigModel
+from wechat_manage.models.followers_model import PublicFollowers
 
 
 class Reply(object):
@@ -24,8 +25,9 @@ class Reply(object):
     feather = None
     """:type feather:"""
 
-    def __init__(self, message_instance, public_instance, wechatsdk_instance):
+    def __init__(self, message_instance, public_instance, wechatsdk_instance, follower_instance):
         """
+        :type follower_instance: PublicFollowers
         :type wechatsdk_instance: WechatBasic
         :type message_instance:Message
         :type public_instance:PublicAccount
@@ -33,6 +35,7 @@ class Reply(object):
         :param public_instance:
         """
         # 实例化新的response类
+        self.follower_instance = follower_instance
         self.messages_response_instance = MsgResponse()
         if isinstance(wechatsdk_instance, WechatBasic):
             self.wechatsdk_instance = wechatsdk_instance
@@ -81,7 +84,8 @@ class Reply(object):
         self.feather_cls = FeatherProxy.get_feather(self.message_instance.msg_instance.key)
         # 实例化当前功能类
         self.feather = self.feather_cls(message_instance=self.message_instance.msg_instance,
-                                        wechatsdk=self.wechatsdk_instance, public_instance=self.public_instance)
+                                        wechatsdk=self.wechatsdk_instance, public_instance=self.public_instance,
+                                        follower_instance=self.follower_instance)
         """:type feather:BaseFeather"""
 
     def _get_hint_word(self):

@@ -53,8 +53,7 @@ class Message(models.Model):
     longitude = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
     precision = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        fields_need_msgid = ['text', 'image', 'video', 'shortvideo', 'location', 'voice', 'link']
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None, wechatsdk=None):
         msg_instance = self.msg_instance
         """:type :TextMessage|LocationMessage|ImageMessage|VoiceMessage|EventMessage|LinkMessage|VideoMessage|ShortVideoMessage"""
         self.type = msg_instance.type
@@ -108,6 +107,12 @@ class Message(models.Model):
     @classmethod
     def group_messages(cls):
         return cls.objects.raw('SELECT * FROM app_message GROUP BY form_user_id')
+
+    def display(self):
+        if self.content:
+            return self.content
+        elif self.picurl:
+            return '<a href="{0}"><img scr="{0}" style="height:30px;width:auto"></a>'.format(self.picurl)
 
     class Meta:
         ordering = ['-id']
