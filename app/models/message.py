@@ -79,7 +79,8 @@ class Message(models.Model):
             response = wechatsdk.download_media(media_id=self.mediaid)
             from django.conf import settings
             import os
-            with open(os.path.join(settings.BASE_DIR, 'download', self.mediaid), 'wb') as f:
+            
+            with open(os.path.join(settings.BASE_DIR, 'download', self.mediaidt), 'wb') as f:
                 f.write(response.content)
             media_instance = Media(media_id=self.mediaid, media_download_path=os.path.join('download', self.mediaid))
             media_instance.save()
@@ -143,7 +144,7 @@ class Message(models.Model):
         if self.type == 'voice':
             return """
             <audio controls="controls">
-  <source src="{0}" type="audio/ogg">
+  <source src="/{0}" type="audio/ogg">
 Your browser does not support the audio element.
 </audio>
 
