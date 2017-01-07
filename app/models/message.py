@@ -7,8 +7,10 @@ from wechat_manage.models.followers_model import PublicFollowers
 from wechat_manage.models.public_model import PublicAccount
 from wechat_manage.models.reply_model import ReplyConfigModel
 from feather_models import FeatureModel
+from media import Media
 from wechat_sdk.messages import WechatMessage, EventMessage, ImageMessage, LinkMessage, TextMessage, VideoMessage \
     , VoiceMessage, ShortVideoMessage, LocationMessage, UnknownMessage
+from wechat_sdk import WechatBasic
 
 
 class MsgResponse(models.Model):
@@ -52,8 +54,18 @@ class Message(models.Model):
     latitude = models.FloatField(verbose_name=u'上报的地理位置的纬度', null=True)
     longitude = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
     precision = models.FloatField(verbose_name=u'上报的地理位置的静度', null=True)
+    media = models.ForeignKey(Media, verbose_name=u'素材', null=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None, wechatsdk=None):
+        """
+        :type wechatsdk:WechatBasic
+        :param force_insert: 
+        :param force_update: 
+        :param using: 
+        :param update_fields: 
+        :param wechatsdk: 
+        :return: 
+        """
         msg_instance = self.msg_instance
         """:type :TextMessage|LocationMessage|ImageMessage|VoiceMessage|EventMessage|LinkMessage|VideoMessage|ShortVideoMessage"""
         self.type = msg_instance.type
@@ -61,8 +73,17 @@ class Message(models.Model):
         self.msgid = msg_instance.id
         if hasattr(msg_instance, 'content'):
             self.content = msg_instance.content
+        # 自动下载用户上传的媒体文件，声音,视频等
         if hasattr(msg_instance, 'media_id'):
             self.mediaid = msg_instance.media_id
+            response = wechatsdk.download_media(media_id=self.media)
+            from django.conf import settings
+            import os
+            with open(os.path.join(settings.BASE_DIR, 'download', self.mediaid), 'wb') as f:
+                f.write(response)
+            media_instance = Media(media_id=self.media, media_download_path=os.path.join('download', self.mediaid))
+            self.media = media_instance
+
         if hasattr(msg_instance, 'picurl'):
             self.picurl = msg_instance.picurl
         if hasattr(msg_instance, 'format'):
@@ -114,9 +135,20 @@ class Message(models.Model):
         elif self.picurl:
             return '<a href="{0}"><img src="{0}" style="height:30px;width:auto"></a>'.format(self.picurl)
         if self.event_key:
-            return u'触发:'
+            try:
+                return u'点击菜单:%s' % self.response.feather
+            except AttributeError, FeatureModel.DoesNotExist:
+                return ''
+        if self.type == 'voice':
+            return """
+            <audio controls="controls">
+  <source src="{0}" type="audio/ogg">
+Your browser does not support the audio element.
+</audio>
+
+            """.format(self.media.media_download_path)
         if self.url:
-            return u'浏览:%s' % self.url
+            return u'点击菜单:浏览%s' % self.url
 
     class Meta:
         ordering = ['-id']
