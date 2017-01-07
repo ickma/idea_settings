@@ -81,11 +81,11 @@ def reply(request, public, *args):
         _user_instance.save()
         user_instance = _user_instance
     """实例化message"""
-    message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body)
+    message_instance = Message(public=public_instance, form_user=user_instance, xml=request.body,)
 
     message_instance.msg_instance = msg
     # 保存当前请求
-    message_instance.save()
+    message_instance.save(wechatsdk=public)
     # 回复逻辑
     reply_instance = Reply(message_instance=message_instance, wechatsdk_instance=public,
                            public_instance=public_instance, follower_instance=user_instance)
