@@ -17,7 +17,7 @@ timestamp = int(time.time())
 # 测试图片消息sample
 image_url = 'https://img11.360buyimg.com/cms/jfs/t3703/296/223334932/244921/9e3c5ae9/5803786dN96d3fe6d.jpg'
 # 测试用msgid
-random_msgid = random.randint(2 ** 10 + 1, 2 ** 64)
+random_msgid = random.randint(2 ** 10 + 1, 2 **60)
 # 测试用mediaid
 random_mediaid = ''.join([random.choice(string.letters) for n in range(32)])
 text_msg = """<xml>
@@ -26,8 +26,8 @@ text_msg = """<xml>
  <CreateTime>{3}</CreateTime>
  <MsgType><![CDATA[text]]></MsgType>
  <Content><![CDATA[{2}]]></Content>
- <MsgId>1234567890123456</MsgId>
- </xml>""".format(public_token, user_openid, text, timestamp)
+ <MsgId>{4}</MsgId>
+ </xml>""".format(public_token, user_openid, text, timestamp,random_msgid)
 
 image_msg = """
  <xml>
@@ -42,6 +42,7 @@ image_msg = """
 """.format(openid=user_openid, token=public_token, timestamp=timestamp, imageurl=image_url, msgid=random_msgid,
            mediaid=random_mediaid)
 
+random_mediaid='zjfTr8SkzCk8fuapmKwBNWoxL1dM9vTjAjSeDRTkhuWh0zBASKHs2F01Qz59oWsK'
 voice_msg = """
 <xml>
 <ToUserName><![CDATA[{token}]]></ToUserName>
