@@ -77,12 +77,16 @@ class Message(models.Model):
         if hasattr(msg_instance, 'media_id'):
             self.mediaid = msg_instance.media_id
             response = wechatsdk.download_media(media_id=self.mediaid)
+            import re
+            d = response.headers['content-disposition']
+            fname = re.findall("filename=(.+)", d)
+
             from django.conf import settings
             import os
             
-            with open(os.path.join(settings.BASE_DIR, 'download', self.mediaidt), 'wb') as f:
+            with open(os.path.join(settings.BASE_DIR, 'download', fname), 'wb') as f:
                 f.write(response.content)
-            media_instance = Media(media_id=self.mediaid, media_download_path=os.path.join('download', self.mediaid))
+            media_instance = Media(media_id=self.mediaid, media_download_path=os.path.join('download', fname))
             media_instance.save()
             self.media = media_instance
 
