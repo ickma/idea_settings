@@ -80,8 +80,9 @@ class Message(models.Model):
             from django.conf import settings
             import os
             with open(os.path.join(settings.BASE_DIR, 'download', self.mediaid), 'wb') as f:
-                f.write(response)
+                f.write(response.content)
             media_instance = Media(media_id=self.media, media_download_path=os.path.join('download', self.mediaid))
+            media_instance.save()
             self.media = media_instance
 
         if hasattr(msg_instance, 'picurl'):
