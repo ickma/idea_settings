@@ -25,7 +25,7 @@ class MsgResponse(models.Model):
 
 class Message(models.Model):
     type_choices = [('image', u'图片'), ('text', u'文本'), ('voice', u'语音'), ('video', u'视频'), ('shortvideo', u'小视频'),
-                    ('link', u'链接'), ('location', u'地理位置')]
+                    ('link', u'链接'), ('location', u'地理位置'), ('click', u'菜单'), ('view', u'菜单')]
     form_user = models.ForeignKey(PublicFollowers, verbose_name=u'用户')
     public = models.ForeignKey(PublicAccount, verbose_name=u'公众号')
     xml = models.TextField(verbose_name=u'原始xml')
@@ -51,7 +51,7 @@ class Message(models.Model):
     ticket = models.TextField(verbose_name=u'二维码换取ticket')
     latitude = models.FloatField(verbose_name=u'上报的地理位置的纬度', null=True)
     longitude = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
-    precision = models.FloatField(verbose_name=u'上报的地理位置的经度', null=True)
+    precision = models.FloatField(verbose_name=u'上报的地理位置的静度', null=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None, wechatsdk=None):
         msg_instance = self.msg_instance
@@ -113,6 +113,10 @@ class Message(models.Model):
             return self.content
         elif self.picurl:
             return '<a href="{0}"><img src="{0}" style="height:30px;width:auto"></a>'.format(self.picurl)
+        if self.event_key:
+            return u'触发:'
+        if self.url:
+            return u'浏览:%s' % self.url
 
     class Meta:
         ordering = ['-id']

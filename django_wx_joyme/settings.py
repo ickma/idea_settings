@@ -80,7 +80,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'django_wx_joyme.wsgi.application'
 
 # Database
@@ -94,6 +93,9 @@ DATABASES = {
         'PASSWORD': '055b6527a0',
         'HOST': '172.16.78.73',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 
@@ -178,18 +180,18 @@ if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     DATABASES['default']['HOST'] = '127.0.0.1'
     DEBUG = False
 
-# Q_CLUSTER = {
-#     'name': 'django_wx_joyme',
-#     'workers': 8,
-#     'recycle': 500,
-#     'timeout': 60,
-#     'compress': True,
-#     'cpu_affinity': 1,
-#     'save_limit': 250,
-#     'queue_limit': 500,
-#     'label': 'Django Q',
-#     'redis': {
-#         'host': '172.16.78.73',
-#         'port': 6379,
-#         'db': 0, }
-# }
+    # Q_CLUSTER = {
+    #     'name': 'django_wx_joyme',
+    #     'workers': 8,
+    #     'recycle': 500,
+    #     'timeout': 60,
+    #     'compress': True,
+    #     'cpu_affinity': 1,
+    #     'save_limit': 250,
+    #     'queue_limit': 500,
+    #     'label': 'Django Q',
+    #     'redis': {
+    #         'host': '172.16.78.73',
+    #         'port': 6379,
+    #         'db': 0, }
+    # }
