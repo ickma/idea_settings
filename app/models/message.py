@@ -76,7 +76,7 @@ class Message(models.Model):
         # 自动下载用户上传的媒体文件，声音,视频等
         if hasattr(msg_instance, 'media_id'):
             self.mediaid = msg_instance.media_id
-            response = wechatsdk.download_media(media_id=self.media)
+            response = wechatsdk.download_media(media_id=self.mediaid)
             from django.conf import settings
             import os
             with open(os.path.join(settings.BASE_DIR, 'download', self.mediaid), 'wb') as f:
