@@ -11,7 +11,7 @@ from media import Media
 from wechat_sdk.messages import WechatMessage, EventMessage, ImageMessage, LinkMessage, TextMessage, VideoMessage \
     , VoiceMessage, ShortVideoMessage, LocationMessage, UnknownMessage
 from wechat_sdk import WechatBasic
-
+from django.utils import timezone
 
 class MsgResponse(models.Model):
     # msg = models.ForeignKey(Message)
@@ -146,7 +146,7 @@ class Message(models.Model):
 Your browser does not support the audio element.
 </audio>
 
-            """.format(self.media.media_download_path)
+            """.format(self.media.media_download_path if self.media else '')
         if self.url:
             return u'点击菜单:浏览%s' % self.url
 
