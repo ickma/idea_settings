@@ -81,7 +81,7 @@ class Message(models.Model):
             import os
             with open(os.path.join(settings.BASE_DIR, 'download', self.mediaid), 'wb') as f:
                 f.write(response.content)
-            media_instance = Media(media_id=self.media, media_download_path=os.path.join('download', self.mediaid))
+            media_instance = Media(media_id=self.mediaid, media_download_path=os.path.join('download', self.mediaid))
             media_instance.save()
             self.media = media_instance
 
