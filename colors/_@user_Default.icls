@@ -1,0 +1,16 @@
+<scheme name="_@user_Default" version="142" parent_scheme="Default">
+  <metaInfo>
+    <property name="created">2016-11-23T02:50:52</property>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2016.3.0.0</property>
+    <property name="modified">2016-11-23T02:52:40</property>
+    <property name="originalScheme">Default</property>
+  </metaInfo>
+  <option name="EDITOR_FONT_SIZE" value="12" />
+  <option name="EDITOR_FONT_NAME" value="DejaVu Sans Mono" />
+  <attributes>
+    <option name="TEXT">
+      <value />
+    </option>
+  </attributes>
+</scheme>
