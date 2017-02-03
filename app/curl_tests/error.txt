@@ -1,9 +1,0 @@
-
-    <xml>
-    <ToUserName><![CDATA[oSRd6wKyAzQqDGhd8EPrWSVivTxE]]></ToUserName>
-    <FromUserName><![CDATA[iyFMiQOKCTR7l8BKZCft]]></FromUserName>
-    <CreateTime>1482756775</CreateTime>
-    <MsgType><![CDATA[text]]></MsgType>
-    <Content><![CDATA[啪啪以啪啪 啊啊啊啊啊 摩擦以摩擦 啊啊啊啊啊]]></Content>
-    </xml>
-    
