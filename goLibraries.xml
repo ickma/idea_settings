@@ -2,9 +2,10 @@
   <component name="GoLibraries">
     <option name="urls">
       <list>
-        <option value="file://$USER_HOME$/projects/goProjects/django_wx_mock" />
         <option value="file://$USER_HOME$/go/gopath" />
+        <option value="file:///Volumes/Ithink/goprojects/echo" />
       </list>
     </option>
+    <option name="useGoPathFromSystemEnvironment" value="false" />
   </component>
 </application>
