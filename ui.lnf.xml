@@ -1,7 +1,6 @@
 <application>
   <component name="UISettings">
     <option name="FONT_FACE" value="HiraginoSans-W3" />
-    <option name="FONT_SIZE" value="115" />
     <option name="HIDE_TOOL_STRIPES" value="false" />
     <option name="SHOW_MAIN_TOOLBAR" value="true" />
     <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
