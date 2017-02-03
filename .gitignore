@@ -105,3 +105,5 @@ django_wx_joyme/test_account
 
 #upload
 upload/
+#download
+download/

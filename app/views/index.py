@@ -90,7 +90,9 @@ def reply(request, public, *args):
     reply_instance = Reply(message_instance=message_instance, wechatsdk_instance=public,
                            public_instance=public_instance, follower_instance=user_instance)
     response = reply_instance.reply()
+
     """保存回复的response 实例"""
     message_instance.response = reply_instance.messages_response_instance
-    message_instance.save()
+    if message_instance.response.id:
+        message_instance.save(force_update=True)
     return HttpResponse(content=response)

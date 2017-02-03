@@ -13,6 +13,7 @@ from wechat_sdk.messages import WechatMessage, EventMessage, ImageMessage, LinkM
 from wechat_sdk import WechatBasic
 from django.utils import timezone
 
+
 class MsgResponse(models.Model):
     # msg = models.ForeignKey(Message)
     response_type = models.CharField(max_length=255, verbose_name=u'回复类型',
@@ -33,7 +34,7 @@ class Message(models.Model):
     xml = models.TextField(verbose_name=u'原始xml')
     type = models.CharField(choices=type_choices, verbose_name=u'消息类型', max_length=20)
     content = models.TextField(verbose_name=u'消息内容', null=True)
-    msgid = models.BigIntegerField(verbose_name=u'消息ID', null=True)
+    msgid = models.BigIntegerField(verbose_name=u'消息ID', null=True, unique=True)
     create_time = models.IntegerField(verbose_name=u'创建时间戳')
     created_at = models.DateTimeField(verbose_name=u'创建时间', auto_now_add=True)
     picurl = models.CharField(max_length=255, verbose_name=u'图片链接', null=True)
@@ -66,6 +67,9 @@ class Message(models.Model):
         :param wechatsdk: 
         :return: 
         """
+        if force_update or self.id:
+            super(Message, self).save(force_update=force_update)
+            return
         msg_instance = self.msg_instance
         """:type :TextMessage|LocationMessage|ImageMessage|VoiceMessage|EventMessage|LinkMessage|VideoMessage|ShortVideoMessage"""
         self.type = msg_instance.type
@@ -73,22 +77,6 @@ class Message(models.Model):
         self.msgid = msg_instance.id
         if hasattr(msg_instance, 'content'):
             self.content = msg_instance.content
-        # 自动下载用户上传的媒体文件，声音,视频等
-        if hasattr(msg_instance, 'media_id'):
-            self.mediaid = msg_instance.media_id
-            response = wechatsdk.download_media(media_id=self.mediaid)
-            import re
-            d = response.headers['content-disposition']
-            fname = re.findall("filename=(.+)", d)
-
-            from django.conf import settings
-            import os
-            
-            with open(os.path.join(settings.BASE_DIR, 'download', fname), 'wb') as f:
-                f.write(response.content)
-            media_instance = Media(media_id=self.mediaid, media_download_path=os.path.join('download', fname))
-            media_instance.save()
-            self.media = media_instance
 
         if hasattr(msg_instance, 'picurl'):
             self.picurl = msg_instance.picurl
@@ -117,8 +105,13 @@ class Message(models.Model):
             self.longitude = msg_instance.longitude
             self.precision = msg_instance.precision
 
-        # todo  检查当前msgid  是否存在重复
         super(Message, self).save(force_insert, force_update, using, update_fields)
+        # 自动下载用户上传的媒体文件，声音,视频等
+        if hasattr(msg_instance, 'media_id'):
+            self.mediaid = msg_instance.media_id
+            from app.utils.media_download import download_media
+            import django_rq
+            django_rq.enqueue(download_media, wechatsdk, self)
 
     @property
     def msg_instance(self):
@@ -148,11 +141,12 @@ class Message(models.Model):
         if self.type == 'voice':
             return """
             <audio controls="controls">
-  <source src="/{0}" type="audio/ogg">
+  <source src="/{0}" type="audio/{1}">
 Your browser does not support the audio element.
 </audio>
 
-            """.format(self.media.media_download_path if self.media else '')
+            """.format(self.media.media_download_path if self.media else '',
+                       self.media.media_download_path.split('/')[-1].split('.')[-1] if self.media else '')
         if self.url:
             return u'点击菜单:浏览%s' % self.url
 

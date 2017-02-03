@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'wechat_manage',
     'permissions',
     'django_static',
-    # 'django_q'
+    'django_rq',
     'bootstrap3_datetime'
 ]
 
@@ -157,6 +157,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 MEDIA_PATH = '/upload'
 MEDIA_URL = '/upload/'
 
+# setting re queue
+RQ_QUEUES = {
+    'default': {
+        'HOST': '172.16.78.73',
+        'PORT': 6379,
+        'DB': 2,
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
 """home develop settings"""
 import os
 
@@ -166,6 +175,7 @@ if os.path.isdir(os.path.join(BASE_DIR, 'django_wx_joyme', 'home_settings')):
 
         DATABASES = home_settings.database.DATABASES
         CACHES = home_settings.database.CACHES
+        RQ_QUEUES['default']['HOST']='192.168.1.111'
 
     except (ImportError, NameError):
         pass
@@ -176,20 +186,7 @@ import custome_settings
 if os.path.isfile(os.path.join(BASE_DIR, 'is_server')):
     CACHES['default']['LOCATION'] = "redis://127.0.0.1:6379/1"
     DATABASES['default']['HOST'] = '127.0.0.1'
+    RQ_QUEUES['default']['HOST'] = '127.0.0.1'
     DEBUG = False
 
-    # Q_CLUSTER = {
-    #     'name': 'django_wx_joyme',
-    #     'workers': 8,
-    #     'recycle': 500,
-    #     'timeout': 60,
-    #     'compress': True,
-    #     'cpu_affinity': 1,
-    #     'save_limit': 250,
-    #     'queue_limit': 500,
-    #     'label': 'Django Q',
-    #     'redis': {
-    #         'host': '172.16.78.73',
-    #         'port': 6379,
-    #         'db': 0, }
-    # }
+

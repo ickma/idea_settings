@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login
-from django.templatetags.static import static
 
 from wechat_manage.urls import urlpatterns as wechat_manage_urls
 from app.views import index
@@ -27,6 +26,7 @@ from django.conf.urls.static import static
 from app.views.index import reply
 from app.views.messages import messages
 from app.feathers import urls as feather_url
+import os
 
 urlpatterns = [
                   url(r'^$', index.index),
@@ -41,3 +41,5 @@ urlpatterns = [
                   url(r'^wechat/(?P<publicid>\d+)/', include(wechat_manage_urls)),
                   url(r'^app/(?P<publicid>\d+)/', include(feather_url))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static('/download/',document_root=os.path.join(settings.BASE_DIR, 'download'))

@@ -113,7 +113,7 @@ class Reply(object):
         回复方法
         :return:
         """
-        # 处理时间推送
+        # 处理事件推送
         if self.feather:
             # 执行事件响应
             response = self.feather.process()
